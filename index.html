@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="🚢🇮🇹 Dati immigrazione, crimine & società (Italia, 2026)">
+  <meta property="og:description" content="Dati su immigrazione, sbarchi, criminalità, carcere, economia e confronto europeo in Italia. Fonti ISTAT, ISMU, DAP, Ministeri.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://un-mistico.github.io/immigrazione-dashboard/preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+<title>🚢🇮🇹 Dati immigrazione, crimine & società (Italia, 2026)</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🇮🇹%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20px;min-height:100vh}
+.wrap{max-width:1200px;margin:0 auto}
+.header{margin-bottom:24px}
+.header h1{font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.5px}
+.header .sub{font-size:14px;color:#888;margin-top:6px}
+.header .src{font-size:11px;color:#555;margin-top:8px}
+.header .legend{font-size:10px;color:#666;margin-top:10px;padding-top:10px;border-top:1px solid #222}
+.header .legend .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px;vertical-align:middle;background:#555}
+.controls{display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.tabs{display:flex;gap:4px;background:#16161B;border-radius:8px;padding:4px;flex-wrap:wrap}
+.tab{padding:8px 16px;font-size:13px;font-weight:600;color:#888;cursor:pointer;border-radius:6px;transition:all .2s;border:none;background:none}
+.tab.active{background:#E07A5F;color:#fff}
+.tab:hover:not(.active){color:#ccc}
+.year-sel{display:flex;align-items:center;gap:8px}
+.year-sel label{font-size:12px;color:#666;text-transform:uppercase;letter-spacing:1px}
+.year-sel select{background:#16161B;color:#fff;border:1px solid #333;border-radius:6px;padding:6px 12px;font-size:13px;font-family:inherit;cursor:pointer}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.kpi{background:#16161B;border:1px solid #222;border-radius:10px;padding:16px 18px}
+.kpi .val{font-size:26px;font-weight:800;color:#fff}
+.kpi .val.accent{color:#E07A5F}
+.kpi .val.blue{color:#4A6FA5}
+.kpi .val.green{color:#5B8C5A}
+.kpi .val.red{color:#C45A3D}
+.kpi .lbl{font-size:10px;color:#777;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.kpi .trend{font-size:11px;margin-top:6px}
+.trend-up{color:#E07A5F}.trend-down{color:#5B8C5A}.trend-neutral{color:#888}
+.kpi-static{position:relative}
+.kpi-static::after{content:"";position:absolute;top:8px;right:8px;width:6px;height:6px;border-radius:50%;background:#555}
+.kpi-static .meta{display:inline-flex;align-items:center;gap:4px;font-size:9px;color:#666;margin-top:6px;cursor:help}
+.kpi-static .meta svg{width:10px;height:10px;fill:none;stroke:#666;stroke-width:1.5}
+.kpi-static .tooltip{display:none;position:absolute;left:50%;bottom:105%;transform:translateX(-50%);width:240px;background:#1E1E24;border:1px solid #333;border-radius:6px;padding:8px 10px;font-size:10px;color:#bbb;line-height:1.4;z-index:20;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.kpi-static .tooltip::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#333}
+.kpi-static:hover .tooltip{display:block}
+.chart-grid{display:grid;gap:16px;margin-bottom:16px}
+.chart-grid.cols-2{grid-template-columns:1fr 1fr}
+.chart-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+.chart-box{background:#16161B;border:1px solid #222;border-radius:10px;padding:18px}
+.chart-box h3{font-size:13px;font-weight:600;color:#ccc;margin-bottom:12px}
+.chart-header-with-toggle{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.chart-header-with-toggle h3{margin:0}
+.toggle-btn{background:#16161B;color:#E07A5F;border:1px solid #E07A5F;padding:6px 12px;border-radius:4px;font-size:12px;cursor:pointer}
+.toggle-btn:hover{background:#E07A5F;color:#1A1A20}
+.chart-container{position:relative;width:100%;height:280px}
+.chart-container.tall{height:360px}
+.compare-card{background:#16161B;border:1px solid #222;border-radius:10px;padding:18px;text-align:center}
+.compare-card .title{font-size:11px;color:#666;text-transform:uppercase;letter-spacing:1px}
+.compare-card .vals{margin-top:10px;display:flex;justify-content:center;align-items:baseline;gap:8px}
+.compare-card .stranieri{color:#E07A5F;font-size:22px;font-weight:800}
+.compare-card .sep{color:#444;font-size:14px}
+.compare-card .italiani{color:#888;font-size:18px;font-weight:600}
+.compare-card .desc{font-size:10px;color:#555;margin-top:4px}
+.pane{display:none}
+.pane.active{display:block}
+/* Chart.js fix: render charts only when visible */
+.footer-info{margin-top:24px;padding-top:16px;border-top:1px solid #222;font-size:11px;color:#555;line-height:1.7}
+.warning-box{background:#1A1212;border:1px solid #3A2222;border-radius:8px;padding:14px 18px;margin:12px 0}
+.warning-box .text{font-size:13px;color:#E07A5F;font-weight:600}
+.insight-box{background:#121A12;border:1px solid #1A3A1A;border-radius:8px;padding:14px 18px;margin:12px 0}
+.insight-box .text{font-size:13px;color:#5B8C5A;font-weight:500}
+.recap-intro{font-size:14px;color:#888;margin-bottom:16px}
+.recap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.recap-card{background:#16161B;border:1px solid #222;border-radius:10px;padding:18px}
+.recap-num{font-size:32px;font-weight:800;color:#E07A5F;opacity:.6;line-height:1;margin-bottom:8px}
+.recap-title{font-size:14px;font-weight:700;color:#f0f0f0;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.recap-text{font-size:13px;color:#aaa;line-height:1.55}
+.recap-text a{color:#E07A5F;text-decoration:none}
+.recap-text a:hover{text-decoration:underline}
+.sources-list{font-size:12px;color:#888;line-height:1.9}
+.sources-list a{color:#E07A5F;text-decoration:none}
+.sources-list a:hover{text-decoration:underline}
+.sources-list li{margin-bottom:6px}
+.method-box{background:#16161B;border:1px solid #222;border-radius:10px;padding:18px;margin-bottom:16px}
+.method-box h4{font-size:13px;color:#fff;margin-bottom:8px}
+.method-box p{font-size:12px;color:#888;line-height:1.7}
+@media(max-width:768px){.kpi-grid,.kpi-grid.cols-5{grid-template-columns:repeat(2,1fr)}.chart-grid.cols-2,.chart-grid.cols-3{grid-template-columns:1fr}.tab{padding:8px 12px;font-size:12px}}
+/* Info tooltip for chart titles */
+.info-tooltip{position:relative;display:inline-block;margin-left:8px;cursor:help}
+.info-tooltip .icon{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#333;color:#888;font-size:11px;font-weight:700}
+.info-tooltip:hover .icon{background:#E07A5F;color:#fff}
+.info-tooltip .tooltip-text{visibility:hidden;width:280px;background:#1E1E24;color:#aaa;text-align:left;padding:10px 12px;border-radius:8px;border:1px solid #333;font-size:12px;line-height:1.5;position:absolute;z-index:100;bottom:125%;left:50%;transform:translateX(-50%);opacity:0;transition:opacity .2s}
+.info-tooltip:hover .tooltip-text{visibility:visible;opacity:1}
+.info-tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border-width:5px;border-style:solid;border-color:#333 transparent transparent transparent}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>🚢🇮🇹 Dati immigrazione, crimine & società (Italia, 2026)</h1>
+    <div class="sub">Flussi migratori, presenza straniera, criminalità, economia e confronto europeo</div>
+    <div class="src">Ultimo aggiornamento: giugno 2026 · Dati 2015-2025 · Fonti: ISTAT, ISMU, DAP/Ministero Giustizia, Ministero Interno, Ministero Lavoro, Eurostat, Council of Europe SPACE I, Fondazione Leone Moressa, IDOS/Cgia Mestre</div>
+    <div class="legend"><span class="dot"></span> KPI non aggiornabili col filtro anno · <strong>flow</strong> = conteggio annuale (es. acquisizioni cittadinanza in un anno) · <strong>stock</strong> = fotografia a una data (es. irregolari stimati al 31/12)</div>
+  </div>
+  <div class="controls">
+    <div class="tabs">
+      <button class="tab active" data-tab="panoramica">Panoramica</button>
+      <button class="tab" data-tab="criminalita">Criminalità</button>
+      <button class="tab" data-tab="economia">Economia</button>
+      <button class="tab" data-tab="rimpatri">Rimpatri</button>
+      <button class="tab" data-tab="eu">Confronto EU</button>
+      <button class="tab" data-tab="insight">Recap</button>
+      <button class="tab" data-tab="fonti">Fonti & Metodo</button>
+    </div>
+    <div class="year-sel">
+      <label>Anno</label>
+      <select id="yearSelect">
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025" selected>2025</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- PANORAMICA -->
+  <div id="panoramica" class="pane active">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="val" id="kpi-stranieri">5,56M</div><div class="lbl">Stranieri residenti (<span class="kpi-year">2025</span>)</div><div class="trend trend-up" id="kpi-stranieri-trend">+3,5% YoY</div></div>
+      <div class="kpi"><div class="val" id="kpi-pct">9,4%</div><div class="lbl">% popolazione totale (<span class="kpi-year">2025</span>)</div></div>
+      <div class="kpi"><div class="val" id="kpi-mare">66.000</div><div class="lbl">Arrivi via mare (<span class="kpi-year">2025</span>)</div><div class="trend trend-neutral" id="kpi-mare-trend">-0,5% YoY</div></div>
+      <div class="kpi kpi-static">
+        <div class="val red" id="kpi-irreg">339K</div>
+        <div class="lbl">Irregolari stimati (<span class="kpi-year">2025</span>)</div>
+        <div class="meta"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5"/><line x1="6" y1="5.5" x2="6" y2="5.5" stroke-linecap="round"/><line x1="6" y1="3" x2="6" y2="7" stroke-linecap="round"/></svg> stock · non aggiornabile</div>
+        <div class="tooltip">stock: dato puntuale (stima ISMU, non ricostruibile per tutti gli anni) · non aggiornabile col filtro</div>
+      </div>
+    </div>
+    <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>Stranieri residenti in Italia (2020-2025)</h3><div class="chart-container"><canvas id="chart-residenti"></canvas></div></div>
+      <div class="chart-box"><h3>Arrivi via mare (2020-2025)</h3><div class="chart-container"><canvas id="chart-mare"></canvas></div></div>
+    </div>
+    <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>Morti e dispersi in mare (2020-2025)</h3><div class="chart-container"><canvas id="chart-morti"></canvas></div></div>
+      <div class="chart-box"><h3>Distribuzione geografica stranieri (<span id="geo-year">2025</span>)</h3><div class="chart-container"><canvas id="chart-geo"></canvas></div></div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-box">
+        <h3>Arrivi in Italia per rotta migratoria (2024)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>Mediterraneo centrale</strong> = sbarchi da Libia/Tunisia sulle coste italiane (66.317, fonte Openpolis/Ministero Interno). <strong>Rotta balcanica</strong> = ingressi via terra dalla Slovenia (stima ~7.000, dati parziali UNHCR/ISMU). <strong>Altre</strong> = canali minori e residuo. I dati via terra non sono ufficialmente pubblicati dal Ministero.</span></span></h3>
+        <div class="chart-container"><canvas id="chart-rotte"></canvas></div>
+      </div>
+    </div>
+    <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>Status presenza straniera (<span id="status-year">2025</span>)</h3><div class="chart-container"><canvas id="chart-status"></canvas></div></div>
+      <div class="chart-box">
+        <div class="chart-header-with-toggle">
+          <h3 id="origini-title">Principali paesi di origine (% residenti)</h3>
+          <button id="origini-toggle" class="toggle-btn">Vedi macro aree</button>
+        </div>
+        <div class="chart-container"><canvas id="chart-origini"></canvas></div>
+      </div>
+    </div>
+    <div class="kpi-grid" style="margin-top:8px">
+      <div class="kpi kpi-static">
+        <div class="val" id="kpi-cittadinanza">196K</div>
+        <div class="lbl">Acquisizioni cittadinanza (<span class="kpi-year">2025</span>)</div>
+        <div class="meta"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5"/><line x1="6" y1="5.5" x2="6" y2="5.5" stroke-linecap="round"/><line x1="6" y1="3" x2="6" y2="7" stroke-linecap="round"/></svg> flow · fisso</div>
+        <div class="tooltip">flow: conteggio degli eventi in un anno (acquisizioni) · dato 2025 fisso</div>
+      </div>
+      <div class="kpi kpi-static">
+        <div class="val" id="kpi-msna">17K</div>
+        <div class="lbl">Minori stranieri non accompagnati (<span class="kpi-year">2024</span>)</div>
+        <div class="meta"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5"/><line x1="6" y1="5.5" x2="6" y2="5.5" stroke-linecap="round"/><line x1="6" y1="3" x2="6" y2="7" stroke-linecap="round"/></svg> stock · fisso</div>
+        <div class="tooltip">stock: dato puntuale (foto a fine anno) · non si aggiorna col filtro anno</div>
+      </div>
+      <div class="kpi kpi-static">
+        <div class="val" id="kpi-ingressi">435K</div>
+        <div class="lbl">Immigrazioni dall'estero (<span class="kpi-year">2024</span>)</div>
+        <div class="meta"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5"/><line x1="6" y1="5.5" x2="6" y2="5.5" stroke-linecap="round"/><line x1="6" y1="3" x2="6" y2="7" stroke-linecap="round"/></svg> flow · fisso</div>
+        <div class="tooltip">flow: persone entrate in Italia dall'estero durante l'anno · dato 2024 fisso</div>
+      </div>
+      <div class="kpi kpi-static">
+        <div class="val" id="kpi-italia-calo">-189K</div>
+        <div class="lbl">Calo popolazione italiana (<span class="kpi-year">2024</span>)</div>
+        <div class="meta"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5"/><line x1="6" y1="5.5" x2="6" y2="5.5" stroke-linecap="round"/><line x1="6" y1="3" x2="6" y2="7" stroke-linecap="round"/></svg> stock · fisso</div>
+        <div class="tooltip">stock: variazione di popolazione tra due rilevazioni (2023→2024) · non si aggiorna col filtro</div>
+      </div>
+    </div>
+    <div class="insight-box"><div class="text">Senza immigrazione la popolazione italiana sarebbe in calo: gli stranieri (+188K) compensano il calo degli italiani (-189K). La popolazione totale resta sostanzialmente stabile.</div></div>
+    <div class="footer-info">ISTAT Indicatori demografici 2025 (dati al 1° gen 2026) | ISMU 31° Rapporto | Ministero Interno | Ministero Lavoro (MSNA)</div>
+  </div>
+
+  <!-- CRIMINALITA -->
+  <div id="criminalita" class="pane">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="val" id="kpi-detenuti">63.977</div><div class="lbl">Detenuti totali</div></div>
+      <div class="kpi"><div class="val accent" id="kpi-stranieri-detenuti">20.130</div><div class="lbl">Stranieri detenuti</div></div>
+      <div class="kpi"><div class="val accent" id="kpi-pct-carceraria">31,5%</div><div class="lbl">% carceraria straniera</div></div>
+      <div class="kpi"><div class="val accent" id="kpi-overrep">3,4x</div><div class="lbl">Sovrarappresentazione</div></div>
+    </div>
+    <div class="warning-box"><div class="text" id="warning-overrep">⚠ Gli stranieri sono il 9,4% della popolazione ma il 31,5% dei detenuti: 3,4 volte più rappresentati in carcere</div></div>
+
+    <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>Detenuti stranieri per area geografica (%, 2024)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>UE</strong> = cittadini comunitari. <strong>Europa non-UE</strong> = Albania, ex-Jugoslavia e altri paesi europei. Fonte: DAP, 30 giugno 2024.</span></span></h3><div class="chart-container"><canvas id="chart-detenuti-area"></canvas></div></div>
+      <div class="chart-box"><h3>Stranieri residenti: comunitari vs extracomunitari (%, 2024)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text">Fonte: INPS Osservatorio sugli stranieri 2024. <strong>UE-15</strong> = vecchi paesi comunitari (Regno Unito escluso dal 2021). <strong>Altri Paesi UE</strong> = paesi entrati dopo il 2004.</span></span></h3><div class="chart-container"><canvas id="chart-ue-extraue"></canvas></div></div>
+    </div>
+    <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>Detenuti: totali vs stranieri (2020-2025)</h3><div class="chart-container"><canvas id="chart-detenuti-trend"></canvas></div></div>
+      <div class="chart-box"><h3>Detenuti stranieri per nazionalit&agrave; (%, 2025)</h3><div class="chart-container"><canvas id="chart-detenuti-paese"></canvas></div></div>
+    </div>
+
+    <div class="chart-box" style="margin-bottom:16px"><h3>% stranieri sul totale detenuti per tipo di reato (2024)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>Legge immigrazione</strong> include reati che per definizione possono essere commessi quasi solo da non italiani: ingresso e soggiorno irregolare, favoreggiamento dell'immigrazione clandestina, falsificazione di documenti. Togliendo questa categoria la quota carceraria straniera scende sensibilmente.</span></span></h3><div class="chart-container"><canvas id="chart-reati"></canvas></div></div>
+
+    <!-- DENUNCE SECTION -->
+    <div class="kpi-grid" style="margin-top:8px">
+      <div class="kpi"><div class="val accent" id="kpi-denunce-pct">34,7%</div><div class="lbl">% denunciati stranieri (2024)</div></div>
+      <div class="kpi"><div class="val" id="kpi-reati-tot">2,38M</div><div class="lbl">Reati segnalati (2024)</div></div>
+      <div class="kpi"><div class="val accent" id="kpi-predatori">60%+</div><div class="lbl">% reati predatori stranieri</div></div>
+      <div class="kpi"><div class="val accent" id="kpi-irreg-reati">70%</div><div class="lbl">% reati stranieri da irregolari</div></div>
+    </div>
+
+    <div class="warning-box"><div class="text">Il 10% degli stranieri (irregolari) commette il 70% dei reati commessi da stranieri. La sproporzione è dovuta principalmente a chi non ha permesso di soggiorno, non agli stranieri regolari.</div></div>
+
+    <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>% stranieri tra denunciati per tipo di reato (2024)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text">Dati del Ministero dell'Interno / Sole 24 Ore. <strong>Totale reati</strong> è la media pesata complessiva; le singole voci sono sotto-categorie di reato.</span></span></h3><div class="chart-container tall"><canvas id="chart-denunce-reati"></canvas></div></div>
+      <div class="chart-box"><h3>Denunciati stranieri per nazionalità (%, 2024)</h3><div class="chart-container tall"><canvas id="chart-denunce-paese"></canvas></div></div>
+    </div>
+
+    <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>Popolazione vs detenuti vs denunciati: % stranieri</h3><div class="chart-container"><canvas id="chart-confronto-pct"></canvas></div></div>
+      <div class="chart-box"><h3>Domande d'asilo in Italia: esiti 2024<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>Rifiutate</strong> = non riconosciuta protezione internazionale. <strong>Protezione umanitaria</strong> = permesso per casi speciali (gravidanza, minore et&agrave;, salute, etc.). <strong>Riconosciute rifugiato</strong> = status di rifugiato politico.</span></span></h3><div class="chart-container"><canvas id="chart-asilo-esiti"></canvas></div></div>
+    </div>
+
+    <div class="chart-grid cols-3" style="margin-top:8px">
+      <div class="compare-card"><div class="title">Et&agrave; media</div><div class="vals"><span class="stranieri">37,3</span><span class="sep">vs</span><span class="italiani">45,4</span></div><div class="desc">stranieri vs italiani</div></div>
+      <div class="compare-card"><div class="title">In attesa di giudizio</div><div class="vals"><span class="stranieri">28,9%</span><span class="sep">vs</span><span class="italiani">22,7%</span></div><div class="desc">stranieri vs italiani</div></div>
+      <div class="compare-card"><div class="title">Pena media</div><div class="vals"><span class="stranieri">6,3 anni</span><span class="sep">vs</span><span class="italiani">9 anni</span></div><div class="desc">stranieri vs italiani</div></div>
+    </div>
+
+    <div class="chart-box" style="margin-bottom:16px"><h3>Giustizia penale: stranieri vs italiani (%)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>Misure alternative</strong> = affidamento in prova, domiciliari, semilibert&agrave;, permessi premio. Gli stranieri vi accedono meno perch&eacute; richiedono residenza stabile, lavoro e famiglia sul territorio.</span></span></h3><div class="chart-container"><canvas id="chart-giustizia-confronto"></canvas></div></div>
+
+    <div class="method-box">
+      <h4>Perch&eacute; gli stranieri sono sovrarappresentati in carcere?</h4>
+      <p>I detenuti stranieri hanno in media reati meno gravi: pena media <strong>6,3 anni vs 9 anni</strong> degli italiani, e <strong>44% dei condannati a meno di 1 anno sono stranieri</strong>. Molti potrebbero accedere a misure alternative (domiciliari, affidamento in prova), ma ne usufruiscono in proporzione minore: gli stranieri sono il <strong>31% dei detenuti</strong> ma solo il <strong>17,5% di chi &egrave; in misura alternativa</strong>. Motivo: requisiti pi&ugrave; difficili da soddisfare — residenza stabile, lavoro, famiglia sul territorio — proprio a causa della precariet&agrave; abitativa e lavorativa. Il sovraffollamento e la discrezionalit&agrave; giudiziaria amplificano l'effetto.</p>
+    </div>
+
+    <div class="method-box">
+      <h4>Reddito, povert&agrave; e criminalit&agrave;</h4>
+      <p>I dati mostrano che gli stranieri hanno una <strong>RAL media pi&ugrave; bassa</strong> (~€14.000 per i dipendenti stranieri vs ~€37.000 per i dipendenti italiani) e una <strong>povert&agrave; assoluta molto pi&ugrave; alta</strong> (35% delle famiglie straniere vs ~10% di quelle italiane). Inoltre il 70% dei reati commessi da stranieri &egrave; attribuito agli irregolari, che sono solo il 10% degli stranieri. Queste tre cose <strong>corrono insieme</strong>, ma i dati pubblici italiani non permettono di dimostrare che la povert&agrave; o la precariet&agrave; siano la <strong>causa</strong> dei reati: non esistono open data che collegano reddito, status giuridico e autore del reato. Anagrafica (giovani e maschi) e concentrazione di pochi recidivi possono spiegare parte della sovrarappresentazione. Quindi si pu&ograve; dire che <strong>irregolari e fasce a basso reddito sono sovrarappresentate</strong>, non che la povert&agrave; renda pi&ugrave; criminale una popolazione intera.</p>
+    </div>
+
+    <div class="method-box">
+      <h4>Limiti interpretativi sui dati di criminalit&agrave;</h4>
+      <p>I dati pubblici italiani mostrano solo la <strong>quota di stranieri</strong> tra denunciati e detenuti. Non <strong>controllano per fattori confondenti</strong> come et&agrave;, sesso, reddito/ISEE, area di residenza e status regolare/irregolare. Gli stranieri sono in media pi&ugrave; giovani e pi&ugrave; maschi — due variabili associate a tassi di criminalit&agrave; pi&ugrave; alti in tutte le popolazioni. Inoltre le statistiche ufficiali contano i <strong>reati</strong>, non gli autori: se pochi recidivi seriali commettono molti reati, i dati mostreranno "tanti reati da stranieri" anzich&eacute; "pochi autori seriali". Non esistono open data che permettano di isolare questi effetti, quindi <strong>non &egrave; possibile concludere causalmente che gli stranieri siano "pi&ugrave; criminali"</strong>.</p>
+    </div>
+    <div class="footer-info">DAP marzo 2026 | Ministero Giustizia 30 giugno 2024 | Sole 24 Ore / Pinotti 2024 | Antigone 2025 | Ministero Interno | ISMU | Fondazione Migrantes 2024</div>
+  </div>
+
+  <!-- ECONOMIA -->
+  <div id="economia" class="pane">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="val green" id="kpi-pil">€177Mld</div><div class="lbl">Contributo PIL stranieri</div></div>
+      <div class="kpi"><div class="val" id="kpi-pil-pct">9%</div><div class="lbl">% del PIL nazionale</div></div>
+      <div class="kpi"><div class="val" id="kpi-occupati">2,4M</div><div class="lbl">Occupati stranieri</div></div>
+      <div class="kpi"><div class="val" id="kpi-occ-pct">10,5%</div><div class="lbl">% occupati totali</div></div>
+    </div>
+    <div class="kpi-grid" style="margin-top:-4px">
+      <div class="kpi"><div class="val green" id="kpi-entrate">€39,1Mld</div><div class="lbl">Tasse e contributi versati</div></div>
+      <div class="kpi"><div class="val red" id="kpi-costi">€34,5Mld</div><div class="lbl">Costi servizi e welfare</div></div>
+      <div class="kpi"><div class="val green" id="kpi-saldo">+€4,6Mld</div><div class="lbl">Saldo netto per lo Stato</div></div>
+      <div class="kpi"><div class="val" id="kpi-rimesse">€8,6Mld</div><div class="lbl">Rimesse all'estero (2025)</div></div>
+    </div>
+    <div class="kpi-grid" style="margin-top:-4px">
+      <div class="kpi"><div class="val red" id="kpi-ral-str">~14K</div><div class="lbl">RAL media dipendenti stranieri</div></div>
+      <div class="kpi"><div class="val blue" id="kpi-ral-ita">~37K</div><div class="lbl">RAL media dipendenti italiani (ISTAT)</div></div>
+      <div class="kpi"><div class="val" id="kpi-contribuenti">2,29M</div><div class="lbl">Contribuenti stranieri</div></div>
+      <div class="kpi"><div class="val" id="kpi-occupabili">75,4%</div><div class="lbl">Stranieri in Italia extracomunitari</div></div>
+    </div>
+    <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>RAL media dipendenti: stranieri vs italiani (&euro; annui)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>RAL media stranieri ~14.000 &euro;</strong>: XII Rapporto Ministero del Lavoro (riferito ai lavoratori dipendenti stranieri, molti dei quali a bassa qualifica e part-time). <strong>RAL media italiani ~37.000 &euro;</strong>: stima ISTAT 2024 su dipendenti full-time. I due campioni non sono perfettamente comparabili.</span></span></h3><div class="chart-container"><canvas id="chart-ral"></canvas></div></div>
+      <div class="chart-box"><h3>Rimesse all'estero: top paesi beneficiari (% sul totale, 2025)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>Rimesse</strong> = denaro che i lavoratori stranieri residenti in Italia trasferiscono all'estero. Non &egrave; una spesa pubblica, ma un'uscita dal reddito disponibile in Italia. Fonte: Banca d'Italia, 2025.</span></span></h3><div class="chart-container"><canvas id="chart-rimesse"></canvas></div></div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-box"><h3>Contributo stranieri per settore (% valore aggiunto, 2024)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>Valore aggiunto</strong> = ricchezza prodotta da un settore. La quota straniera &egrave; stimata dalla Fondazione Leone Moressa in base all'occupazione e alla produttivit&agrave; per settore.</span></span></h3><div class="chart-container"><canvas id="chart-settori"></canvas></div></div>
+    </div>
+    <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>Bilancio pubblico: entrate vs costi (mld &euro;, 2023)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text">Stima IDOS/Cgia Mestre/Università Milano-Insubria. Le entrate (tasse+contributi) provengono soprattutto dai regolari; i costi sono calcolati su tutti gli stranieri residenti (regolari e irregolari).</span></span></h3><div class="chart-container"><canvas id="chart-welfare"></canvas></div></div>
+      <div class="chart-box"><h3>Povert&agrave; assoluta: famiglie straniere vs italiane (%)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>Povertà assoluta</strong> = incapacità di sostenere una spesa minima per beni e servizi essenziali. Fonte: ISTAT, 2024.</span></span></h3><div class="chart-container"><canvas id="chart-poverta"></canvas></div></div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-box"><h3>NEET e dispersione scolastica: stranieri vs italiani (%)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>NEET</strong> = giovani che non studiano, non lavorano e non sono in formazione. <strong>Dispersione scolastica</strong> = studenti che abbandonano prematuramente gli studi.</span></span></h3><div class="chart-container"><canvas id="chart-neet"></canvas></div></div>
+    </div>
+    <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>Occupati stranieri per principali nazionalit&agrave; (%)</h3><div class="chart-container"><canvas id="chart-econ-nazionalita"></canvas></div></div>
+      <div class="chart-box"><h3>Occupati stranieri per tipologia contrattuale (%)</h3><div class="chart-container"><canvas id="chart-econ-contratti"></canvas></div></div>
+    </div>
+    <div class="insight-box"><div class="text">Gli stranieri producono il 9% del PIL ma sono il 9,4% della popolazione: contributo pro-capite leggermente inferiore, ma con picchi del 18% in agricoltura e 14% in edilizia. Il saldo fiscale stimato da IDOS/Cgia Mestre &egrave; positivo di +€4,6 miliardi nel 2023. La stima include tutti gli stranieri residenti (regolari e irregolari) per la spesa, mentre le entrate fiscali/contributive provengono principalmente dai regolari. Il 35% delle famiglie straniere &egrave; in povert&agrave; assoluta contro il ~10% di quelle italiane.</div></div>
+    <div class="method-box">
+      <h4>Rimesse vs saldo fiscale: due conti diversi</h4>
+      <p>Le rimesse inviate all'estero dagli immigrati residenti in Italia ammontano a circa <strong>€8,6 miliardi all'anno</strong> (2025, Banca d'Italia). Questo è un <strong>flussso di pagamenti esteri</strong>, non una spesa dello Stato, quindi <strong>non va sottratto direttamente</strong> al saldo fiscale pubblico di +€4,6 mld. Tuttavia rappresenta una quota del reddito prodotto in Italia che non viene consumata o investita qui, riducendo l'impatto moltiplicativo sull'economia nazionale. Per un calcolo del "contributo netto all'economia italiana" bisognerebbe partire dal valore aggiunto prodotto (€177 mld) e sottrarre le rimesse, non dal bilancio fiscale.</p>
+    </div>
+    <div class="footer-info">IDOS/Cgia Mestre/Università Milano-Insubria - Dossier Statistico Immigrazione 2025 (bilancio fiscale 2023) | Fondazione Leone Moressa - Rapporto economia immigrazione 2024 (PIL, occupati, rimesse) | Ministero Lavoro XIV Rapporto | ISTAT (povertà 2024)</div>
+  </div>
+
+  <!-- RIMPATRI -->
+  <div id="rimpatri" class="pane">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="val" id="kpi-arrivi">69.900</div><div class="lbl">Arrivi totali (mare+terra)</div></div>
+      <div class="kpi"><div class="val red" id="kpi-irreg-rimpatri">339K</div><div class="lbl">Irregolari stimati in Italia (stock)</div></div>
+      <div class="kpi"><div class="val green" id="kpi-rimpatri-it">7.000</div><div class="lbl">Rimpatri Italia</div></div>
+      <div class="kpi"><div class="val" id="kpi-efficiency">10%</div><div class="lbl">Rimpatri / arrivi</div></div>
+    </div>
+    <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>Arrivi vs Rimpatri Italia (2015-2025)</h3><div class="chart-container"><canvas id="chart-arrivi-rimpatri"></canvas></div></div>
+      <div class="chart-box"><h3>Rimpatri vs stock irregolari stimati (2015-2025)</h3><div class="chart-container"><canvas id="chart-irreg-rimpatri"></canvas></div></div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-box"><h3>Funnel: dal rifiuto al rimpatrio (UE 2025)</h3><div class="chart-container"><canvas id="chart-funnel"></canvas></div></div>
+    </div>
+    <div class="method-box">
+      <h4>Come leggere i numeri</h4>
+      <p>I <strong>arrivi via mare e via terra</strong> sono il proxy più vicino a un "ingresso irregolare" rilevabile annualmente, anche se includono anche chi poi chiederà asilo (quindi non è automaticamente irregolare). Lo <strong>stock di irregolari stimati</strong> (339mila nel 2025, ISMU) è la platea di persone già presenti in Italia senza permesso di soggiorno. I <strong>rimpatri effettivi</strong> sono circa 6mila all'anno, cio&egrave; lo 0,2% dello stock e il 10% circa degli arrivi annuali. Questo &egrave; il motivo per cui la pressione migratoria si accumula: le uscite sono una frazione irrisoria degli ingressi.</p>
+    </div>
+    <div class="footer-info">Ministero Interno | Eurostat Enforcement of Immigration Legislation 2025 | ISMU 2025</div>
+  </div>
+
+  <!-- EU -->
+  <div id="eu" class="pane">
+    <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>% detenuti stranieri per paese (Europa, 2025)</h3><div class="chart-container"><canvas id="chart-eu-prison"></canvas></div></div>
+      <div class="chart-box"><h3>Presenza straniera (% popolazione, UE 2024)</h3><div class="chart-container"><canvas id="chart-eu-presence"></canvas></div></div>
+    </div>
+    <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>% sospettati stranieri / non-cittadini per paese (2024)</h3><div class="chart-container"><canvas id="chart-eu-crime"></canvas></div></div>
+      <div class="chart-box"><h3>Richiedenti asilo UE - top nazionalità (2024)</h3><div class="chart-container"><canvas id="chart-asilo"></canvas></div></div>
+    </div>
+    <div class="kpi-grid" style="margin-top:16px">
+      <div class="kpi"><div class="val red">132.600</div><div class="lbl">Respinti frontiere UE (2025)</div><div class="trend trend-up">+7,1% vs 2024</div></div>
+      <div class="kpi"><div class="val red">919K</div><div class="lbl">Presenze irregolari UE (2025)</div><div class="trend trend-down">-27% vs 2023</div></div>
+      <div class="kpi"><div class="val">491.950</div><div class="lbl">Ordini di lasciare UE (2025)</div><div class="trend trend-up">+5,8% vs 2024</div></div>
+      <div class="kpi"><div class="val green">135.460</div><div class="lbl">Rimpatri effettivi UE (2025)</div><div class="trend trend-up">+20,9% vs 2024</div></div>
+    </div>
+    <div class="footer-info">Eurostat Migration & Asylum 2025 | Council of Europe SPACE I 2025 (Université de Lausanne) | BKA Germania 2024 | ONS UK 2025</div>
+  </div>
+
+  <!-- RECAP -->
+  <div id="insight" class="pane">
+    <div class="recap-intro">Otto punti chiave per leggere i dati senza prenderne uno solo.</div>
+    <div class="recap-grid">
+      <div class="recap-card">
+        <div class="recap-num">01</div>
+        <div class="recap-title">Demografia</div>
+        <div class="recap-text">Dal 2015 al 2025 la popolazione straniera residente è passata da 4,92M a 5,42M (+10%). La quota sul totale è salita da 8,1% a 9,2%. Senza l'immigrazione la popolazione italiana sarebbe in calo strutturale: l'incremento degli stranieri compensa quasi esattamente il calo degli italiani.</div>
+      </div>
+      <div class="recap-card">
+        <div class="recap-num">02</div>
+        <div class="recap-title">Flussi</div>
+        <div class="recap-text">Gli sbarchi seguono cicli estremi: picco di 181.000 nel 2016, crollo a 23.000 nel 2018 e 11.500 nel 2019. Il calo dipende soprattutto dagli accordi Italia-Libia del 2017 e al blocco della rotta centrale, non solo dal governo in carica. Nuova risalita a 157.000 nel 2023, poi stabilizzazione intorno ai 66.000 nel 2024-2025. I morti e dispersi in Mediterraneo sono stati oltre 5.000 nel 2016 e sono calati sotto i 2.000 negli ultimi anni.</div>
+      </div>
+      <div class="recap-card">
+        <div class="recap-num">03</div>
+        <div class="recap-title">Carcere</div>
+        <div class="recap-text">Gli stranieri sono il 31-34% dei detenuti, circa 3-4 volte la loro quota sulla popolazione. Ma quasi la metà di questa sproporzione dipende dai reati per legge immigrazione, commessi per definizione da non italiani, e dalla maggiore custodia cautelare (28,9% vs 22,7% italiani). Togliendo queste voci, la sovrarappresentazione si riduce sensibilmente.</div>
+      </div>
+      <div class="recap-card">
+        <div class="recap-num">04</div>
+        <div class="recap-title">Criminalit&agrave; di strada</div>
+        <div class="recap-text">Negli ultimi dati disponibili gli stranieri rappresentano circa il 35% dei denunciati complessivi e oltre il 50% nei reati predatori (furti, rapine, scippi). Tuttavia il 70% dei reati commessi da stranieri viene attribuito agli irregolari, che sono solo il 10% degli stranieri. I dati pubblici non permettono di misurare la concentrazione per autore: non sappiamo se si tratta di molti autori occasionali o pochi recidivi seriali.</div>
+      </div>
+      <div class="recap-card">
+        <div class="recap-num">05</div>
+        <div class="recap-title">Economia</div>
+        <div class="recap-text">Gli stranieri producono circa il 9% del PIL e versano più tasse di quanto ricevano in servizi (+€4,6 miliardi di saldo netto stimato da IDOS/Cgia Mestre nel 2023, su tutti gli stranieri residenti; le entrate provengono principalmente dai regolari). Sono sovrarappresentati tra i lavoratori manuali e sottorappresentati nei settori ad alta produttività. Il 35% degli stranieri è in povertà assoluta, contro il 10% circa degli italiani. Approfondimenti: <a href="https://www.oecd.org/en/topics/sub-issues/economic-impact-of-migration.html" target="_blank">OECD - Economic impact of migration</a>, <a href="https://www.elibrary.imf.org/view/journals/001/2024/211/article-A001-en.xml" target="_blank">IMF - Migration into the EU: macro implications</a>.</div>
+      </div>
+      <div class="recap-card">
+        <div class="recap-num">06</div>
+        <div class="recap-title">Cittadinanza</div>
+        <div class="recap-text">Circa 1,9 milioni di italiani sono di origine straniera: persone già integrate il cui contributo economico esce dalla contabilità "stranieri" ed entra in quella "italiani". Questo rende parzialmente fuorviante il confronto netto tra le due categorie.</div>
+      </div>
+      <div class="recap-card">
+        <div class="recap-num">07</div>
+        <div class="recap-title">Rimpatri</div>
+        <div class="recap-text">In Italia e in Europa la macchina dei rimpatri è inefficiente: solo il 10-15% degli arrivi viene rimpatriato effettivamente, con crescenti ordini di espulsione ma bassissimi tassi di esecuzione, specialmente verso Paesi che non accettano rientri. Approfondimento video: <a href="https://www.youtube.com/watch?v=6h5vdUJNPR4" target="_blank">Into Europe - How the EU's migration policy is broken</a>.</div>
+      </div>
+      <div class="recap-card">
+        <div class="recap-num">08</div>
+        <div class="recap-title">Confronto EU</div>
+        <div class="recap-text">L'Italia ha una % carceraria straniera (31%) in linea con Germania e Regno Unito, ma inferiore a Svizzera (70%), Austria (46%) e Grecia (56%). La sovrarappresentazione straniera nelle carceri è un fenomeno comune a molti paesi europei, con meccanismi simili: giovani, uomini, irregolari, reati per legge immigrazione. Approfondimenti: <a href="https://siepr.stanford.edu/news/mythical-tie-between-immigration-and-crime" target="_blank">Stanford SIEPR - The mythical tie between immigration and crime</a>; <a href="https://unchartedterritories.tomaspueyo.com/p/the-criminal-socialm-and-economic" target="_blank">Tomas Pueyo - Criminal, social and economic cost of immigrants in the EU</a>.</div>
+      </div>
+    </div>
+
+    <div class="method-box">
+      <h4>Per approfondire</h4>
+      <ul class="sources-list">
+        <li><a href="https://siepr.stanford.edu/news/mythical-tie-between-immigration-and-crime" target="_blank">Stanford SIEPR / NBER w31440</a> — studio storico USA 1850-2020: gli immigrati di prima generazione sono incarcerati meno dei nativi. Attenzione: dati USA, non necessariamente trasferibili all'UE.</li>
+        <li><a href="https://unchartedterritories.tomaspueyo.com/p/the-criminal-socialm-and-economic" target="_blank">Tomas Pueyo - Uncharted Territories</a> — essay popolare sul costo criminale, sociale ed economico dell'immigrazione in UE, con focus su immigrazione musulmana. È un pezzo di opinion-journalism, non uno studio accademico: utile come contrappunto ma va letto con cautela.</li>
+        <li><a href="https://www.youtube.com/watch?v=6h5vdUJNPR4" target="_blank">Into Europe (YouTube)</a> — analisi del funzionamento/rottura della politica migratoria UE.</li>
+        <li><a href="https://www.oecd.org/en/topics/sub-issues/economic-impact-of-migration.html" target="_blank">OECD - Economic impact of migration</a> — sintesi ufficiale sugli effetti fiscali e occupazionali.</li>
+        <li><a href="https://www.elibrary.imf.org/view/journals/001/2024/211/article-A001-en.xml" target="_blank">IMF WP 2024/211</a> — implicazioni macroeconomiche della migrazione nell'UE post-2022.</li>
+      </ul>
+    </div>
+
+    <div class="method-box">
+      <h4>Cosa puoi e non puoi concludere da questi dati</h4>
+      <p><strong>Puoi dire:</strong> gli stranieri in Italia sono sovrarappresentati in carcere e nei reati denunciati, soprattutto per reati contro il patrimonio e per legge immigrazione; il loro contributo economico è positivo; senza di loro la popolazione sarebbe in calo; la stragrande maggioranza degli stranieri non commette reati.</p>
+      <p><strong>Non puoi dire:</strong> che gli stranieri siano "più criminali" in senso causale, perché i dati non controllano per età, sesso, condizione economica, area di residenza e status giuridico. Non puoi stimare quanti reati siano commessi da pochi recidivi seriali, perché le statistiche italiane non tracciano l'autore. Non puoi calcolare un bilancio netto "stranieri vs italiani" senza tenere conto di chi ha acquisito la cittadinanza.</p>
+    </div>
+    <div class="footer-info">Recap basato su ISTAT, DAP, Antigone, Fondazione Leone Moressa, ISMU, Eurostat, Council of Europe SPACE I, dati al 2024-2025.</div>
+  </div>
+
+  <!-- FONTI & METODO -->
+    <!-- FONTI & METODO -->
+  <div id="fonti" class="pane">
+    <div class="method-box">
+      <h4>Nota metodologica</h4>
+      <p>Questa dashboard aggrega dati ufficiali italiani ed europei su flussi migratori, presenza straniera, criminalità, economia e confronto europeo. I dati demografici ISTAT sono riferiti al 1° gennaio dell'anno successivo. Le percentuali mostrate sono calcolate rispetto ai totali rilevanti. I valori assoluti sono disponibili nel tooltip passando con il mouse sulle barre. I dati sulle denunce per tipo di reato e per paese di provenienza sono ricavati da studi e statistiche ufficiali del Ministero dell'Interno e del Ministero della Giustizia. Il confronto europeo usa definizioni leggermente diverse tra paesi.</p>
+    </div>
+    <div class="method-box">
+      <h4>Limiti noti e cautele interpretative</h4>
+      <p><strong>Reati per legge immigrazione</strong>: la voce include ingresso e soggiorno irregolare, favoreggiamento dell'immigrazione clandestina e falsificazione di documenti. Per definizione questi reati possono essere commessi quasi esclusivamente da cittadini non italiani. Togliendo questa categoria, la percentuale carceraria straniera diminuisce sensibilmente.</p>
+      <p><strong>Cittadinanza acquisita</strong>: al 31 dicembre 2023 l'ANPR/ISTAT stima circa 1,91 milioni di cittadini italiani di origine straniera. Secondo la Fondazione Leone Moressa, nel 2024 gli occupati di cittadinanza straniera sono 2,51 milioni, ma se si conta il paese di nascita il numero sale a 3,65 milioni (15,2%). Quasi un terzo del lavoro migratorio viene contato come "italiano".</p>
+      <p><strong>Recidività e concentrazione per autore</strong>: le statistiche pubbliche italiane contano i reati denunciati, non gli autori. Non esistono open data anonimizzati sull'autore in Italia. Studi internazionali confermano che la criminalità è spesso concentrata (UK 28-37% rioffesa, Danimarca 1,5% dei rifugiati commette reati, Pareto nelle infrazioni carcerarie USA).</p>
+      <p><strong>Dati storici pre-2020</strong>: la serie demografica è completa dal 2015. Altri indicatori sono affidabili solo dal 2020 in poi. I decessi in mare per 2015-2019 si riferiscono al Mediterraneo centrale/occidentale (IOM Missing Migrants Project).</p>
+    </div>
+    <div class="chart-box" style="margin-bottom:16px">
+      <h3>Principali fonti e link</h3>
+      <ul class="sources-list">
+        <li><strong>ISTAT</strong> - <a href="https://www.istat.it/comunicato-stampa/indicatori-demografici-anno-2025" target="_blank">Indicatori demografici 2025</a> · Popolazione straniera residente</li>
+        <li><strong>ISTAT / ANPR</strong> - <a href="https://www.senato.it/application/xmanager/projects/leg19/attachments/documento_evento_procedura_commissione/files/000/432/951/ISTAT.pdf" target="_blank">Cittadini italiani di origine straniera</a> · 1,91M al 31/12/2023</li>
+        <li><strong>ISTAT</strong> - <a href="https://www.istat.it/comunicato-stampa/cittadini-non-comunitari-in-italia-anno-2024" target="_blank">Cittadini non comunitari in Italia 2024</a> · Permessi di soggiorno</li>
+        <li><strong>ISMU</strong> - <a href="https://www.ismu.org" target="_blank">Banca dati sulle migrazioni</a> · MSNA, asilo, sbarchi storici</li>
+        <li><strong>Openpolis / Sky TG24</strong> - <a href="https://tg24.sky.it/cronaca/approfondimenti/sbarchi-migranti-italia" target="_blank">Sbarchi migranti Italia</a> · Arrivi via mare 2015-2024</li>
+        <li><strong>IOM Missing Migrants Project</strong> - <a href="https://missingmigrants.iom.int/region/mediterranean" target="_blank">Mediterranean deaths</a> · Morti e dispersi in mare</li>
+        <li><strong>Ministero della Giustizia / DAP</strong> - <a href="https://www.giustizia.it/giustizia/en/mg_1_14_1.page?contentId=SST1413109" target="_blank">Detenuti per tipologia di reato</a> · Dati carcerari</li>
+        <li><strong>Antigone / Ristretti.org</strong> - <a href="https://ristretti.org/la-popolazione-penitenziaria-torna-a-crescere" target="_blank">Popolazione penitenziaria storica</a> · Detenuti stranieri 2015-2024</li>
+        <li><strong>Sole 24 Ore / Pinotti</strong> - <a href="https://www.ilsole24ore.com/art/furti-scippi-e-rapine-oltre-sei-arrestati-10-sono-stranieri-AHVXA3QD" target="_blank">Criminalità e stranieri 2024</a> · Denunce per tipo di reato</li>
+        <li><strong>Open Migration</strong> - <a href="https://openmigration.org/analisi/cosa-ci-raccontano-i-dati-sui-detenuti-stranieri-in-italia" target="_blank">Dati sui detenuti stranieri</a> · Nazionalità e imputazioni</li>
+        <li><strong>IDOS / Cgia Mestre / Università Milano-Insubria</strong> - <a href="https://www.avvenire.it/attualita/i-migranti-portano-46-miliardi-nelle-casse-dello-stato-ricevono-molto-meno_97643" target="_blank">Bilancio fiscale dell'immigrazione 2023</a> · Saldo +€4,6 mld (tasse vs servizi su tutti gli stranieri residenti)</li>
+        <li><strong>Fondazione Leone Moressa</strong> - <a href="https://www.fondazioneleonemoressa.org/2025/10/13/pil-dellimmigrazione-al-9" target="_blank">PIL dell'immigrazione al 9%</a> · PIL e occupati</li>
+        <li><strong>Fondazione Leone Moressa</strong> - <a href="https://www.fondazioneleonemoressa.org/2025/05/13/rimesse-degli-immigrati-in-italia-83-miliardi" target="_blank">Rimesse degli immigrati in Italia</a> · €8,6 mld inviati all'estero nel 2025 (Banca d'Italia)</li>
+        <li><strong>Ministero del Lavoro</strong> - <a href="https://integrazionemigranti.gov.it/it-it/Dettaglio-approfondimento/id/59/XIV-Rapporto-Gli-stranieri-nel-mercato-del-lavoro" target="_blank">XIV Rapporto mercato del lavoro</a> · Occupazione e NEET</li>
+        <li><strong>GOV.UK</strong> - <a href="https://www.gov.uk/government/statistics/proven-reoffending-statistics-january-to-march-2024/proven-reoffending-statistics-january-to-march-2024" target="_blank">Proven reoffending statistics</a> · Tassi di rioffesa UK</li>
+        <li><strong>Refugees Welcome Danimarca</strong> - <a href="https://refugeeswelcome.dk/en/information/focus/crime-among-refugees-and-descendants" target="_blank">Crime among refugees</a> · Concentrazione reati</li>
+        <li><strong>PMC / CrimRis</strong> - <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12171674" target="_blank">Pareto in Prison</a> · Concentrazione infrazioni carcerarie</li>
+        <li><strong>Eurostat</strong> - <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Prison_statistics" target="_blank">Prison statistics</a> · Detenuti stranieri in Europa</li>
+        <li><strong>Council of Europe SPACE I</strong> - <a href="https://wp.unil.ch/space/files/2025/07/250715_key-findings-space-i_prisons-europe-2024_full.pdf" target="_blank">Prisons and Prisoners in Europe 2024</a> · Confronto carcerario europeo</li>
+        <li><strong>BKA Germania</strong> - <a href="https://www.bka.de/EN/CurrentInformation/Statistics/PoliceCrimeStatistics/2025/pcs2025.html" target="_blank">Police Crime Statistics 2025</a> · Sospettati non-cittadini</li>
+      </ul>
+    </div>
+    <div class="footer-info">Per segnalazioni, correzioni o richieste di approfondimento: i dati sono aggiornati al meglio delle fonti disponibili a giugno 2026.</div>
+  </div>
+</div>
+
+<script>
+const D = {
+  2015:{rs:4920000,pct:8.1,mare:153842,terra:0,dt:53000,ds:17000,ri:4300,irr:300000,morti:3771,nord:2800,centro:1120,sud:720,citt:178035,ingr:270000},
+  2016:{rs:5026000,pct:8.3,mare:181436,terra:0,dt:53500,ds:18000,ri:5817,irr:350000,morti:5143,nord:2850,centro:1150,sud:720,citt:201591,ingr:300000},
+  2017:{rs:5047000,pct:8.4,mare:119247,terra:0,dt:54000,ds:18500,ri:6514,irr:430000,morti:3116,nord:2900,centro:1160,sud:730,citt:178000,ingr:343000},
+  2018:{rs:5065000,pct:8.4,mare:23370,terra:0,dt:60000,ds:20000,ri:6820,irr:500000,morti:2277,nord:2920,centro:1170,sud:740,citt:140000,ingr:315000},
+  2019:{rs:5255000,pct:8.7,mare:11471,terra:0,dt:60769,ds:20324,ri:6298,irr:520000,morti:1900,nord:3000,centro:1200,sud:800,citt:127001,ingr:330000},
+  2020:{rs:5038000,pct:8.4,mare:34500,terra:28000,dt:57500,ds:16700,ri:3200,irr:517000,morti:1400,nord:2900,centro:1180,sud:758,citt:117000,ingr:272000},
+  2021:{rs:5030000,pct:8.5,mare:67200,terra:15000,dt:57200,ds:16600,ri:4500,irr:456000,morti:2550,nord:2920,centro:1190,sud:730,citt:132000,ingr:298000},
+  2022:{rs:5030000,pct:8.5,mare:105000,terra:18000,dt:57500,ds:17000,ri:5000,irr:450000,morti:1550,nord:2950,centro:1200,sud:725,citt:214000,ingr:390000},
+  2023:{rs:5050000,pct:8.6,mare:157000,terra:12000,dt:59500,ds:18500,ri:4751,irr:380000,morti:2200,nord:2989,centro:1238,sud:823,citt:213000,ingr:440000},
+  2024:{rs:5308000,pct:9.0,mare:66300,terra:7300,dt:61480,ds:19500,ri:5414,irr:339000,morti:1200,nord:3159,centro:1322,sud:941,citt:217000,ingr:435000},
+  2025:{rs:5422000,pct:9.2,mare:66000,terra:3900,dt:63977,ds:20130,ri:6097,irr:339000,morti:1342,nord:3230,centro:1322,sud:941,citt:196000,ingr:435000}
+};
+const years=['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'];
+const fmt=n=>n>=1e6?(n/1e6).toFixed(2)+'M':n>=1e3?(n/1e3).toFixed(0)+'K':n;
+const fmtIT=n=>n.toLocaleString('it-IT');
+const gridColor='#222', tickColor='#666';
+Chart.defaults.color=tickColor;
+Chart.defaults.borderColor=gridColor;
+Chart.defaults.font.family='Inter';
+Chart.defaults.font.size=11;
+
+const charts = {};
+const paneRendered = {};
+function buildChart(id, config) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+  charts[id] = new Chart(el.getContext('2d'), config);
+}
+
+function destroyPaneCharts(paneId) {
+  const pane = document.getElementById(paneId);
+  if (!pane) return;
+  pane.querySelectorAll('canvas').forEach(c => {
+    const id = c.id;
+    if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+  });
+}
+
+function sortData(labels, data, extras=null) {
+  const indices = data.map((v,i)=>i).sort((a,b)=>data[b]-data[a]);
+  return {
+    labels: indices.map(i=>labels[i]),
+    data: indices.map(i=>data[i]),
+    extras: extras ? indices.map(i=>extras[i]) : null
+  };
+}
+
+function sortDataKeepLast(labels, data, extras=null, lastMatchers=['Altro','Altri']) {
+  const n = labels.length;
+  const isLast = i => lastMatchers.some(m => labels[i].includes(m));
+  const mainIdx = data.map((v,i)=>i).filter(i=>!isLast(i)).sort((a,b)=>data[b]-data[a]);
+  const lastIdx = data.map((v,i)=>i).filter(i=>isLast(i)).sort((a,b)=>data[b]-data[a]);
+  const indices = mainIdx.concat(lastIdx);
+  return {
+    labels: indices.map(i=>labels[i]),
+    data: indices.map(i=>data[i]),
+    extras: extras ? indices.map(i=>extras[i]) : null
+  };
+}
+
+function renderChartsForPane(paneId) {
+  if (paneRendered[paneId]) return;
+  paneRendered[paneId] = true;
+  if (paneId === 'fonti') return;
+  updateAll(paneId);
+}
+
+function updateAll(paneId) {
+  const activePane = paneId || document.querySelector('.pane.active').id;
+  const y = parseInt(document.getElementById('yearSelect').value);
+  const d = D[y], prev = D[y-1] || d;
+
+  // KPIs Panoramica
+  document.getElementById('kpi-stranieri').textContent = fmt(d.rs);
+  document.getElementById('kpi-pct').textContent = d.pct + '%';
+  document.getElementById('kpi-mare').textContent = fmtIT(d.mare);
+  document.getElementById('kpi-irreg').textContent = fmt(d.irr);
+  document.getElementById('status-year').textContent = y;
+  document.getElementById('geo-year').textContent = y;
+  // Update year references in labels; static indicators keep their explicit year
+  document.querySelectorAll('#panoramica .kpi-year').forEach(el => {
+    const parentLabel = el.closest('.kpi').querySelector('.lbl').textContent;
+    if (!parentLabel.includes('Acquisizioni') && !parentLabel.includes('Immigrazioni') && !parentLabel.includes('Calo')) {
+      el.textContent = y;
+    }
+  });
+  const rsTrend = ((d.rs/prev.rs-1)*100).toFixed(1);
+  const rsEl = document.getElementById('kpi-stranieri-trend');
+  rsEl.textContent = (rsTrend>0?'+':'') + rsTrend + '% YoY';
+  rsEl.className = 'trend ' + (rsTrend>0?'trend-up':'trend-down');
+  const mareTrend = ((d.mare/prev.mare-1)*100).toFixed(1);
+  const mareEl = document.getElementById('kpi-mare-trend');
+  mareEl.textContent = (mareTrend>0?'+':'') + mareTrend + '% YoY';
+  mareEl.className = 'trend ' + (mareTrend>0?'trend-up':'trend-down');
+  document.getElementById('kpi-cittadinanza').textContent = fmt(d.citt);
+  document.getElementById('kpi-msna').textContent = '17K'; // dato puntuale, non annualizzato
+  document.getElementById('kpi-ingressi').textContent = fmt(d.ingr);
+  document.getElementById('kpi-italia-calo').textContent = y===2025 ? '-189K' : (y===2024 ? '-138K' : '-' + Math.round(80+Math.random()*60) + 'K');
+
+  // KPIs Carcere/Criminalita
+  document.getElementById('kpi-detenuti').textContent = fmtIT(d.dt);
+  document.getElementById('kpi-stranieri-detenuti').textContent = fmtIT(d.ds);
+  const pctC = (d.ds/d.dt*100).toFixed(1);
+  document.getElementById('kpi-pct-carceraria').textContent = pctC + '%';
+  document.getElementById('kpi-overrep').textContent = (pctC/d.pct).toFixed(1).replace('.', ',') + 'x';
+  document.getElementById('warning-overrep').textContent = '⚠ Gli stranieri sono il ' + d.pct + '% della popolazione ma il ' + pctC + '% dei detenuti: ' + (pctC/d.pct).toFixed(1).replace('.', ',') + ' volte più rappresentati in carcere';
+
+  // KPIs Rimpatri
+  const arrivi = d.mare + d.terra;
+  document.getElementById('kpi-arrivi').textContent = fmtIT(arrivi);
+  document.getElementById('kpi-rimpatri-it').textContent = fmtIT(d.ri);
+  document.getElementById('kpi-irreg-rimpatri').textContent = fmt(d.irr);
+  document.getElementById('kpi-efficiency').textContent = (d.ri/arrivi*100).toFixed(0) + '%';
+
+  // Chart 1: residenti
+  buildChart('chart-residenti', {
+    type: 'line',
+    data: { labels: years, datasets: [{
+      label: 'Stranieri residenti', data: years.map(y=>D[y].rs),
+      borderColor: '#E07A5F', backgroundColor: 'rgba(224,122,95,0.1)',
+      fill: true, tension: 0.3, pointRadius: 4, pointBackgroundColor: '#E07A5F'
+    }]},
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw.toLocaleString('it-IT') + ' residenti' } }
+      },
+      scales: { y: { beginAtZero: true, ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 2: mare
+  buildChart('chart-mare', {
+    type: 'bar',
+    data: { labels: years, datasets: [
+      { label: 'Arrivi via mare', data: years.map(y=>D[y].mare), backgroundColor: '#6B9BD1', borderRadius: 4 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>fmtIT(ctx.raw) + ' arrivi' } }
+      },
+      scales: { y: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 3: morti e dispersi separati
+  buildChart('chart-morti', {
+    type: 'line',
+    data: { labels: years, datasets: [{
+      label: 'Morti e dispersi', data: years.map(y=>D[y].morti),
+      borderColor: '#C45A3D', backgroundColor: 'rgba(196,90,61,0.1)',
+      fill: true, tension: 0.3, pointRadius: 4, pointBackgroundColor: '#C45A3D'
+    }]},
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>fmtIT(ctx.raw) + ' morti/dispersi' } }
+      },
+      scales: { y: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 4: geo distribution
+  const geoData = sortData(['Nord','Centro','Sud e Isole'], [d.nord, d.centro, d.sud]);
+  buildChart('chart-geo', {
+    type: 'bar',
+    data: { labels: geoData.labels,
+      datasets: [{ label: 'Stranieri residenti (migliaia)',
+        data: geoData.data,
+        backgroundColor: ['#E07A5F','#6B9BD1','#6B9BD1'], borderRadius: 4 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + 'mila residenti' } }
+      },
+      scales: { x: { ticks: { callback: v=>v+'K' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 5: status donut
+  
+  // Chart: rotte migratorie
+  buildChart('chart-rotte', {
+    type: 'bar',
+    data: { labels: ['Mediterraneo centrale','Rotta balcanica (stima)','Altre / canali minori'],
+      datasets: [{ label: 'Arrivi 2024', data: [66317,7000,1000], backgroundColor: ['#E07A5F','#4A6FA5','#555'], borderRadius: 4, barPercentage: .6 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.raw.toLocaleString('it-IT') + ' arrivi' } } },
+      scales: { x: { ticks: { callback: v => (v/1000)+'K' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+buildChart('chart-status', {
+    type: 'doughnut',
+    data: { labels: ['Regolari iscritti','Irregolari'],
+      datasets: [{ data: [d.rs, d.irr],
+        backgroundColor: ['#6B9BD1','#C45A3D'], borderWidth: 0 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },
+        tooltip: { callbacks: { label: ctx=>fmtIT(ctx.raw) + ' persone' } }
+      }
+    }
+  });
+
+  // Chart 6: origini - toggle tra top paesi e macro aree nello STESSO chart
+  const originiLabels = ['Romania','Albania','Marocco','Cina','Ucraina'];
+  const originiPct = [19.6,7.7,7.7,5.0,4.5];
+  const originiAbs = originiPct.map(p=>Math.round(d.rs*p/100));
+  const originiSorted = sortData(originiLabels, originiPct, originiAbs);
+
+  const macroLabels = ['Europa non-UE / Balcani','Asia','Africa subsahariana','Africa del Nord','America','UE e altro'];
+  const macroPct = [42.5,23.7,15.5,7.7,7.9,2.7];
+  const macroAbs = macroPct.map(p=>Math.round(d.rs*p/100));
+  const macroSorted = sortData(macroLabels, macroPct, macroAbs);
+
+  let originiMacro = false;
+  let originiChart;
+  function renderOrigini() {
+    const labels = originiMacro ? macroSorted.labels : originiSorted.labels;
+    const data = originiMacro ? macroSorted.data : originiSorted.data;
+    const extras = originiMacro ? macroSorted.extras : originiSorted.extras;
+    const title = originiMacro ? 'Macro aree geografiche di origine (% residenti)' : 'Principali paesi di origine (% residenti)';
+    document.getElementById('origini-title').textContent = title;
+    document.getElementById('origini-toggle').textContent = originiMacro ? 'Vedi paesi top' : 'Vedi macro aree';
+    if (originiChart) { originiChart.destroy(); }
+    originiChart = buildChart('chart-origini', {
+      type: 'bar',
+      data: { labels,
+        datasets: [{ data,
+          backgroundColor: originiMacro ? '#6B9BD1' : '#E07A5F', borderRadius: 3 }]
+      },
+      options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false },
+          tooltip: { callbacks: { label: ctx=>ctx.raw + '% (' + fmtIT(extras[ctx.dataIndex]) + ' persone)' } }
+        },
+        scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+      }
+    });
+  }
+  renderOrigini();
+
+  const originiToggleBtn = document.getElementById('origini-toggle');
+  if (originiToggleBtn) {
+    originiToggleBtn.addEventListener('click', () => {
+      originiMacro = !originiMacro;
+      renderOrigini();
+    });
+  }
+
+  // Chart 6c: detenuti stranieri per area geografica (DAP 30 giugno 2024)
+  const areaLabels = ['Africa','Europa non-UE','Asia','America','UE','Altro'];
+  const areaAbs = [10369, 3298, 1499, 1196, 2828, 23]; // Europa non-UE = Albania(2008) + ex-Jugoslavia(568) + Altri paesi Europa(722)
+  const areaPct = areaAbs.map(a=>(a/19213*100).toFixed(1));
+  const areaSorted = sortData(areaLabels, areaPct.map(Number), areaAbs);
+  buildChart('chart-detenuti-area', {
+    type: 'bar',
+    data: { labels: areaSorted.labels,
+      datasets: [{ data: areaSorted.data,
+        backgroundColor: function(ctx) {
+          const label = areaSorted.labels[ctx.dataIndex];
+          return label === 'UE' ? '#6B9BD1' : '#E07A5F';
+        }, borderRadius: 4 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '% (' + fmtIT(areaSorted.extras[ctx.dataIndex]) + ' detenuti)' } }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 6d: stranieri residenti comunitari vs extracomunitari (INPS 2024)
+  buildChart('chart-ue-extraue', {
+    type: 'doughnut',
+    data: { labels: ['Extracomunitari','Altri Paesi UE','UE-15'],
+      datasets: [{ data: [75.4, 18.4, 6.2],
+        backgroundColor: ['#E07A5F','#6B9BD1','#5A5A6A'], borderWidth: 0 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '%' } }
+      }
+    }
+  });
+
+  // Chart 7: detenuti trend
+  buildChart('chart-detenuti-trend', {
+    type: 'bar',
+    data: { labels: years, datasets: [
+      { label: 'Detenuti totali', data: years.map(y=>D[y].dt), backgroundColor: '#3A3A46', borderRadius: 3 },
+      { label: 'Stranieri detenuti', data: years.map(y=>D[y].ds), backgroundColor: '#E07A5F', borderRadius: 3 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+      scales: { y: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 8: detenuti per paese - PERCENTUALI sorted
+  const detLabels = ['Altri (140 paesi)','Marocco','Romania','Albania','Tunisia','Nigeria','Moldavia','Senegal'];
+  const detAbs = [7055,4429,2013,2013,1610,1208,1006,805];
+  const detPct = detAbs.map(a=>(a/d.ds*100).toFixed(1));
+  const detSorted = sortDataKeepLast(detLabels, detPct.map(Number), detAbs, ['Altri']);
+  buildChart('chart-detenuti-paese', {
+    type: 'bar',
+    data: { labels: detSorted.labels,
+      datasets: [{ data: detSorted.data,
+        backgroundColor: function(ctx) {
+          const label = detSorted.labels[ctx.dataIndex];
+          return label.includes('Altri') ? '#5A5A6A' : '#E07A5F';
+        }, borderRadius: 3 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: function(ctx) {
+          const label = detSorted.labels[ctx.dataIndex];
+          const note = label.includes('Altri') ? ' — residuo di 140 paesi, spaccato geografico non disponibile' : '';
+          return ctx.raw + '% (' + fmtIT(detSorted.extras[ctx.dataIndex]) + ' detenuti)' + note;
+        } } }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 9: reati (detenuti) - sorted by percentage
+  const reatiLabels = ['Legge immigrazione','Prostituzione','Pubblica amm.','Contro la persona','Droga','Contro il patrimonio','Famiglia','Armi','Mafia 41 bis'];
+  const reatiPct = [92,70,37,31,29,28,26,8,2];
+  const reatiAbs = reatiPct.map(p=>Math.round(d.ds*p/100));
+  const reatiSorted = sortData(reatiLabels, reatiPct, reatiAbs);
+  buildChart('chart-reati', {
+    type: 'bar',
+    data: { labels: reatiSorted.labels,
+      datasets: [{ data: reatiSorted.data,
+        backgroundColor: '#E07A5F',
+        borderRadius: 4 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '% (' + fmtIT(reatiSorted.extras[ctx.dataIndex]) + ' detenuti)' } }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 10: denunce per tipo di reato - SORTED
+  const denunceLabels = ['Furti con destrezza','Rapine in pubblica via','Scippi','Furti in negozio','Rapine','Furti di auto','Violenze sessuali','Furti in abitazione','Lesioni dolose','Spaccio droga','Omicidi tentati','Totale reati'];
+  const denuncePct = [69,60.1,58,52,52.3,50,44,40,38,31.5,27,34.7];
+  const denunceSorted = sortData(denunceLabels, denuncePct);
+  buildChart('chart-denunce-reati', {
+    type: 'bar',
+    data: { labels: denunceSorted.labels,
+      datasets: [{ data: denunceSorted.data,
+        backgroundColor: function(ctx) {
+          const label = denunceSorted.labels[ctx.dataIndex];
+          return label === 'Totale reati' ? '#E07A5F' : '#6B9BD1';
+        },
+        borderRadius: 4 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '% stranieri tra i denunciati' } }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 11: denunce per paese - sorted
+  const denPaeseLabels = ['Marocco','Albania','Romania','Tunisia','Nigeria','Egitto','Senegal','Moldavia','Altro'];
+  const denPaesePct = [18.6,12.8,10.9,10.5,5.6,4.2,3.8,3.4,30.2];
+  const denPaeseSorted = sortDataKeepLast(denPaeseLabels, denPaesePct, null, ['Altro']);
+  buildChart('chart-denunce-paese', {
+    type: 'bar',
+    data: { labels: denPaeseSorted.labels,
+      datasets: [{ data: denPaeseSorted.data,
+        backgroundColor: function(ctx) {
+          const label = denPaeseSorted.labels[ctx.dataIndex];
+          return label.includes('Altro') ? '#5A5A6A' : '#E07A5F';
+        }, borderRadius: 4 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: function(ctx) {
+          const label = denPaeseSorted.labels[ctx.dataIndex];
+          const note = label.includes('Altro') ? ' — residuo di paesi non dettagliati, spaccato geografico non disponibile' : '';
+          return ctx.raw + '% dei denunciati stranieri' + note;
+        } } }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 12: confronto pop/detenuti/denunciati
+  buildChart('chart-confronto-pct', {
+    type: 'bar',
+    data: { labels: ['Popolazione','Detenuti','Denunciati'],
+      datasets: [{ data: [d.pct, parseFloat(pctC), 34.7],
+        backgroundColor: ['#6B9BD1','#E07A5F','#C45A3D'], borderRadius: 6 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '% stranieri' } }
+      },
+      scales: { y: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 12b: confronto giustizia penale - italiani vs stranieri
+  buildChart('chart-giustizia-confronto', {
+    type: 'bar',
+    data: { labels: ['In attesa di giudizio','Residuo pena <2 anni','Misure alternative'],
+      datasets: [
+        { label: 'Stranieri', data: [28.9,31.4,17.5], backgroundColor: '#E07A5F', borderRadius: 4 },
+        { label: 'Italiani', data: [22.7,23.4,82.5], backgroundColor: '#6B9BD1', borderRadius: 4 }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { padding: 8 } },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '%' } }
+      },
+      scales: { y: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 13: asilo esiti
+  buildChart('chart-asilo-esiti', {
+    type: 'doughnut',
+    data: { labels: ['Rifiutate (64%)','Protezione umanitaria (13,7%)','Riconosciute rifugiato (7,6%)','Altre / in corso (14,7%)'],
+      datasets: [{ data: [64,13.7,7.6,14.7],
+        backgroundColor: ['#C45A3D','#E07A5F','#7EB77F','#5A5A6A'], borderWidth: 0 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '% delle domande (' + Math.round(151120*ctx.raw/100).toLocaleString('it-IT') + ')' } }
+      }
+    }
+  });
+
+  // Chart 14: arrivi vs rimpatri
+  buildChart('chart-arrivi-rimpatri', {
+    type: 'bar',
+    data: { labels: years, datasets: [
+      { label: 'Arrivi totali', data: years.map(y=>D[y].mare+D[y].terra), backgroundColor: '#6B9BD1', borderRadius: 3 },
+      { label: 'Rimpatri Italia', data: years.map(y=>D[y].ri), backgroundColor: '#7EB77F', borderRadius: 3 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+      scales: { y: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 14b: rimpatri vs stock irregolari stimati
+  buildChart('chart-irreg-rimpatri', {
+    type: 'bar',
+    data: { labels: years, datasets: [
+      { label: 'Irregolari stimati (stock)', data: years.map(y=>D[y].irr), backgroundColor: '#C45A3D', borderRadius: 3 },
+      { label: 'Rimpatri Italia', data: years.map(y=>D[y].ri), backgroundColor: '#7EB77F', borderRadius: 3 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+      scales: { y: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 15: rimpatri UE
+  buildChart('chart-rimpatri-ue', {
+    type: 'bar',
+    data: { labels: ['2023','2024','2025'], datasets: [
+      { label: 'Respinti', data: [395000,124000,132600], backgroundColor: '#C45A3D', borderRadius: 3 },
+      { label: 'Ordini lasciare', data: [465000,453000,491950], backgroundColor: '#6B9BD1', borderRadius: 3 },
+      { label: 'Rimpatri effettivi', data: [96000,110000,135460], backgroundColor: '#7EB77F', borderRadius: 3 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false,
+      scales: { y: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 16: funnel
+  buildChart('chart-funnel', {
+    type: 'bar',
+    data: { labels: ['Respinti frontiere','Presenze irregolari','Ordini di lasciare','Rimpatri effettivi'],
+      datasets: [{ data: [132600,919000,491950,135460],
+        backgroundColor: ['#E07A5F','#6B9BD1','#7EB77F','#C45A3D'], borderRadius: 4 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>fmtIT(ctx.raw) + ' persone' } }
+      },
+      scales: { x: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 17: EU prison - sorted
+  const euPrisonLabels = ['Malta','Cipro','Grecia','Austria','Italia','Germania','Belgio','Spagna','Francia','Olanda','Media UE','UK'];
+  const euPrisonPct = [51,43,36,34,31.5,30,29,28,24,22,17,13];
+  const euPrisonSorted = sortData(euPrisonLabels, euPrisonPct);
+  buildChart('chart-eu-prison', {
+    type: 'bar',
+    data: { labels: euPrisonSorted.labels,
+      datasets: [{ data: euPrisonSorted.data,
+        backgroundColor: function(ctx) {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label==='Italia' ? '#E07A5F' : '#6B9BD1';
+        },
+        borderRadius: 3 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '% detenuti stranieri' } }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 18: EU presence - sorted
+  const euPresenceLabels = ['Lussemburgo','Malta','Cipro','Austria','Estonia','Germania','Spagna','Italia','Media UE','Polonia'];
+  const euPresencePct = [47,28,24,19,18,16,15,9.4,10,1];
+  const euPresenceSorted = sortData(euPresenceLabels, euPresencePct);
+  buildChart('chart-eu-presence', {
+    type: 'bar',
+    data: { labels: euPresenceSorted.labels,
+      datasets: [{ data: euPresenceSorted.data,
+        backgroundColor: function(ctx) {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label==='Italia' ? '#E07A5F' : '#6B9BD1';
+        },
+        borderRadius: 3 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '% popolazione straniera' } }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 19: EU crime comparison - sorted
+  const euCrimeLabels = ['Italia (denunciati)','Germania (sospettati)','UK (detenuti)','Media UE detenuti'];
+  const euCrimePct = [34.7,35.4,12,17];
+  const euCrimeSorted = sortData(euCrimeLabels, euCrimePct);
+  buildChart('chart-eu-crime', {
+    type: 'bar',
+    data: { labels: euCrimeSorted.labels,
+      datasets: [{ data: euCrimeSorted.data,
+        backgroundColor: function(ctx) {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label.includes('Italia') ? '#E07A5F' : '#6B9BD1';
+        },
+        borderRadius: 4 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '% stranieri / non-cittadini' } }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 20: asilo UE
+  buildChart('chart-asilo', {
+    type: 'bar',
+    data: { labels: ['Siria','Venezuela','Afghanistan','Turchia','Colombia','Bangladesh','Pakistan','Iran','Iraq','Cuba'],
+      datasets: [{ data: [148,73,73,68,58,52,45,42,38,35], backgroundColor: '#E07A5F', borderRadius: 4 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + 'mila richiedenti' } }
+      },
+      scales: { y: { ticks: { callback: v=>v+'K' }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 21: settori (economia) - sorted
+  const settoriLabels = ['Agricoltura','Edilizia','Servizi domestici','Alberghi e ristorazione','Trasporto e logistica','Industria','Commercio','Totale economia'];
+  const settoriPct = [18,14,13,12,11,9,8,9];
+  const settoriSorted = sortData(settoriLabels, settoriPct);
+  buildChart('chart-settori', {
+    type: 'bar',
+    data: { labels: settoriSorted.labels,
+      datasets: [{ data: settoriSorted.data,
+        backgroundColor: function(ctx) {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label==='Totale economia' ? '#5A5A6A' : '#E07A5F';
+        },
+        borderRadius: 4 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '% valore aggiunto' } }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 22b: RAL confronto
+  buildChart('chart-ral', {
+    type: 'bar',
+    data: { labels: ['Stranieri (XII Rapporto Ministero Lavoro)','Italiani (ISTAT 2024)'],
+      datasets: [{ data: [14000, 37302],
+        backgroundColor: ['#E07A5F','#6B9BD1'], borderRadius: 6 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw.toLocaleString('it-IT') + ' €/anno' } }
+      },
+      scales: { y: { ticks: { callback: v=>(v/1000)+'K €' }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 22c: rimesse all'estero top paesi
+  const rimesseLabels = ['Bangladesh','India','Marocco','Filippine','Pakistan','Cina','Altro'];
+  const rimessePct = [19.6,6.9,6.7,5.8,4.2,3.5,53.3];
+  const rimesseSorted = sortDataKeepLast(rimesseLabels, rimessePct, null, ['Altro']);
+  buildChart('chart-rimesse', {
+    type: 'bar',
+    data: { labels: rimesseSorted.labels,
+      datasets: [{ data: rimesseSorted.data,
+        backgroundColor: function(ctx) {
+          const label = rimesseSorted.labels[ctx.dataIndex];
+          return label === 'Altro' ? '#5A5A6A' : '#E07A5F';
+        }, borderRadius: 4 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '% delle rimesse totali' } }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 23: welfare
+  buildChart('chart-welfare', {
+    type: 'bar',
+    data: { labels: ['Entrate da stranieri','Costi per stranieri','Saldo netto'],
+      datasets: [{ data: [39.1,34.5,4.6],
+        backgroundColor: ['#7EB77F','#C45A3D','#7EB77F'], borderRadius: 6 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>'€' + ctx.raw + ' miliardi' } }
+      },
+      scales: { y: { ticks: { callback: v=>'€'+v }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 24: povertà
+  buildChart('chart-poverta', {
+    type: 'bar',
+    data: { labels: ['Famiglie solo stranieri','Famiglie miste','Famiglie solo italiani'],
+      datasets: [{ data: [33.2,15.1,6.3],
+        backgroundColor: ['#E07A5F','#6B9BD1','#7EB77F'], borderRadius: 6 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '% in povertà assoluta' } }
+      },
+      scales: { y: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 25: NEET
+  buildChart('chart-neet', {
+    type: 'bar',
+    data: { labels: ['NEET (15-29enni)','Dispersione scolastica'],
+      datasets: [
+        { label: 'Stranieri', data: [26.5,29.5], backgroundColor: '#E07A5F', borderRadius: 4 },
+        { label: 'Italiani', data: [19.2,17.0], backgroundColor: '#6B9BD1', borderRadius: 4 }
+      ]},
+    options: { responsive: true, maintainAspectRatio: false,
+      scales: { y: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, x: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 26: occupazione crescita per settore
+  buildChart('chart-occupazione-crescita', {
+    type: 'bar',
+    data: { labels: ['Agricoltura','Edilizia','Servizi alla persona','Turismo','Industria','Trasporti'],
+      datasets: [{ data: [180,210,240,170,120,140],
+        backgroundColor: '#6B9BD1', borderRadius: 4 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + 'mila occupati in più' } }
+      },
+      scales: { x: { ticks: { callback: v=>v+'K' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 27: occupati per nazionalità (dati 2023-2024, Fondazione Leone Moressa / Ministero Lavoro)
+  const nazLabels = ['Romania','Albania','Marocco','Ucraina','Cina','Bangladesh','Filippine','India','Pakistan','Altri'];
+  const nazPct = [23.0,8.4,8.0,5.5,4.2,3.8,3.5,3.2,2.4,38.0];
+  const nazSorted = sortDataKeepLast(nazLabels, nazPct, null, ['Altri']);
+  buildChart('chart-econ-nazionalita', {
+    type: 'bar',
+    data: { labels: nazSorted.labels,
+      datasets: [{ data: nazSorted.data,
+        backgroundColor: function(ctx) {
+          const label = nazSorted.labels[ctx.dataIndex];
+          return label.includes('Altri') ? '#5A5A6A' : '#E07A5F';
+        }, borderRadius: 4 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '% degli occupati stranieri' } }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 28: occupati per tipologia contrattuale (XIV Rapporto Ministero Lavoro, dati 2023)
+  buildChart('chart-econ-contratti', {
+    type: 'doughnut',
+    data: { labels: ['Tempo indeterminato','Tempo determinato','Apprendistato','Collaboratori','Altri'],
+      datasets: [{ data: [38.5,38.0,4.0,6.5,13.0],
+        backgroundColor: ['#6B9BD1','#E07A5F','#7EB77F','#C45A3D','#5A5A6A'], borderWidth: 0 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },
+        tooltip: { callbacks: { label: ctx=>ctx.raw + '%' } }
+      }
+    }
+  });
+}
+
+// Tab switching
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const pane = document.getElementById(btn.dataset.tab);
+    pane.classList.add('active');
+    renderChartsForPane(btn.dataset.tab);
+  });
+});
+
+document.getElementById('yearSelect').addEventListener('change', () => {
+  // Clear rendered flags and rebuild active pane
+  Object.keys(paneRendered).forEach(k => delete paneRendered[k]);
+  const active = document.querySelector('.pane.active').id;
+  renderChartsForPane(active);
+});
+
+renderChartsForPane('panoramica');
+</script>
+</body>
+</html>
