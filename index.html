@@ -16,7 +16,7 @@
     a{color:#E07A5F;text-decoration:none}
     a:hover{text-decoration:underline}
     .progress{position:fixed;top:0;left:0;height:3px;background:#4A6FA5;z-index:101;width:0;transition:width .1s linear}
-    .top-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,15,18,.92);backdrop-filter:blur(10px);border-bottom:1px solid #222;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;transition:transform .3s ease}
+    .top-nav{position:fixed;top:3px;left:0;right:0;z-index:100;background:rgba(15,15,18,.92);backdrop-filter:blur(10px);border-bottom:1px solid #222;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;transition:transform .3s ease}
     .top-nav .brand{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.3px}
     .top-nav .brand span{color:#4A6FA5}
     .top-nav .links{display:flex;gap:18px;align-items:center}
@@ -283,13 +283,7 @@
     sections.forEach(s=>dotObserver.observe(s));
     const progress = document.getElementById('progress');
     window.addEventListener('scroll',()=>{ const h=document.documentElement; progress.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'; },{passive:true});
-    const nav = document.getElementById('nav'); let lastY=0;
-    window.addEventListener('scroll',()=>{
-      const y=window.scrollY;
-      if(y<window.innerHeight*.7) nav.classList.remove('hide');
-      else { if(y>lastY) nav.classList.add('hide'); else nav.classList.remove('hide'); }
-      lastY=y;
-    },{passive:true});
+    // nav remains always visible
   </script>
 </body>
 </html>
