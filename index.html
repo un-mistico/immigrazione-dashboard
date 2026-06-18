@@ -43,6 +43,11 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
 .kpi .lbl{font-size:10px;color:#777;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
 .kpi .trend{font-size:11px;margin-top:6px}
 .trend-up{color:#E07A5F}.trend-down{color:#5B8C5A}.trend-neutral{color:#888}
+    .kpi .badge{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 6px;border-radius:4px;margin-top:6px}
+    .badge-official{background:#1A3A1A;color:#5B8C5A}
+    .badge-estimate{background:#3A2A1A;color:#C9A227}
+    .badge-provisional{background:#1A2A3A;color:#4A6FA5}
+    .definition-banner{background:#16161B;border:1px solid #222;border-radius:8px;padding:14px 18px;margin:0 0 16px;font-size:13px;color:#aaa;line-height:1.6}
 .kpi-static{position:relative}
 .kpi-static::after{content:"";position:absolute;top:8px;right:8px;width:6px;height:6px;border-radius:50%;background:#555}
 .kpi-static .meta{display:inline-flex;align-items:center;gap:4px;font-size:9px;color:#666;margin-top:6px;cursor:help}
@@ -104,6 +109,9 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
 <body>
 <div class="wrap">
   <div class="hub-link"><a href="https://un-mistico.github.io/repo-italia/">← repo_italia</a> / Immigrazione</div>
+  <div class="definition-banner">
+    <strong>Definizione:</strong> in questa dashboard “stranieri” = cittadini non italiani residenti in Italia, salvo diverso avviso. “Persone con background migratorio” include anche gli italiani di origine straniera. I due numeri non sono intercambiabili.
+  </div>
   <div class="header">
     <h1>🚢🇮🇹 Dati immigrazione, crimine & società (Italia, 2026)</h1>
     <div class="sub">Flussi migratori, presenza straniera, criminalità, economia e confronto europeo</div>
@@ -432,6 +440,7 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
     </div>
     <div class="method-box">
       <h4>Limiti noti e cautele interpretative</h4>
+      <p><strong>Dati pubblici italiani non controllano per età, sesso, reddito/ISEE, area di residenza e status regolare/irregolare.</strong> Gli stranieri residenti in Italia sono mediamente più giovani e più maschi della popolazione italiana, fattori che da soli spiegano parte della sovrarappresentazione in alcuni indicatori. Le statistiche contano reati denunciati, non autori unici.</p>
       <p><strong>Reati per legge immigrazione</strong>: la voce include ingresso e soggiorno irregolare, favoreggiamento dell'immigrazione clandestina e falsificazione di documenti. Per definizione questi reati possono essere commessi quasi esclusivamente da cittadini non italiani. Togliendo questa categoria, la percentuale carceraria straniera diminuisce sensibilmente.</p>
       <p><strong>Cittadinanza acquisita</strong>: al 31 dicembre 2023 l'ANPR/ISTAT stima circa 1,91 milioni di cittadini italiani di origine straniera. Secondo la Fondazione Leone Moressa, nel 2024 gli occupati di cittadinanza straniera sono 2,51 milioni, ma se si conta il paese di nascita il numero sale a 3,65 milioni (15,2%). Quasi un terzo del lavoro migratorio viene contato come "italiano".</p>
       <p><strong>Recidività e concentrazione per autore</strong>: le statistiche pubbliche italiane contano i reati denunciati, non gli autori. Non esistono open data anonimizzati sull'autore in Italia. Studi internazionali confermano che la criminalità è spesso concentrata (UK 28-37% rioffesa, Danimarca 1,5% dei rifugiati commette reati, Pareto nelle infrazioni carcerarie USA).</p>
