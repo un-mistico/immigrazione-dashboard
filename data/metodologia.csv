@@ -1,0 +1,10 @@
+Indicatore,Definizione,Formula / origine,Fonte primaria,Aggiornamento,Caveat principale
+Permessi rilasciati,Numero di permessi di soggiorno concessi,Dati SIS / Ministero Interno,Ministero dell'Interno,Annuale,Non indica permanenza effettiva
+Iscrizioni anagrafiche stranieri,Residenti stranieri registrati in anagrafe,Popolazione residente con cittadinanza straniera,ISTAT,Annuale,Esclude clandestini e irregolari non censiti
+Sbarchi intercettati,Persone intercettate alla frontiera marina,Dati Guardia Costiera,Ministero Interno / Guardia Costiera,Mensile,"Sono eventi di intercettazione, non ingressi regolari"
+Richiedenti asilo,Domande di protezione internazionale presentate,Conteggio delle domande,Ministero Interno / UNHCR,Mensile,Include respinte e in corso
+Permanenti di lungo periodo,Stranieri residenti con permesso EC di lungo periodo,Dati SIS,Ministero Interno,Annuale,Soggetto a requisiti reddito/integrazione
+Denunce stranieri,Persone denunciate di cittadinanza straniera / totale,Numero denunciati stranieri / totale,Ministero Interno,Annuale,Denuncia ≠ colpa; non controlla per età/sesso/residenza
+Detenuti stranieri,Detenuti di cittadinanza straniera / totale detenuti,Dati DAP,Ministero dell'Interno / DAP,Mensile,Include pre-esecuzione e custodia cautelare
+Saldo netto fiscale,Gettito fiscale/contributi - costi servizi stima,Modello input-output,ISMU / Moressa,Annuale,Modello dipendente da ipotesi su familiari a carico e costi impliciti
+Tasso di naturalizzazione,Nuove cittadinanze / residenti stranieri,Naturalizzazioni / popolazione straniera,Eurostat,Annuale,Dipende dalle leggi nazionali
