@@ -24,10 +24,10 @@
 
     html{scroll-snap-type:y mandatory}
     .top-nav .brand span{color:var(--accent)}
-    .scrolly .bar.green{background:var(--green)}
-    .scrolly .bar.blue{background:var(--blue)}
-    .scrolly .bar.gold{background:var(--gold)}
-    .scrolly .bar.grey{background:#555}
+    .scrolly .bar.positive{background:var(--positive)}
+    .scrolly .bar.negative{background:var(--negative)}
+    .scrolly .bar.neutral{background:var(--neutral)}
+    .scrolly .bar.shade{background:var(--accent-dim)}
     .final p{max-width:560px;margin:0 auto 28px}
     @media(max-width:720px){}
   
@@ -37,7 +37,7 @@
   <div class="progress" id="progress"></div>
 
   <nav class="top-nav" id="nav">
-    <a class="brand" href="https://un-mistico.github.io/repo-italia/">repo_italia <span>· Immigrazione</span></a>
+    <a class="brand" href="https://un-mistico.github.io/repo-italia/">🇮🇹 repo_italia <span>· Immigrazione</span></a>
     <div class="links">
       <a href="https://github.com/un-mistico/immigrazione-dashboard/tree/main/data" target="_blank">Download CSV</a>
       <a class="cta-nav" href="dashboard.html">Esplora →</a>
@@ -86,8 +86,8 @@
       <h2>La rotta del Mediterraneo centrale resta la principale</h2>
       <p>I <span class="highlight">sbarchi</span> sono persone intercettate dalla Guardia Costiera. Non sono ingressi regolari, né richiedenti asilo automatici, né immigrati clandestini totali.</p>
       <div class="bar-block" style="max-width:520px">
-        <div class="bar-wrap"><div class="bar-label">Med. centrale</div><div class="bar" data-width="80"></div><div class="bar-value">~67.500</div></div>
-        <div class="bar-wrap"><div class="bar-label">Balcani occidentali</div><div class="bar" data-width="25"></div><div class="bar-value">~21.000</div></div>
+        <div class="bar-wrap"><div class="bar-label">Med. centrale</div><div class="bar accent" data-width="80"></div><div class="bar-value">~67.500</div></div>
+        <div class="bar-wrap"><div class="bar-label">Balcani occidentali</div><div class="bar neutral" data-width="25"></div><div class="bar-value">~21.000</div></div>
         <div class="bar-wrap"><div class="bar-label">Altre rotte</div><div class="bar neutral" data-width="8"></div><div class="bar-value">~6.000</div></div>
       </div>
       <div class="note">Dati 2024. Fonte: Ministero dell'Interno.</div>
@@ -97,16 +97,17 @@
   <section id="s3">
     <div class="wrap content">
       <div class="eyebrow">03 · Asilo</div>
-      <div class="label">Domande d'asilo in Italia: esiti 2024</div>
+      <div class="label">Domande d'asilo in Italia (2024)</div>
       <div class="big-num accent" data-target="91" data-suffix="mila">0</div>
-      <h2>Molte domande finiscono in altre procedure</h2>
-      <p style="font-size:16px">Non tutti ottengono protezione. Molti finiscono in ricollocazioni Dublin o respinte.</p>
+      <h2>Solo una minoranza ottiene protezione internazionale</h2>
+      <p>Su ~91.000 domande, circa 1 su 4 riceve rifugio o protezione sussidiaria. Gli altri finiscono in ricollocazioni Dublin, protezione umanitaria o rifiuto.</p>
       <div class="bar-block" style="max-width:520px">
-        <div class="bar-wrap"><div class="bar-label">Ric. protezione umanitaria</div><div class="bar" data-width="35"></div><div class="bar-value">35%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Ricollocazioni Dublin</div><div class="bar" data-width="30"></div><div class="bar-value">30%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Respinte / altro</div><div class="bar neutral" data-width="35"></div><div class="bar-value">35%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Rifugio / protezione sussidiaria</div><div class="bar positive" data-width="24"></div><div class="bar-value">~24%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Protezione umanitaria</div><div class="bar accent" data-width="18"></div><div class="bar-value">~18%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Ricollocazioni Dublin</div><div class="bar neutral" data-width="30"></div><div class="bar-value">~30%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Rifiutate / altro</div><div class="bar negative" data-width="28"></div><div class="bar-value">~28%</div></div>
       </div>
-      <div class="note">Dati approssimativi su procedimenti conclusi. Fonte: Ministero dell'Interno.</div>
+      <div class="note">Percentuali approssimative su procedimenti conclusi. Fonte: Ministero dell'Interno.</div>
     </div>
   </section>
 
@@ -116,7 +117,7 @@
       <div class="label">Arrivi vs rimpatri Italia (2015-2024)</div>
       <div class="big-num positive" data-target="4" data-suffix="x">0</div>
       <h2>Per ogni rimpatrio ci sono circa 4 nuovi arrivi</h2>
-      <p>L'Italia espelle o fa rientrare volontariamente circa 15-20mila persone all'anno, controcentinaia di migliaia di ingressi regolari. La maggior parte dell'immigrazione avviene per via legale.</p>
+      <p>L'Italia espelle o fa rientrare volontariamente circa 15-20mila persone all'anno, contro circa 300-400mila ingressi regolari all'anno. La maggior parte dell'immigrazione avviene per via legale.</p>
       <div class="bar-block" style="max-width:520px">
         <div class="bar-wrap"><div class="bar-label">Ingressi regolari medi/anno</div><div class="bar" data-width="80"></div><div class="bar-value">~380mila</div></div>
         <div class="bar-wrap"><div class="bar-label">Rimpatri medi/anno</div><div class="bar positive" data-width="20"></div><div class="bar-value">~90mila</div></div>
@@ -131,12 +132,12 @@
       <h2 style="margin-top:6px">I primi paesi di origine degli stranieri residenti</h2>
       <p>Romania, Albania e Marocco da decenni ai primi posti. I dati per macro-area nascondo differenze importanti tra singoli paesi.</p>
       <div class="bar-block" style="max-width:520px">
-        <div class="bar-wrap"><div class="bar-label">Romania</div><div class="bar" data-width="19.6"></div><div class="bar-value">19,6%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Albania</div><div class="bar" data-width="7.7"></div><div class="bar-value">7,7%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Marocco</div><div class="bar" data-width="7.7"></div><div class="bar-value">7,7%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Cina</div><div class="bar" data-width="5.5"></div><div class="bar-value">5,5%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Ucraina</div><div class="bar" data-width="4.8"></div><div class="bar-value">4,8%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Moldova</div><div class="bar" data-width="3.6"></div><div class="bar-value">3,6%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Romania</div><div class="bar accent" data-width="19.6"></div><div class="bar-value">19,6%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Albania</div><div class="bar accent" data-width="7.7"></div><div class="bar-value">7,7%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Marocco</div><div class="bar accent" data-width="7.7"></div><div class="bar-value">7,7%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Cina</div><div class="bar accent" data-width="5.5"></div><div class="bar-value">5,5%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Ucraina</div><div class="bar accent" data-width="4.8"></div><div class="bar-value">4,8%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Moldova</div><div class="bar accent" data-width="3.6"></div><div class="bar-value">3,6%</div></div>
         <div class="bar-wrap"><div class="bar-label">Altri paesi</div><div class="bar neutral" data-width="51.1"></div><div class="bar-value">51,1%</div></div>
       </div>
       <div class="note">Distribuzione per paese di cittadinanza, residenti stranieri. Fonte: ISTAT/DOS.</div>
@@ -152,9 +153,9 @@
       <p>Sono circa 3,4 volte più rappresentati in carcere rispetto alla popolazione residente. Va letto con cautela: età, sesso, status e tipologia di reato spiegano molto.</p>
       <div class="bar-block" style="max-width:520px">
         <div class="label">% stranieri tra i denunciati per tipo di reato (2024)</div>
-        <div class="bar-wrap"><div class="bar-label">Reati immigrazione</div><div class="bar" data-width="92"></div><div class="bar-value">92%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Furti</div><div class="bar" data-width="38"></div><div class="bar-value">38%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Rapine</div><div class="bar" data-width="31"></div><div class="bar-value">31%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Reati immigrazione</div><div class="bar accent" data-width="92"></div><div class="bar-value">92%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Furti</div><div class="bar accent" data-width="38"></div><div class="bar-value">38%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Rapine</div><div class="bar accent" data-width="31"></div><div class="bar-value">31%</div></div>
         <div class="bar-wrap"><div class="bar-label">Totale denunciati</div><div class="bar neutral" data-width="34"></div><div class="bar-value">34%</div></div>
       </div>
       <div class="note">Denuncia ≠ colpa. I dati non controllano per età, reddito o status regolare. Fonte: Ministero dell'Interno.</div>
@@ -164,11 +165,15 @@
   <section id="s7">
     <div class="wrap content">
       <div class="eyebrow">07 · Conti pubblici</div>
-      <div class="label">Saldo netto fiscale degli stranieri (stima ISMU/Moressa, 2023)</div>
+      <div class="label">Impatto fiscale stimato degli stranieri (2023)</div>
       <div class="big-num positive" data-target="4.6" data-suffix=" mld €">0</div>
-      <h2>Secondo il modello più usato, gli stranieri contribuiscono più di quanto ricevono</h2>
-      <p>Il modello stima gettito fiscale/contributi meno costi di welfare, sanità, istruzione e alloggi. Non è un dato contabile, ma una stima macroeconomica dipendente da ipotesi.</p>
-      <div class="note">Modello Moressa/ISMU. I risultati cambiano se si includono familiari a carico, costi impliciti o si usano dati regionali diversi.</div>
+      <h2>Gettito e contributi superano i costi stimati</h2>
+      <p>Secondo il modello ISMU/Moressa, gli stranieri versano circa 26 mld € in tasse/contributi e ricevono servizi per ~21 mld €. Il saldo netto è positivo di ~4,6 mld €.</p>
+      <div class="bar-block" style="max-width:520px">
+        <div class="bar-wrap"><div class="bar-label">Gettito/contributi</div><div class="bar positive" data-width="55"></div><div class="bar-value">26 mld</div></div>
+        <div class="bar-wrap"><div class="bar-label">Costi servizi</div><div class="bar negative" data-width="45"></div><div class="bar-value">21 mld</div></div>
+      </div>
+      <div class="note">Stima modello, non dato contabile. Fonte: ISMU/Moressa.</div>
     </div>
   </section>
 
@@ -178,10 +183,10 @@
       <h2 style="margin-top:6px">L'Italia ha pochi stranieri rispetto ai grandi paesi europei</h2>
       <p>Il 9% di popolazione straniera è inferiore a Germania (16%), Spagna (14%) e Francia (13%). Ma l'Italia ha il tasso di naturalizzazione più basso.</p>
       <div class="bar-block" style="max-width:520px">
-        <div class="bar-wrap"><div class="bar-label">Germania</div><div class="bar" data-width="16.1"></div><div class="bar-value">16,1%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Spagna</div><div class="bar" data-width="13.8"></div><div class="bar-value">13,8%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Francia</div><div class="bar" data-width="13.0"></div><div class="bar-value">13,0%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Italia</div><div class="bar positive" data-width="9.0"></div><div class="bar-value">9,0%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Germania</div><div class="bar neutral" data-width="16.1"></div><div class="bar-value">16,1%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Spagna</div><div class="bar neutral" data-width="13.8"></div><div class="bar-value">13,8%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Francia</div><div class="bar neutral" data-width="13.0"></div><div class="bar-value">13,0%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Italia</div><div class="bar accent" data-width="9.0"></div><div class="bar-value">9,0%</div></div>
         <div class="bar-wrap"><div class="bar-label">Media UE</div><div class="bar neutral" data-width="8.4"></div><div class="bar-value">8,4%</div></div>
       </div>
       <div class="note">% popolazione con cittadinanza straniera, 2023. Fonte: Eurostat.</div>
