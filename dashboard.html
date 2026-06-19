@@ -210,7 +210,30 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       </div>
     </div>
     <div class="insight-box"><div class="text">Senza immigrazione la popolazione italiana sarebbe in calo: gli stranieri (+188K) compensano il calo degli italiani (-189K). La popolazione totale resta sostanzialmente stabile.</div></div>
-    <div class="footer-info">ISTAT Indicatori demografici 2025 (dati al 1° gen 2026) | ISMU 31° Rapporto | Ministero Interno | Ministero Lavoro (MSNA)</div>
+    
+  <section class="leve-section" id="leve">
+    <div class="wrap">
+      <h2>⚙️ Quali sono le leve d'intervento?</h2>
+      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
+      <div class="grid-3" style="margin-top:24px">
+        <div class="card">
+          <h3>📋 Flussi regolari</h3>
+          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
+        </div>
+        <div class="card">
+          <h3>⚖️ Asilo e rimpatri</h3>
+          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
+        </div>
+        <div class="card">
+          <h3>🤝 Integrazione</h3>
+          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
+        </div>
+      </div>
+      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
+    </div>
+  </section>
+
+<div class="footer-info">ISTAT Indicatori demografici 2025 (dati al 1° gen 2026) | ISMU 31° Rapporto | Ministero Interno | Ministero Lavoro (MSNA)</div>
   </div>
 
   <!-- CRIMINALITA -->
@@ -242,7 +265,7 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <div class="kpi"><div class="val accent" id="kpi-irreg-reati">70%</div><div class="lbl">% reati stranieri da irregolari</div></div>
     </div>
 
-    <div class="warning-box"><div class="text">Il 10% degli stranieri (irregolari) commette il 70% dei reati commessi da stranieri. La sproporzione è dovuta principalmente a chi non ha permesso di soggiorno, non agli stranieri regolari.</div></div>
+    <div class="warning-box"><div class="text">Il 70% delle denunce per reati predatori attribuite a cittadini stranieri riguarda persone in posizione irregolare, che rappresentano una minoranza dello stock straniero. La concentrazione è sullo status, non sulla nazionalità.</div></div>
 
     <div class="chart-grid cols-2">
       <div class="chart-box"><h3>% stranieri tra denunciati per tipo di reato (2024)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text">Dati del Ministero dell'Interno / Sole 24 Ore. <strong>Totale reati</strong> è la media pesata complessiva; le singole voci sono sotto-categorie di reato.</span></span></h3><div class="chart-container tall"><canvas id="chart-denunce-reati"></canvas></div></div>
@@ -269,14 +292,37 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
 
     <div class="method-box">
       <h4>Reddito, povert&agrave; e criminalit&agrave;</h4>
-      <p>I dati mostrano che gli stranieri hanno una <strong>RAL media pi&ugrave; bassa</strong> (~€14.000 per i dipendenti stranieri vs ~€37.000 per i dipendenti italiani) e una <strong>povert&agrave; assoluta molto pi&ugrave; alta</strong> (35% delle famiglie straniere vs ~10% di quelle italiane). Inoltre il 70% dei reati commessi da stranieri &egrave; attribuito agli irregolari, che sono solo il 10% degli stranieri. Queste tre cose <strong>corrono insieme</strong>, ma i dati pubblici italiani non permettono di dimostrare che la povert&agrave; o la precariet&agrave; siano la <strong>causa</strong> dei reati: non esistono open data che collegano reddito, status giuridico e autore del reato. Anagrafica (giovani e maschi) e concentrazione di pochi recidivi possono spiegare parte della sovrarappresentazione. Quindi si pu&ograve; dire che <strong>irregolari e fasce a basso reddito sono sovrarappresentate</strong>, non che la povert&agrave; renda pi&ugrave; criminale una popolazione intera.</p>
+      <p>Gli stranieri hanno <strong>RAL media pi&ugrave; bassa</strong> (~€14.000, molti part-time e bassa qualifica) e <strong>povert&agrave; assoluta pi&ugrave; alta</strong> (~35% famiglie straniere vs ~10% italiane). Inoltre il 70% delle denunce per reati predatori di stranieri riguarda persone irregolari. Queste tre cose <strong>corrono insieme</strong>, ma i dati pubblici italiani non permettono di dimostrare che la povert&agrave; o la precariet&agrave; siano la <strong>causa</strong> dei reati: non esistono open data che collegano reddito, status giuridico e autore del reato. Anagrafica (giovani e maschi) e concentrazione di pochi recidivi possono spiegare parte della sovrarappresentazione. Quindi si pu&ograve; dire che <strong>irregolari e fasce a basso reddito sono sovrarappresentate</strong>, non che la povert&agrave; renda pi&ugrave; criminale una popolazione intera.</p>
     </div>
 
     <div class="method-box">
       <h4>Limiti interpretativi sui dati di criminalit&agrave;</h4>
       <p>I dati pubblici italiani mostrano solo la <strong>quota di stranieri</strong> tra denunciati e detenuti. Non <strong>controllano per fattori confondenti</strong> come et&agrave;, sesso, reddito/ISEE, area di residenza e status regolare/irregolare. Gli stranieri sono in media pi&ugrave; giovani e pi&ugrave; maschi — due variabili associate a tassi di criminalit&agrave; pi&ugrave; alti in tutte le popolazioni. Inoltre le statistiche ufficiali contano i <strong>reati</strong>, non gli autori: se pochi recidivi seriali commettono molti reati, i dati mostreranno "tanti reati da stranieri" anzich&eacute; "pochi autori seriali". Non esistono open data che permettano di isolare questi effetti, quindi <strong>non &egrave; possibile concludere causalmente che gli stranieri siano "pi&ugrave; criminali"</strong>.</p>
     </div>
-    <div class="footer-info">DAP marzo 2026 | Ministero Giustizia 30 giugno 2024 | Sole 24 Ore / Pinotti 2024 | Antigone 2025 | Ministero Interno | ISMU | Fondazione Migrantes 2024</div>
+    
+  <section class="leve-section" id="leve">
+    <div class="wrap">
+      <h2>⚙️ Quali sono le leve d'intervento?</h2>
+      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
+      <div class="grid-3" style="margin-top:24px">
+        <div class="card">
+          <h3>📋 Flussi regolari</h3>
+          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
+        </div>
+        <div class="card">
+          <h3>⚖️ Asilo e rimpatri</h3>
+          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
+        </div>
+        <div class="card">
+          <h3>🤝 Integrazione</h3>
+          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
+        </div>
+      </div>
+      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
+    </div>
+  </section>
+
+<div class="footer-info">DAP marzo 2026 | Ministero Giustizia 30 giugno 2024 | Sole 24 Ore / Pinotti 2024 | Antigone 2025 | Ministero Interno | ISMU | Fondazione Migrantes 2024</div>
   </div>
 
   <!-- ECONOMIA -->
@@ -295,7 +341,7 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
     </div>
     <div class="kpi-grid" style="margin-top:-4px">
       <div class="kpi"><div class="val red" id="kpi-ral-str">~14K</div><div class="lbl">RAL media dipendenti stranieri</div></div>
-      <div class="kpi"><div class="val blue" id="kpi-ral-ita">~37K</div><div class="lbl">RAL media dipendenti italiani (ISTAT)</div></div>
+      <div class="kpi"><div class="val blue" id="kpi-ral-ita">~24K</div><div class="lbl">RAL media dipendenti italiani (stima INPS/MEF)</div></div>
       <div class="kpi"><div class="val" id="kpi-contribuenti">2,29M</div><div class="lbl">Contribuenti stranieri</div></div>
       <div class="kpi"><div class="val" id="kpi-occupabili">75,4%</div><div class="lbl">Stranieri in Italia extracomunitari</div></div>
     </div>
@@ -322,7 +368,30 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <h4>Rimesse vs saldo fiscale: due conti diversi</h4>
       <p>Le rimesse inviate all'estero dagli immigrati residenti in Italia ammontano a circa <strong>€8,6 miliardi all'anno</strong> (2025, Banca d'Italia). Questo è un <strong>flussso di pagamenti esteri</strong>, non una spesa dello Stato, quindi <strong>non va sottratto direttamente</strong> al saldo fiscale pubblico di +€4,6 mld. Tuttavia rappresenta una quota del reddito prodotto in Italia che non viene consumata o investita qui, riducendo l'impatto moltiplicativo sull'economia nazionale. Per un calcolo del "contributo netto all'economia italiana" bisognerebbe partire dal valore aggiunto prodotto (€177 mld) e sottrarre le rimesse, non dal bilancio fiscale.</p>
     </div>
-    <div class="footer-info">IDOS/Cgia Mestre/Università Milano-Insubria - Dossier Statistico Immigrazione 2025 (bilancio fiscale 2023) | Fondazione Leone Moressa - Rapporto economia immigrazione 2024 (PIL, occupati, rimesse) | Ministero Lavoro XIV Rapporto | ISTAT (povertà 2024)</div>
+    
+  <section class="leve-section" id="leve">
+    <div class="wrap">
+      <h2>⚙️ Quali sono le leve d'intervento?</h2>
+      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
+      <div class="grid-3" style="margin-top:24px">
+        <div class="card">
+          <h3>📋 Flussi regolari</h3>
+          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
+        </div>
+        <div class="card">
+          <h3>⚖️ Asilo e rimpatri</h3>
+          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
+        </div>
+        <div class="card">
+          <h3>🤝 Integrazione</h3>
+          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
+        </div>
+      </div>
+      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
+    </div>
+  </section>
+
+<div class="footer-info">IDOS/Cgia Mestre/Università Milano-Insubria - Dossier Statistico Immigrazione 2025 (bilancio fiscale 2023) | Fondazione Leone Moressa - Rapporto economia immigrazione 2024 (PIL, occupati, rimesse) | Ministero Lavoro XIV Rapporto | ISTAT (povertà 2024)</div>
   </div>
 
   <!-- RIMPATRI -->
@@ -344,7 +413,30 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <h4>Come leggere i numeri</h4>
       <p>I <strong>arrivi via mare e via terra</strong> sono il proxy più vicino a un "ingresso irregolare" rilevabile annualmente, anche se includono anche chi poi chiederà asilo (quindi non è automaticamente irregolare). Lo <strong>stock di irregolari stimati</strong> (339mila nel 2025, ISMU) è la platea di persone già presenti in Italia senza permesso di soggiorno. I <strong>rimpatri effettivi</strong> sono circa 6mila all'anno, cio&egrave; lo 0,2% dello stock e il 10% circa degli arrivi annuali. Questo &egrave; il motivo per cui la pressione migratoria si accumula: le uscite sono una frazione irrisoria degli ingressi.</p>
     </div>
-    <div class="footer-info">Ministero Interno | Eurostat Enforcement of Immigration Legislation 2025 | ISMU 2025</div>
+    
+  <section class="leve-section" id="leve">
+    <div class="wrap">
+      <h2>⚙️ Quali sono le leve d'intervento?</h2>
+      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
+      <div class="grid-3" style="margin-top:24px">
+        <div class="card">
+          <h3>📋 Flussi regolari</h3>
+          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
+        </div>
+        <div class="card">
+          <h3>⚖️ Asilo e rimpatri</h3>
+          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
+        </div>
+        <div class="card">
+          <h3>🤝 Integrazione</h3>
+          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
+        </div>
+      </div>
+      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
+    </div>
+  </section>
+
+<div class="footer-info">Ministero Interno | Eurostat Enforcement of Immigration Legislation 2025 | ISMU 2025</div>
   </div>
 
   <!-- EU -->
@@ -363,7 +455,30 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <div class="kpi"><div class="val">491.950</div><div class="lbl">Ordini di lasciare UE (2025)</div><div class="trend trend-up">+5,8% vs 2024</div></div>
       <div class="kpi"><div class="val green">135.460</div><div class="lbl">Rimpatri effettivi UE (2025)</div><div class="trend trend-up">+20,9% vs 2024</div></div>
     </div>
-    <div class="footer-info">Eurostat Migration & Asylum 2025 | Council of Europe SPACE I 2025 (Université de Lausanne) | BKA Germania 2024 | ONS UK 2025</div>
+    
+  <section class="leve-section" id="leve">
+    <div class="wrap">
+      <h2>⚙️ Quali sono le leve d'intervento?</h2>
+      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
+      <div class="grid-3" style="margin-top:24px">
+        <div class="card">
+          <h3>📋 Flussi regolari</h3>
+          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
+        </div>
+        <div class="card">
+          <h3>⚖️ Asilo e rimpatri</h3>
+          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
+        </div>
+        <div class="card">
+          <h3>🤝 Integrazione</h3>
+          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
+        </div>
+      </div>
+      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
+    </div>
+  </section>
+
+<div class="footer-info">Eurostat Migration & Asylum 2025 | Council of Europe SPACE I 2025 (Université de Lausanne) | BKA Germania 2024 | ONS UK 2025</div>
   </div>
 
   <!-- RECAP -->
@@ -388,7 +503,7 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <div class="recap-card">
         <div class="recap-num">04</div>
         <div class="recap-title">Criminalit&agrave; di strada</div>
-        <div class="recap-text">Negli ultimi dati disponibili gli stranieri rappresentano circa il 35% dei denunciati complessivi e oltre il 50% nei reati predatori (furti, rapine, scippi). Tuttavia il 70% dei reati commessi da stranieri viene attribuito agli irregolari, che sono solo il 10% degli stranieri. I dati pubblici non permettono di misurare la concentrazione per autore: non sappiamo se si tratta di molti autori occasionali o pochi recidivi seriali.</div>
+        <div class="recap-text">Negli ultimi dati disponibili gli stranieri rappresentano circa il 35% dei denunciati complessivi e oltre il 50% nei reati predatori (furti, rapine, scippi). Tuttavia il 70% delle denunce per reati predatori di stranieri riguarda persone irregolari. I dati pubblici non permettono di misurare la concentrazione per autore: non sappiamo se si tratta di molti autori occasionali o pochi recidivi seriali.</div>
       </div>
       <div class="recap-card">
         <div class="recap-num">05</div>
@@ -428,7 +543,30 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <p><strong>Puoi dire:</strong> gli stranieri in Italia sono sovrarappresentati in carcere e nei reati denunciati, soprattutto per reati contro il patrimonio e per legge immigrazione; il loro contributo economico è positivo; senza di loro la popolazione sarebbe in calo; la stragrande maggioranza degli stranieri non commette reati.</p>
       <p><strong>Non puoi dire:</strong> che gli stranieri siano "più criminali" in senso causale, perché i dati non controllano per età, sesso, condizione economica, area di residenza e status giuridico. Non puoi stimare quanti reati siano commessi da pochi recidivi seriali, perché le statistiche italiane non tracciano l'autore. Non puoi calcolare un bilancio netto "stranieri vs italiani" senza tenere conto di chi ha acquisito la cittadinanza.</p>
     </div>
-    <div class="footer-info">Recap basato su ISTAT, DAP, Antigone, Fondazione Leone Moressa, ISMU, Eurostat, Council of Europe SPACE I, dati al 2024-2025.</div>
+    
+  <section class="leve-section" id="leve">
+    <div class="wrap">
+      <h2>⚙️ Quali sono le leve d'intervento?</h2>
+      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
+      <div class="grid-3" style="margin-top:24px">
+        <div class="card">
+          <h3>📋 Flussi regolari</h3>
+          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
+        </div>
+        <div class="card">
+          <h3>⚖️ Asilo e rimpatri</h3>
+          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
+        </div>
+        <div class="card">
+          <h3>🤝 Integrazione</h3>
+          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
+        </div>
+      </div>
+      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
+    </div>
+  </section>
+
+<div class="footer-info">Recap basato su ISTAT, DAP, Antigone, Fondazione Leone Moressa, ISMU, Eurostat, Council of Europe SPACE I, dati al 2024-2025.</div>
   </div>
 
   <!-- FONTI & METODO -->
@@ -471,7 +609,30 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
         <li><strong>BKA Germania</strong> - <a href="https://www.bka.de/EN/CurrentInformation/Statistics/PoliceCrimeStatistics/2025/pcs2025.html" target="_blank">Police Crime Statistics 2025</a> · Sospettati non-cittadini</li>
       </ul>
     </div>
-    <div class="footer-info">Per segnalazioni, correzioni o richieste di approfondimento: i dati sono aggiornati al meglio delle fonti disponibili a giugno 2026.</div>
+    
+  <section class="leve-section" id="leve">
+    <div class="wrap">
+      <h2>⚙️ Quali sono le leve d'intervento?</h2>
+      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
+      <div class="grid-3" style="margin-top:24px">
+        <div class="card">
+          <h3>📋 Flussi regolari</h3>
+          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
+        </div>
+        <div class="card">
+          <h3>⚖️ Asilo e rimpatri</h3>
+          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
+        </div>
+        <div class="card">
+          <h3>🤝 Integrazione</h3>
+          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
+        </div>
+      </div>
+      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
+    </div>
+  </section>
+
+<div class="footer-info">Per segnalazioni, correzioni o richieste di approfondimento: i dati sono aggiornati al meglio delle fonti disponibili a giugno 2026.</div>
   </div>
 </div>
 
