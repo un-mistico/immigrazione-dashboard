@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="scrolly theme-blue">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,72 +8,26 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🚢%3C/text%3E%3C/svg%3E">
   <meta property="og:title" content="🚢🇮🇹 Immigrazione in Italia: 10 numeri per capire il fenomeno">
   <meta property="og:description" content="Un racconto scorrevole su flussi, presenza, asilo, criminalità e impatto economico. Poi i dati completi, tab per tab.">
+  <meta property="og:type" content="website">
   <meta property="og:image" content="https://un-mistico.github.io/immigrazione-dashboard/preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="base.css">
   <style>
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
-    body{margin:0;background:#0F0F12;font-family:'Inter',system-ui,-apple-system,sans-serif;color:#E8E6E3;line-height:1.55;overflow-x:hidden}
-    a{color:#E07A5F;text-decoration:none}
-    a:hover{text-decoration:underline}
-    .progress{position:fixed;top:0;left:0;height:3px;background:#4A6FA5;z-index:101;width:0;transition:width .1s linear}
-    .top-nav{position:fixed;top:3px;left:0;right:0;z-index:100;background:rgba(15,15,18,.92);backdrop-filter:blur(10px);border-bottom:1px solid #222;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;transition:transform .3s ease}
-    .top-nav .brand{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.3px}
-    .top-nav .brand span{color:#4A6FA5}
-    .top-nav .links{display:flex;gap:18px;align-items:center}
-    .top-nav .links a{font-size:13px;font-weight:600;color:#aaa}
-    .top-nav .links a:hover{color:#fff}
-    .top-nav .cta-nav{color:#fff !important;background:#4A6FA5;color:#fff;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-    .top-nav .cta-nav:hover{background:#3a5a85;color:#fff;text-decoration:none}
-    .top-nav.hide{transform:translateY(-100%)}
-    .wrap{max-width:740px;margin:0 auto;padding:0 24px}
-    section{min-height:100vh;display:flex;align-items:center;padding:80px 0;border-bottom:1px solid #1a1a1a;scroll-snap-align:start;scroll-snap-stop:always}
-    section:last-child{border-bottom:none}
-    .content{width:100%}
-    .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4A6FA5;margin-bottom:16px;opacity:0;transform:translateY(10px);transition:all .6s ease}
-    .eyebrow.visible{opacity:1;transform:translateY(0)}
-    h1{font-size:54px;font-weight:800;color:#fff;letter-spacing:-1.4px;margin:0 0 20px;line-height:1.05}
-    h2{font-size:34px;font-weight:800;color:#fff;letter-spacing:-.9px;margin:0 0 16px;line-height:1.12}
-    p{font-size:18px;color:#aaa;margin:0 0 20px;max-width:620px}
-    .big-num{font-size:110px;font-weight:800;color:#fff;line-height:.95;margin:20px 0 24px;opacity:0;transform:translateY(40px) scale(.96);transition:opacity 1s cubic-bezier(.22,.61,.36,1),transform 1s cubic-bezier(.22,.61,.36,1)}
-    .big-num.visible{opacity:1;transform:translateY(0) scale(1)}
-    .big-num.accent{color:#E07A5F}
-    .big-num.blue{color:#4A6FA5}
-    .big-num.green{color:#5B8C5A}
-    .big-num .suffix{font-size:42px;font-weight:600;vertical-align:top;margin-left:6px}
-    .label{font-size:12px;color:#777;text-transform:uppercase;letter-spacing:1.8px;margin-bottom:8px}
-    .note{font-size:15px;color:#666;margin-top:20px;padding-left:16px;border-left:2px solid #333;max-width:560px}
-    .highlight{background:rgba(74,111,165,.18);padding:2px 6px;border-radius:4px;color:#8ab4f8;font-weight:600}
-    .bar-block{margin:24px 0}
-    .bar-wrap{display:flex;align-items:center;gap:14px;margin:12px 0;font-size:14px}
-    .bar{height:28px;background:#4A6FA5;border-radius:5px;width:0;transition:width 1.4s cubic-bezier(.22,.61,.36,1);position:relative;overflow:hidden}
-    .bar::after{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:shimmer 2.5s infinite}
-    @keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-    .bar-label{min-width:150px;color:#aaa;font-size:13px}
-    .bar-value{color:#fff;font-weight:700;min-width:60px;text-align:right;font-size:14px}
-    .bar.green{background:#5B8C5A}
-    .bar.gold{background:#C9A227}
-    .bar.grey{background:#555}
-    .small-table{width:100%;border-collapse:collapse;font-size:15px;margin-top:18px}
-    .small-table td{padding:10px 0;border-bottom:1px solid #222;color:#aaa}
-    .small-table td:last-child{color:#fff;text-align:right;font-weight:700}
-    .small-table tr:last-child td{border-bottom:none}
-    .two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-    .cta{display:inline-flex;align-items:center;gap:8px;color:#fff !important;margin-top:28px;background:#4A6FA5;color:#fff;font-size:16px;font-weight:700;padding:16px 32px;border-radius:8px;text-decoration:none;transition:all .2s}
-    .cta:hover{background:#3a5a85;transform:translateY(-1px)}
-    .cta-secondary{display:inline-flex;align-items:center;gap:6px;margin-top:28px;margin-left:16px;color:#888;font-size:15px;text-decoration:none;border-bottom:1px solid #444;padding-bottom:3px}
-    .cta-secondary:hover{color:#4A6FA5;border-color:#4A6FA5}
-    .nav-dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:50}
-    .dot{width:10px;height:10px;border-radius:50%;background:#333;cursor:pointer;transition:all .25s}
-    .dot.active{background:#4A6FA5;transform:scale(1.2)}
-    .hero{text-align:center;padding-top:110px}
-    .hero h1{font-size:56px}
-    .hero p{font-size:20px;color:#888;max-width:560px;margin:0 auto 36px}
-    .final{text-align:center}
-    @media(max-width:720px){.top-nav .links a:not(.cta-nav){display:none}section{min-height:90vh;padding:70px 0;scroll-snap-align:start;scroll-snap-stop:always}.hero h1{font-size:38px}h2{font-size:26px}.big-num{font-size:72px}.big-num .suffix{font-size:28px}.two-col{grid-template-columns:1fr}.nav-dots{display:none}p{font-size:17px}}
-  </style>
+    html{scroll-snap-type:y mandatory}
+    .hero{padding-top:130px}
+    .top-nav .brand span{color:var(--accent)}
+    .scrolly .bar.green{background:var(--green)}
+    .scrolly .bar.blue{background:var(--blue)}
+    .scrolly .bar.gold{background:var(--gold)}
+    .scrolly .bar.grey{background:#555}
+    .final p{max-width:560px;margin:0 auto 28px}
+    @media(max-width:720px){.hero{padding-top:100px}}
+  
+    :root{--accent:#4A6FA5;}</style>
 </head>
 <body>
   <div class="progress" id="progress"></div>
+
   <nav class="top-nav" id="nav">
     <a class="brand" href="https://un-mistico.github.io/repo-italia/">repo_italia <span>· Immigrazione</span></a>
     <div class="links">
@@ -82,6 +36,7 @@
       <a class="cta-nav" href="dashboard.html">Esplora →</a>
     </div>
   </nav>
+
   <div class="nav-dots" id="dots"></div>
 
   <section id="s0" class="hero">
@@ -89,9 +44,9 @@
       <div class="eyebrow">Storia · 10 numeri</div>
       <h1>Immigrazione in Italia: il racconto in dati</h1>
       <p>Flussi, presenza, asilo, criminalità, impatto economico. Scrolla per capire il fenomeno senza slogan. I dati completi sono sempre raggiungibili in alto a destra.</p>
-      <a href="#s1" class="cta">Inizia a scrollare</a>
+      <a href="#s1" class="btn btn-primary">Inizia a scrollare</a>
       <div style="margin-top:18px">
-        <a href="dashboard.html" class="cta-secondary" style="margin-left:0;color:#666;border-color:#333">Oppure vai direttamente ai dati completi →</a>
+        <a href="dashboard.html" class="btn-secondary" style="margin-left:0;color:#666;border-color:#333">Oppure vai direttamente ai dati completi →</a>
       </div>
     </div>
   </section>
@@ -232,8 +187,8 @@
       <div class="eyebrow">11 · Approfondisci</div>
       <h2 style="font-size:40px">Vai ai dati completi</h2>
       <p style="margin:0 auto 28px;max-width:560px">Nella dashboard trovi flussi per anno, presenza regionale, asilo, criminalità, detenzione, saldo fiscale, confronti UE e i file CSV scaricabili.</p>
-      <a href="dashboard.html" class="cta">Apri la dashboard completa →</a>
-      <a href="https://un-mistico.github.io/repo-italia/" class="cta-secondary">← Torna a repo_italia</a>
+      <a href="dashboard.html" class="btn btn-primary">Apri la dashboard completa →</a>
+      <a href="https://un-mistico.github.io/repo-italia/" class="btn-secondary">← Torna a repo_italia</a>
     </div>
   </section>
 
@@ -243,10 +198,11 @@
     sections.forEach((s,i)=>{
       const d = document.createElement('div');
       d.className='dot'+(i===0?' active':'');
-      d.title='Sezione '+(i+1);
+      d.title = 'Sezione '+(i+1);
       d.onclick=()=>s.scrollIntoView({behavior:'smooth'});
       dots.appendChild(d);
     });
+
     function animateNumber(el){
       const target = parseFloat(el.dataset.target);
       const suffix = el.dataset.suffix || '';
@@ -257,7 +213,7 @@
         const p = Math.min((now-start)/dur,1);
         const ease = 1 - Math.pow(1-p,3);
         const cur = target * ease;
-        if(suffix.includes('%') || suffix.includes(' mln') || suffix.includes(' mld')){
+        if(suffix.includes('%') || suffix.includes(' mln') || suffix.includes(' mld') || suffix.includes(' anni')){
           el.innerHTML = (decimals ? cur.toFixed(1) : Math.round(cur)) + (suffix ? '<span class="suffix">'+suffix+'</span>' : '');
         } else {
           el.textContent = (decimals ? cur.toFixed(1) : Math.round(cur)) + suffix;
@@ -266,6 +222,7 @@
       }
       requestAnimationFrame(step);
     }
+
     const observer = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -275,15 +232,25 @@
         }
       });
     },{threshold:.4});
+
     document.querySelectorAll('.big-num, .eyebrow').forEach(n=>observer.observe(n));
     document.querySelectorAll('.bar').forEach(b=>observer.observe(b));
+
     const dotObserver = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ const idx = Array.from(sections).indexOf(e.target); document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx)); } });
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const idx = Array.from(sections).indexOf(e.target);
+          document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+        }
+      });
     },{threshold:.5});
     sections.forEach(s=>dotObserver.observe(s));
+
     const progress = document.getElementById('progress');
-    window.addEventListener('scroll',()=>{ const h=document.documentElement; progress.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'; },{passive:true});
-    // nav remains always visible
+    window.addEventListener('scroll',()=>{
+      const h = document.documentElement;
+      progress.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+    },{passive:true});
   </script>
 </body>
 </html>
