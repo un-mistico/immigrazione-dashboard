@@ -23,12 +23,12 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
 .header .legend{font-size:10px;color:#666;margin-top:10px;padding-top:10px;border-top:1px solid #222}
 .header .legend .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px;vertical-align:middle;background:#555}
 .hub-link{font-size:12px;margin-bottom:10px}
-.hub-link a{color:#E07A5F;text-decoration:none;font-weight:600}
+.hub-link a{color:#4A6FA5;text-decoration:none;font-weight:600}
 .hub-link a:hover{text-decoration:underline}
 .controls{display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
 .tabs{display:flex;gap:4px;background:#16161B;border-radius:8px;padding:4px;flex-wrap:wrap}
 .tab{padding:8px 16px;font-size:13px;font-weight:600;color:#888;cursor:pointer;border-radius:6px;transition:all .2s;border:none;background:none}
-.tab.active{background:#E07A5F;color:#fff}
+.tab.active{background:#4A6FA5;color:#fff}
 .tab:hover:not(.active){color:#ccc}
 .year-sel{display:flex;align-items:center;gap:8px}
 .year-sel label{font-size:12px;color:#666;text-transform:uppercase;letter-spacing:1px}
@@ -36,15 +36,15 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
 .kpi{background:#16161B;border:1px solid #222;border-radius:10px;padding:16px 18px}
 .kpi .val{font-size:26px;font-weight:800;color:#fff}
-.kpi .val.accent{color:#E07A5F}
-.kpi .val.blue{color:#4A6FA5}
-.kpi .val.green{color:#5B8C5A}
-.kpi .val.red{color:#C45A3D}
+.kpi .val.accent{color:#4A6FA5}
+.kpi .val.info{color:#4A6FA5}
+.kpi .val.positive{color:#81b873}
+.kpi .val.negative{color:#e63a46}
 .kpi .lbl{font-size:10px;color:#777;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
 .kpi .trend{font-size:11px;margin-top:6px}
-.trend-up{color:#E07A5F}.trend-down{color:#5B8C5A}.trend-neutral{color:#888}
+.trend-up{color:#4A6FA5}.trend-down{color:#81b873}.trend-neutral{color:#888}
     .kpi .badge{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 6px;border-radius:4px;margin-top:6px}
-    .badge-official{background:#1A3A1A;color:#5B8C5A}
+    .badge-official{background:#1A3A1A;color:#81b873}
     .badge-estimate{background:#3A2A1A;color:#C9A227}
     .badge-provisional{background:#1A2A3A;color:#4A6FA5}
     .definition-banner{background:#16161B;border:1px solid #222;border-radius:8px;padding:14px 18px;margin:0 0 16px;font-size:13px;color:#aaa;line-height:1.6}
@@ -78,19 +78,19 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
 /* Chart.js fix: render charts only when visible */
 .footer-info{margin-top:24px;padding-top:16px;border-top:1px solid #222;font-size:11px;color:#555;line-height:1.7}
 .warning-box{background:#1A1212;border:1px solid #3A2222;border-radius:8px;padding:14px 18px;margin:12px 0}
-.warning-box .text{font-size:13px;color:#E07A5F;font-weight:600}
+.warning-box .text{font-size:13px;color:#4A6FA5;font-weight:600}
 .insight-box{background:#121A12;border:1px solid #1A3A1A;border-radius:8px;padding:14px 18px;margin:12px 0}
-.insight-box .text{font-size:13px;color:#5B8C5A;font-weight:500}
+.insight-box .text{font-size:13px;color:#81b873;font-weight:500}
 .recap-intro{font-size:14px;color:#888;margin-bottom:16px}
 .recap-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
 .recap-card{background:#16161B;border:1px solid #222;border-radius:10px;padding:18px}
-.recap-num{font-size:32px;font-weight:800;color:#E07A5F;opacity:.6;line-height:1;margin-bottom:8px}
+.recap-num{font-size:32px;font-weight:800;color:#4A6FA5;opacity:.6;line-height:1;margin-bottom:8px}
 .recap-title{font-size:14px;font-weight:700;color:#f0f0f0;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
 .recap-text{font-size:13px;color:#aaa;line-height:1.55}
 .recap-text a{color:#E07A5F;text-decoration:none}
 .recap-text a:hover{text-decoration:underline}
 .sources-list{font-size:12px;color:#888;line-height:1.9}
-.sources-list a{color:#E07A5F;text-decoration:none}
+.sources-list a{color:#4A6FA5;text-decoration:none}
 .sources-list a:hover{text-decoration:underline}
 .sources-list li{margin-bottom:6px}
 .method-box{background:#16161B;border:1px solid #222;border-radius:10px;padding:18px;margin-bottom:16px}
@@ -100,7 +100,7 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
 /* Info tooltip for chart titles */
 .info-tooltip{position:relative;display:inline-block;margin-left:8px;cursor:help}
 .info-tooltip .icon{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#333;color:#888;font-size:11px;font-weight:700}
-.info-tooltip:hover .icon{background:#E07A5F;color:#fff}
+.info-tooltip:hover .icon{background:#4A6FA5;color:#fff}
 .info-tooltip .tooltip-text{visibility:hidden;width:280px;background:#1E1E24;color:#aaa;text-align:left;padding:10px 12px;border-radius:8px;border:1px solid #333;font-size:12px;line-height:1.5;position:absolute;z-index:100;bottom:125%;left:50%;transform:translateX(-50%);opacity:0;transition:opacity .2s}
 .info-tooltip:hover .tooltip-text{visibility:visible;opacity:1}
 .info-tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border-width:5px;border-style:solid;border-color:#333 transparent transparent transparent}
@@ -153,7 +153,7 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <div class="kpi"><div class="val" id="kpi-pct">9,4%</div><div class="lbl">% popolazione totale (<span class="kpi-year">2025</span>)</div></div>
       <div class="kpi"><div class="val" id="kpi-mare">66.000</div><div class="lbl">Arrivi via mare (<span class="kpi-year">2025</span>)</div><div class="trend trend-neutral" id="kpi-mare-trend">-0,5% YoY</div></div>
       <div class="kpi kpi-static">
-        <div class="val red" id="kpi-irreg">339K</div>
+        <div class="val negative" id="kpi-irreg">339K</div>
         <div class="lbl">Irregolari stimati (<span class="kpi-year">2025</span>)</div>
         <div class="meta"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5"/><line x1="6" y1="5.5" x2="6" y2="5.5" stroke-linecap="round"/><line x1="6" y1="3" x2="6" y2="7" stroke-linecap="round"/></svg> stock · non aggiornabile</div>
         <div class="tooltip">stock: dato puntuale (stima ISMU, non ricostruibile per tutti gli anni) · non aggiornabile col filtro</div>
@@ -262,7 +262,7 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <div class="kpi"><div class="val accent" id="kpi-denunce-pct">34,7%</div><div class="lbl">% denunciati stranieri (2024)</div></div>
       <div class="kpi"><div class="val" id="kpi-reati-tot">2,38M</div><div class="lbl">Reati segnalati (2024)</div></div>
       <div class="kpi"><div class="val accent" id="kpi-predatori">60%+</div><div class="lbl">% reati predatori stranieri</div></div>
-      <div class="kpi"><div class="val accent" id="kpi-irreg-reati">70%</div><div class="lbl">% reati stranieri da irregolari</div></div>
+      <div class="kpi"><div class="val accent" id="kpi-irreg-reati">70%</div><div class="lbl">% denunce predatori da irregolari</div></div>
     </div>
 
     <div class="warning-box"><div class="text">Il 70% delle denunce per reati predatori attribuite a cittadini stranieri riguarda persone in posizione irregolare, che rappresentano una minoranza dello stock straniero. La concentrazione è sullo status, non sulla nazionalità.</div></div>
@@ -328,20 +328,20 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
   <!-- ECONOMIA -->
   <div id="economia" class="pane">
     <div class="kpi-grid">
-      <div class="kpi"><div class="val green" id="kpi-pil">€177Mld</div><div class="lbl">Contributo PIL stranieri</div></div>
+      <div class="kpi"><div class="val positive" id="kpi-pil">€177Mld</div><div class="lbl">Contributo PIL stranieri</div></div>
       <div class="kpi"><div class="val" id="kpi-pil-pct">9%</div><div class="lbl">% del PIL nazionale</div></div>
       <div class="kpi"><div class="val" id="kpi-occupati">2,4M</div><div class="lbl">Occupati stranieri</div></div>
       <div class="kpi"><div class="val" id="kpi-occ-pct">10,5%</div><div class="lbl">% occupati totali</div></div>
     </div>
     <div class="kpi-grid" style="margin-top:-4px">
-      <div class="kpi"><div class="val green" id="kpi-entrate">€39,1Mld</div><div class="lbl">Tasse e contributi versati</div></div>
-      <div class="kpi"><div class="val red" id="kpi-costi">€34,5Mld</div><div class="lbl">Costi servizi e welfare</div></div>
-      <div class="kpi"><div class="val green" id="kpi-saldo">+€4,6Mld</div><div class="lbl">Saldo netto per lo Stato</div></div>
+      <div class="kpi"><div class="val positive" id="kpi-entrate">€39,1Mld</div><div class="lbl">Tasse e contributi versati</div></div>
+      <div class="kpi"><div class="val negative" id="kpi-costi">€34,5Mld</div><div class="lbl">Costi servizi e welfare</div></div>
+      <div class="kpi"><div class="val positive" id="kpi-saldo">+€4,6Mld</div><div class="lbl">Saldo netto per lo Stato</div></div>
       <div class="kpi"><div class="val" id="kpi-rimesse">€8,6Mld</div><div class="lbl">Rimesse all'estero (2025)</div></div>
     </div>
     <div class="kpi-grid" style="margin-top:-4px">
-      <div class="kpi"><div class="val red" id="kpi-ral-str">~14K</div><div class="lbl">RAL media dipendenti stranieri</div></div>
-      <div class="kpi"><div class="val blue" id="kpi-ral-ita">~24K</div><div class="lbl">RAL media dipendenti italiani (stima INPS/MEF)</div></div>
+      <div class="kpi"><div class="val negative" id="kpi-ral-str">~14K</div><div class="lbl">RAL media dipendenti stranieri</div></div>
+      <div class="kpi"><div class="val info" id="kpi-ral-ita">~24K</div><div class="lbl">RAL media dipendenti italiani (stima INPS/MEF)</div></div>
       <div class="kpi"><div class="val" id="kpi-contribuenti">2,29M</div><div class="lbl">Contribuenti stranieri</div></div>
       <div class="kpi"><div class="val" id="kpi-occupabili">75,4%</div><div class="lbl">Stranieri in Italia extracomunitari</div></div>
     </div>
@@ -398,8 +398,8 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
   <div id="rimpatri" class="pane">
     <div class="kpi-grid">
       <div class="kpi"><div class="val" id="kpi-arrivi">69.900</div><div class="lbl">Arrivi totali (mare+terra)</div></div>
-      <div class="kpi"><div class="val red" id="kpi-irreg-rimpatri">339K</div><div class="lbl">Irregolari stimati in Italia (stock)</div></div>
-      <div class="kpi"><div class="val green" id="kpi-rimpatri-it">7.000</div><div class="lbl">Rimpatri Italia</div></div>
+      <div class="kpi"><div class="val negative" id="kpi-irreg-rimpatri">339K</div><div class="lbl">Irregolari stimati in Italia (stock)</div></div>
+      <div class="kpi"><div class="val positive" id="kpi-rimpatri-it">7.000</div><div class="lbl">Rimpatri Italia</div></div>
       <div class="kpi"><div class="val" id="kpi-efficiency">10%</div><div class="lbl">Rimpatri / arrivi</div></div>
     </div>
     <div class="chart-grid cols-2">
@@ -450,10 +450,10 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <div class="chart-box"><h3>Richiedenti asilo UE - top nazionalità (2024)</h3><div class="chart-container"><canvas id="chart-asilo"></canvas></div></div>
     </div>
     <div class="kpi-grid" style="margin-top:16px">
-      <div class="kpi"><div class="val red">132.600</div><div class="lbl">Respinti frontiere UE (2025)</div><div class="trend trend-up">+7,1% vs 2024</div></div>
-      <div class="kpi"><div class="val red">919K</div><div class="lbl">Presenze irregolari UE (2025)</div><div class="trend trend-down">-27% vs 2023</div></div>
+      <div class="kpi"><div class="val negative">132.600</div><div class="lbl">Respinti frontiere UE (2025)</div><div class="trend trend-up">+7,1% vs 2024</div></div>
+      <div class="kpi"><div class="val negative">919K</div><div class="lbl">Presenze irregolari UE (2025)</div><div class="trend trend-down">-27% vs 2023</div></div>
       <div class="kpi"><div class="val">491.950</div><div class="lbl">Ordini di lasciare UE (2025)</div><div class="trend trend-up">+5,8% vs 2024</div></div>
-      <div class="kpi"><div class="val green">135.460</div><div class="lbl">Rimpatri effettivi UE (2025)</div><div class="trend trend-up">+20,9% vs 2024</div></div>
+      <div class="kpi"><div class="val positive">135.460</div><div class="lbl">Rimpatri effettivi UE (2025)</div><div class="trend trend-up">+20,9% vs 2024</div></div>
     </div>
     
   <section class="leve-section" id="leve">
@@ -1233,7 +1233,7 @@ buildChart('chart-status', {
   buildChart('chart-ral', {
     type: 'bar',
     data: { labels: ['Stranieri (XII Rapporto Ministero Lavoro)','Italiani (ISTAT 2024)'],
-      datasets: [{ data: [14000, 37302],
+      datasets: [{ data: [14000, 24500],
         backgroundColor: ['#E07A5F','#6B9BD1'], borderRadius: 6 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
