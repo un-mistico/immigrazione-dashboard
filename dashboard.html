@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="🚢🇮🇹 Dati immigrazione, crimine & società (Italia, 2026)">
+  <meta property="og:title" content="🚢 Dati immigrazione, crimine & società (Italia, 2026)">
   <meta property="og:description" content="Flussi migratori, presenza straniera, criminalità ed economia in Italia. Fonti ISTAT, ISMU, DAP, Ministeri.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://un-mistico.github.io/immigrazione-dashboard/preview.png">
   <meta name="twitter:card" content="summary_large_image">
-<title>🚢🇮🇹 Dati immigrazione, crimine & società (Italia, 2026)</title>
+<title>🚢 Dati immigrazione, crimine & società (Italia, 2026)</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🇮🇹%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -45,7 +45,7 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
 .trend-up{color:#4A6FA5}.trend-down{color:#81b873}.trend-neutral{color:#888}
     .kpi .badge{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 6px;border-radius:4px;margin-top:6px}
     .badge-official{background:#1A3A1A;color:#81b873}
-    .badge-estimate{background:#3A2A1A;color:#C9A227}
+    .badge-estimate{background:#3A2A1A;color:#c8a327}
     .badge-provisional{background:#1A2A3A;color:#4A6FA5}
     .definition-banner{background:#16161B;border:1px solid #222;border-radius:8px;padding:14px 18px;margin:0 0 16px;font-size:13px;color:#aaa;line-height:1.6}
 .kpi-static{position:relative}
@@ -113,7 +113,7 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
     <strong>Definizione:</strong> in questa dashboard “stranieri” = cittadini non italiani residenti in Italia, salvo diverso avviso. “Persone con background migratorio” include anche gli italiani di origine straniera. I due numeri non sono intercambiabili.
   </div>
   <div class="header">
-    <h1>🚢🇮🇹 Dati immigrazione, crimine & società (Italia, 2026)</h1>
+    <h1>🚢 Dati immigrazione, crimine & società (Italia, 2026)</h1>
     <div class="sub">Flussi migratori, presenza straniera, criminalità, economia e confronto europeo</div>
     <div class="src">Ultimo aggiornamento: giugno 2026 · Dati 2015-2025 · Fonti: ISTAT, ISMU, DAP/Ministero Giustizia, Ministero Interno, Ministero Lavoro, Eurostat, Council of Europe SPACE I, Fondazione Leone Moressa, IDOS/Cgia Mestre</div>
     <div class="legend"><span class="dot"></span> KPI non aggiornabili col filtro anno · <strong>flow</strong> = conteggio annuale (es. acquisizioni cittadinanza in un anno) · <strong>stock</strong> = fotografia a una data (es. irregolari stimati al 31/12)</div>
@@ -211,27 +211,7 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
     </div>
     <div class="insight-box"><div class="text">Senza immigrazione la popolazione italiana sarebbe in calo: gli stranieri (+188K) compensano il calo degli italiani (-189K). La popolazione totale resta sostanzialmente stabile.</div></div>
     
-  <section class="leve-section" id="leve">
-    <div class="wrap">
-      <h2>⚙️ Quali sono le leve d'intervento?</h2>
-      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
-      <div class="grid-3" style="margin-top:24px">
-        <div class="card">
-          <h3>📋 Flussi regolari</h3>
-          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
-        </div>
-        <div class="card">
-          <h3>⚖️ Asilo e rimpatri</h3>
-          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
-        </div>
-        <div class="card">
-          <h3>🤝 Integrazione</h3>
-          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
-        </div>
-      </div>
-      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
-    </div>
-  </section>
+  
 
 <div class="footer-info">ISTAT Indicatori demografici 2025 (dati al 1° gen 2026) | ISMU 31° Rapporto | Ministero Interno | Ministero Lavoro (MSNA)</div>
   </div>
@@ -299,29 +279,6 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <h4>Limiti interpretativi sui dati di criminalit&agrave;</h4>
       <p>I dati pubblici italiani mostrano solo la <strong>quota di stranieri</strong> tra denunciati e detenuti. Non <strong>controllano per fattori confondenti</strong> come et&agrave;, sesso, reddito/ISEE, area di residenza e status regolare/irregolare. Gli stranieri sono in media pi&ugrave; giovani e pi&ugrave; maschi — due variabili associate a tassi di criminalit&agrave; pi&ugrave; alti in tutte le popolazioni. Inoltre le statistiche ufficiali contano i <strong>reati</strong>, non gli autori: se pochi recidivi seriali commettono molti reati, i dati mostreranno "tanti reati da stranieri" anzich&eacute; "pochi autori seriali". Non esistono open data che permettano di isolare questi effetti, quindi <strong>non &egrave; possibile concludere causalmente che gli stranieri siano "pi&ugrave; criminali"</strong>.</p>
     </div>
-    
-  <section class="leve-section" id="leve">
-    <div class="wrap">
-      <h2>⚙️ Quali sono le leve d'intervento?</h2>
-      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
-      <div class="grid-3" style="margin-top:24px">
-        <div class="card">
-          <h3>📋 Flussi regolari</h3>
-          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
-        </div>
-        <div class="card">
-          <h3>⚖️ Asilo e rimpatri</h3>
-          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
-        </div>
-        <div class="card">
-          <h3>🤝 Integrazione</h3>
-          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
-        </div>
-      </div>
-      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
-    </div>
-  </section>
-
 <div class="footer-info">DAP marzo 2026 | Ministero Giustizia 30 giugno 2024 | Sole 24 Ore / Pinotti 2024 | Antigone 2025 | Ministero Interno | ISMU | Fondazione Migrantes 2024</div>
   </div>
 
@@ -368,29 +325,6 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <h4>Rimesse vs saldo fiscale: due conti diversi</h4>
       <p>Le rimesse inviate all'estero dagli immigrati residenti in Italia ammontano a circa <strong>€8,6 miliardi all'anno</strong> (2025, Banca d'Italia). Questo è un <strong>flussso di pagamenti esteri</strong>, non una spesa dello Stato, quindi <strong>non va sottratto direttamente</strong> al saldo fiscale pubblico di +€4,6 mld. Tuttavia rappresenta una quota del reddito prodotto in Italia che non viene consumata o investita qui, riducendo l'impatto moltiplicativo sull'economia nazionale. Per un calcolo del "contributo netto all'economia italiana" bisognerebbe partire dal valore aggiunto prodotto (€177 mld) e sottrarre le rimesse, non dal bilancio fiscale.</p>
     </div>
-    
-  <section class="leve-section" id="leve">
-    <div class="wrap">
-      <h2>⚙️ Quali sono le leve d'intervento?</h2>
-      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
-      <div class="grid-3" style="margin-top:24px">
-        <div class="card">
-          <h3>📋 Flussi regolari</h3>
-          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
-        </div>
-        <div class="card">
-          <h3>⚖️ Asilo e rimpatri</h3>
-          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
-        </div>
-        <div class="card">
-          <h3>🤝 Integrazione</h3>
-          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
-        </div>
-      </div>
-      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
-    </div>
-  </section>
-
 <div class="footer-info">IDOS/Cgia Mestre/Università Milano-Insubria - Dossier Statistico Immigrazione 2025 (bilancio fiscale 2023) | Fondazione Leone Moressa - Rapporto economia immigrazione 2024 (PIL, occupati, rimesse) | Ministero Lavoro XIV Rapporto | ISTAT (povertà 2024)</div>
   </div>
 
@@ -413,29 +347,6 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <h4>Come leggere i numeri</h4>
       <p>I <strong>arrivi via mare e via terra</strong> sono il proxy più vicino a un "ingresso irregolare" rilevabile annualmente, anche se includono anche chi poi chiederà asilo (quindi non è automaticamente irregolare). Lo <strong>stock di irregolari stimati</strong> (339mila nel 2025, ISMU) è la platea di persone già presenti in Italia senza permesso di soggiorno. I <strong>rimpatri effettivi</strong> sono circa 6mila all'anno, cio&egrave; lo 0,2% dello stock e il 10% circa degli arrivi annuali. Questo &egrave; il motivo per cui la pressione migratoria si accumula: le uscite sono una frazione irrisoria degli ingressi.</p>
     </div>
-    
-  <section class="leve-section" id="leve">
-    <div class="wrap">
-      <h2>⚙️ Quali sono le leve d'intervento?</h2>
-      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
-      <div class="grid-3" style="margin-top:24px">
-        <div class="card">
-          <h3>📋 Flussi regolari</h3>
-          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
-        </div>
-        <div class="card">
-          <h3>⚖️ Asilo e rimpatri</h3>
-          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
-        </div>
-        <div class="card">
-          <h3>🤝 Integrazione</h3>
-          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
-        </div>
-      </div>
-      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
-    </div>
-  </section>
-
 <div class="footer-info">Ministero Interno | Eurostat Enforcement of Immigration Legislation 2025 | ISMU 2025</div>
   </div>
 
@@ -455,29 +366,6 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <div class="kpi"><div class="val">491.950</div><div class="lbl">Ordini di lasciare UE (2025)</div><div class="trend trend-up">+5,8% vs 2024</div></div>
       <div class="kpi"><div class="val positive">135.460</div><div class="lbl">Rimpatri effettivi UE (2025)</div><div class="trend trend-up">+20,9% vs 2024</div></div>
     </div>
-    
-  <section class="leve-section" id="leve">
-    <div class="wrap">
-      <h2>⚙️ Quali sono le leve d'intervento?</h2>
-      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
-      <div class="grid-3" style="margin-top:24px">
-        <div class="card">
-          <h3>📋 Flussi regolari</h3>
-          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
-        </div>
-        <div class="card">
-          <h3>⚖️ Asilo e rimpatri</h3>
-          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
-        </div>
-        <div class="card">
-          <h3>🤝 Integrazione</h3>
-          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
-        </div>
-      </div>
-      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
-    </div>
-  </section>
-
 <div class="footer-info">Eurostat Migration & Asylum 2025 | Council of Europe SPACE I 2025 (Université de Lausanne) | BKA Germania 2024 | ONS UK 2025</div>
   </div>
 
@@ -543,29 +431,6 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <p><strong>Puoi dire:</strong> gli stranieri in Italia sono sovrarappresentati in carcere e nei reati denunciati, soprattutto per reati contro il patrimonio e per legge immigrazione; il loro contributo economico è positivo; senza di loro la popolazione sarebbe in calo; la stragrande maggioranza degli stranieri non commette reati.</p>
       <p><strong>Non puoi dire:</strong> che gli stranieri siano "più criminali" in senso causale, perché i dati non controllano per età, sesso, condizione economica, area di residenza e status giuridico. Non puoi stimare quanti reati siano commessi da pochi recidivi seriali, perché le statistiche italiane non tracciano l'autore. Non puoi calcolare un bilancio netto "stranieri vs italiani" senza tenere conto di chi ha acquisito la cittadinanza.</p>
     </div>
-    
-  <section class="leve-section" id="leve">
-    <div class="wrap">
-      <h2>⚙️ Quali sono le leve d'intervento?</h2>
-      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
-      <div class="grid-3" style="margin-top:24px">
-        <div class="card">
-          <h3>📋 Flussi regolari</h3>
-          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
-        </div>
-        <div class="card">
-          <h3>⚖️ Asilo e rimpatri</h3>
-          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
-        </div>
-        <div class="card">
-          <h3>🤝 Integrazione</h3>
-          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
-        </div>
-      </div>
-      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
-    </div>
-  </section>
-
 <div class="footer-info">Recap basato su ISTAT, DAP, Antigone, Fondazione Leone Moressa, ISMU, Eurostat, Council of Europe SPACE I, dati al 2024-2025.</div>
   </div>
 
@@ -609,29 +474,6 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
         <li><strong>BKA Germania</strong> - <a href="https://www.bka.de/EN/CurrentInformation/Statistics/PoliceCrimeStatistics/2025/pcs2025.html" target="_blank">Police Crime Statistics 2025</a> · Sospettati non-cittadini</li>
       </ul>
     </div>
-    
-  <section class="leve-section" id="leve">
-    <div class="wrap">
-      <h2>⚙️ Quali sono le leve d'intervento?</h2>
-      <p style="max-width:700px">Senza prendere posizione politica, ecco le leve tecniche più citate nella letteratura e nei rapporti istituzionali per muovere i nodi emersi nei dati.</p>
-      <div class="grid-3" style="margin-top:24px">
-        <div class="card">
-          <h3>📋 Flussi regolari</h3>
-          <p>Semplificare i canali legali di ingresso per lavoro e famiglia, ridurre i tempi dei permessi, allineare l'offerta di lavoro alla domanda del mercato.</p>
-        </div>
-        <div class="card">
-          <h3>⚖️ Asilo e rimpatri</h3>
-          <p>Accelerare le procedure di esame delle domande, potenziare gli accordi di ricollocazione, aumentare l'efficienza dei rimpatri per i casi con ordine di allontanamento.</p>
-        </div>
-        <div class="card">
-          <h3>🤝 Integrazione</h3>
-          <p>Accesso al lavoro regolare, riconoscimento delle qualifiche, formazione linguistica e riduzione della povertà come leve di integrazione e ordine pubblico.</p>
-        </div>
-      </div>
-      <div class="note" style="margin-top:22px">Questa sezione elenca proposte tecniche dibattute. Non è una presa di posizione del progetto.</div>
-    </div>
-  </section>
-
 <div class="footer-info">Per segnalazioni, correzioni o richieste di approfondimento: i dati sono aggiornati al meglio delle fonti disponibili a giugno 2026.</div>
   </div>
 </div>
@@ -758,8 +600,8 @@ function updateAll(paneId) {
     type: 'line',
     data: { labels: years, datasets: [{
       label: 'Stranieri residenti', data: years.map(y=>D[y].rs),
-      borderColor: '#E07A5F', backgroundColor: 'rgba(224,122,95,0.1)',
-      fill: true, tension: 0.3, pointRadius: 4, pointBackgroundColor: '#E07A5F'
+      borderColor: '#4A6FA5', backgroundColor: 'rgba(224,122,95,0.1)',
+      fill: true, tension: 0.3, pointRadius: 4, pointBackgroundColor: '#4A6FA5'
     }]},
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -788,8 +630,8 @@ function updateAll(paneId) {
     type: 'line',
     data: { labels: years, datasets: [{
       label: 'Morti e dispersi', data: years.map(y=>D[y].morti),
-      borderColor: '#C45A3D', backgroundColor: 'rgba(196,90,61,0.1)',
-      fill: true, tension: 0.3, pointRadius: 4, pointBackgroundColor: '#C45A3D'
+      borderColor: '#e63a46', backgroundColor: 'rgba(74,111,165,0.1)',
+      fill: true, tension: 0.3, pointRadius: 4, pointBackgroundColor: '#e63a46'
     }]},
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -806,7 +648,7 @@ function updateAll(paneId) {
     data: { labels: geoData.labels,
       datasets: [{ label: 'Stranieri residenti (migliaia)',
         data: geoData.data,
-        backgroundColor: ['#E07A5F','#6B9BD1','#6B9BD1'], borderRadius: 4 }]
+        backgroundColor: ['#4A6FA5','#6B9BD1','#6B9BD1'], borderRadius: 4 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -822,7 +664,7 @@ function updateAll(paneId) {
   buildChart('chart-rotte', {
     type: 'bar',
     data: { labels: ['Mediterraneo centrale','Rotta balcanica (stima)','Altre / canali minori'],
-      datasets: [{ label: 'Arrivi 2024', data: [66317,7000,1000], backgroundColor: ['#E07A5F','#4A6FA5','#555'], borderRadius: 4, barPercentage: .6 }]
+      datasets: [{ label: 'Arrivi 2024', data: [66317,7000,1000], backgroundColor: ['#4A6FA5','#4A6FA5','#555'], borderRadius: 4, barPercentage: .6 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.raw.toLocaleString('it-IT') + ' arrivi' } } },
@@ -834,7 +676,7 @@ buildChart('chart-status', {
     type: 'doughnut',
     data: { labels: ['Regolari iscritti','Irregolari'],
       datasets: [{ data: [d.rs, d.irr],
-        backgroundColor: ['#6B9BD1','#C45A3D'], borderWidth: 0 }]
+        backgroundColor: ['#6B9BD1','#e63a46'], borderWidth: 0 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },
@@ -868,7 +710,7 @@ buildChart('chart-status', {
       type: 'bar',
       data: { labels,
         datasets: [{ data,
-          backgroundColor: originiMacro ? '#6B9BD1' : '#E07A5F', borderRadius: 3 }]
+          backgroundColor: originiMacro ? '#6B9BD1' : '#4A6FA5', borderRadius: 3 }]
       },
       options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
         plugins: { legend: { display: false },
@@ -899,7 +741,7 @@ buildChart('chart-status', {
       datasets: [{ data: areaSorted.data,
         backgroundColor: function(ctx) {
           const label = areaSorted.labels[ctx.dataIndex];
-          return label === 'UE' ? '#6B9BD1' : '#E07A5F';
+          return label === 'UE' ? '#6B9BD1' : '#4A6FA5';
         }, borderRadius: 4 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
@@ -915,7 +757,7 @@ buildChart('chart-status', {
     type: 'doughnut',
     data: { labels: ['Extracomunitari','Altri Paesi UE','UE-15'],
       datasets: [{ data: [75.4, 18.4, 6.2],
-        backgroundColor: ['#E07A5F','#6B9BD1','#5A5A6A'], borderWidth: 0 }]
+        backgroundColor: ['#4A6FA5','#6B9BD1','#5A5A6A'], borderWidth: 0 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },
@@ -929,7 +771,7 @@ buildChart('chart-status', {
     type: 'bar',
     data: { labels: years, datasets: [
       { label: 'Detenuti totali', data: years.map(y=>D[y].dt), backgroundColor: '#3A3A46', borderRadius: 3 },
-      { label: 'Stranieri detenuti', data: years.map(y=>D[y].ds), backgroundColor: '#E07A5F', borderRadius: 3 }
+      { label: 'Stranieri detenuti', data: years.map(y=>D[y].ds), backgroundColor: '#4A6FA5', borderRadius: 3 }
     ]},
     options: { responsive: true, maintainAspectRatio: false,
       scales: { y: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, x: { grid: { display: false } } }
@@ -947,7 +789,7 @@ buildChart('chart-status', {
       datasets: [{ data: detSorted.data,
         backgroundColor: function(ctx) {
           const label = detSorted.labels[ctx.dataIndex];
-          return label.includes('Altri') ? '#5A5A6A' : '#E07A5F';
+          return label.includes('Altri') ? '#5A5A6A' : '#4A6FA5';
         }, borderRadius: 3 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
@@ -971,7 +813,7 @@ buildChart('chart-status', {
     type: 'bar',
     data: { labels: reatiSorted.labels,
       datasets: [{ data: reatiSorted.data,
-        backgroundColor: '#E07A5F',
+        backgroundColor: '#4A6FA5',
         borderRadius: 4 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
@@ -992,7 +834,7 @@ buildChart('chart-status', {
       datasets: [{ data: denunceSorted.data,
         backgroundColor: function(ctx) {
           const label = denunceSorted.labels[ctx.dataIndex];
-          return label === 'Totale reati' ? '#E07A5F' : '#6B9BD1';
+          return label === 'Totale reati' ? '#4A6FA5' : '#6B9BD1';
         },
         borderRadius: 4 }]
     },
@@ -1014,7 +856,7 @@ buildChart('chart-status', {
       datasets: [{ data: denPaeseSorted.data,
         backgroundColor: function(ctx) {
           const label = denPaeseSorted.labels[ctx.dataIndex];
-          return label.includes('Altro') ? '#5A5A6A' : '#E07A5F';
+          return label.includes('Altro') ? '#5A5A6A' : '#4A6FA5';
         }, borderRadius: 4 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
@@ -1034,7 +876,7 @@ buildChart('chart-status', {
     type: 'bar',
     data: { labels: ['Popolazione','Detenuti','Denunciati'],
       datasets: [{ data: [d.pct, parseFloat(pctC), 34.7],
-        backgroundColor: ['#6B9BD1','#E07A5F','#C45A3D'], borderRadius: 6 }]
+        backgroundColor: ['#6B9BD1','#4A6FA5','#e63a46'], borderRadius: 6 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -1049,7 +891,7 @@ buildChart('chart-status', {
     type: 'bar',
     data: { labels: ['In attesa di giudizio','Residuo pena <2 anni','Misure alternative'],
       datasets: [
-        { label: 'Stranieri', data: [28.9,31.4,17.5], backgroundColor: '#E07A5F', borderRadius: 4 },
+        { label: 'Stranieri', data: [28.9,31.4,17.5], backgroundColor: '#4A6FA5', borderRadius: 4 },
         { label: 'Italiani', data: [22.7,23.4,82.5], backgroundColor: '#6B9BD1', borderRadius: 4 }
       ]
     },
@@ -1066,7 +908,7 @@ buildChart('chart-status', {
     type: 'doughnut',
     data: { labels: ['Rifiutate (64%)','Protezione umanitaria (13,7%)','Riconosciute rifugiato (7,6%)','Altre / in corso (14,7%)'],
       datasets: [{ data: [64,13.7,7.6,14.7],
-        backgroundColor: ['#C45A3D','#E07A5F','#7EB77F','#5A5A6A'], borderWidth: 0 }]
+        backgroundColor: ['#e63a46','#4A6FA5','#7EB77F','#5A5A6A'], borderWidth: 0 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },
@@ -1091,7 +933,7 @@ buildChart('chart-status', {
   buildChart('chart-irreg-rimpatri', {
     type: 'bar',
     data: { labels: years, datasets: [
-      { label: 'Irregolari stimati (stock)', data: years.map(y=>D[y].irr), backgroundColor: '#C45A3D', borderRadius: 3 },
+      { label: 'Irregolari stimati (stock)', data: years.map(y=>D[y].irr), backgroundColor: '#e63a46', borderRadius: 3 },
       { label: 'Rimpatri Italia', data: years.map(y=>D[y].ri), backgroundColor: '#7EB77F', borderRadius: 3 }
     ]},
     options: { responsive: true, maintainAspectRatio: false,
@@ -1103,7 +945,7 @@ buildChart('chart-status', {
   buildChart('chart-rimpatri-ue', {
     type: 'bar',
     data: { labels: ['2023','2024','2025'], datasets: [
-      { label: 'Respinti', data: [395000,124000,132600], backgroundColor: '#C45A3D', borderRadius: 3 },
+      { label: 'Respinti', data: [395000,124000,132600], backgroundColor: '#e63a46', borderRadius: 3 },
       { label: 'Ordini lasciare', data: [465000,453000,491950], backgroundColor: '#6B9BD1', borderRadius: 3 },
       { label: 'Rimpatri effettivi', data: [96000,110000,135460], backgroundColor: '#7EB77F', borderRadius: 3 }
     ]},
@@ -1117,7 +959,7 @@ buildChart('chart-status', {
     type: 'bar',
     data: { labels: ['Respinti frontiere','Presenze irregolari','Ordini di lasciare','Rimpatri effettivi'],
       datasets: [{ data: [132600,919000,491950,135460],
-        backgroundColor: ['#E07A5F','#6B9BD1','#7EB77F','#C45A3D'], borderRadius: 4 }]
+        backgroundColor: ['#4A6FA5','#6B9BD1','#7EB77F','#e63a46'], borderRadius: 4 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -1137,7 +979,7 @@ buildChart('chart-status', {
       datasets: [{ data: euPrisonSorted.data,
         backgroundColor: function(ctx) {
           const label = ctx.chart.data.labels[ctx.dataIndex];
-          return label==='Italia' ? '#E07A5F' : '#6B9BD1';
+          return label==='Italia' ? '#4A6FA5' : '#6B9BD1';
         },
         borderRadius: 3 }]
     },
@@ -1159,7 +1001,7 @@ buildChart('chart-status', {
       datasets: [{ data: euPresenceSorted.data,
         backgroundColor: function(ctx) {
           const label = ctx.chart.data.labels[ctx.dataIndex];
-          return label==='Italia' ? '#E07A5F' : '#6B9BD1';
+          return label==='Italia' ? '#4A6FA5' : '#6B9BD1';
         },
         borderRadius: 3 }]
     },
@@ -1181,7 +1023,7 @@ buildChart('chart-status', {
       datasets: [{ data: euCrimeSorted.data,
         backgroundColor: function(ctx) {
           const label = ctx.chart.data.labels[ctx.dataIndex];
-          return label.includes('Italia') ? '#E07A5F' : '#6B9BD1';
+          return label.includes('Italia') ? '#4A6FA5' : '#6B9BD1';
         },
         borderRadius: 4 }]
     },
@@ -1197,7 +1039,7 @@ buildChart('chart-status', {
   buildChart('chart-asilo', {
     type: 'bar',
     data: { labels: ['Siria','Venezuela','Afghanistan','Turchia','Colombia','Bangladesh','Pakistan','Iran','Iraq','Cuba'],
-      datasets: [{ data: [148,73,73,68,58,52,45,42,38,35], backgroundColor: '#E07A5F', borderRadius: 4 }]
+      datasets: [{ data: [148,73,73,68,58,52,45,42,38,35], backgroundColor: '#4A6FA5', borderRadius: 4 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -1217,7 +1059,7 @@ buildChart('chart-status', {
       datasets: [{ data: settoriSorted.data,
         backgroundColor: function(ctx) {
           const label = ctx.chart.data.labels[ctx.dataIndex];
-          return label==='Totale economia' ? '#5A5A6A' : '#E07A5F';
+          return label==='Totale economia' ? '#5A5A6A' : '#4A6FA5';
         },
         borderRadius: 4 }]
     },
@@ -1234,7 +1076,7 @@ buildChart('chart-status', {
     type: 'bar',
     data: { labels: ['Stranieri (XII Rapporto Ministero Lavoro)','Italiani (ISTAT 2024)'],
       datasets: [{ data: [14000, 24500],
-        backgroundColor: ['#E07A5F','#6B9BD1'], borderRadius: 6 }]
+        backgroundColor: ['#4A6FA5','#6B9BD1'], borderRadius: 6 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -1254,7 +1096,7 @@ buildChart('chart-status', {
       datasets: [{ data: rimesseSorted.data,
         backgroundColor: function(ctx) {
           const label = rimesseSorted.labels[ctx.dataIndex];
-          return label === 'Altro' ? '#5A5A6A' : '#E07A5F';
+          return label === 'Altro' ? '#5A5A6A' : '#4A6FA5';
         }, borderRadius: 4 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
@@ -1270,7 +1112,7 @@ buildChart('chart-status', {
     type: 'bar',
     data: { labels: ['Entrate da stranieri','Costi per stranieri','Saldo netto'],
       datasets: [{ data: [39.1,34.5,4.6],
-        backgroundColor: ['#7EB77F','#C45A3D','#7EB77F'], borderRadius: 6 }]
+        backgroundColor: ['#7EB77F','#e63a46','#7EB77F'], borderRadius: 6 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -1285,7 +1127,7 @@ buildChart('chart-status', {
     type: 'bar',
     data: { labels: ['Famiglie solo stranieri','Famiglie miste','Famiglie solo italiani'],
       datasets: [{ data: [33.2,15.1,6.3],
-        backgroundColor: ['#E07A5F','#6B9BD1','#7EB77F'], borderRadius: 6 }]
+        backgroundColor: ['#4A6FA5','#6B9BD1','#7EB77F'], borderRadius: 6 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -1300,7 +1142,7 @@ buildChart('chart-status', {
     type: 'bar',
     data: { labels: ['NEET (15-29enni)','Dispersione scolastica'],
       datasets: [
-        { label: 'Stranieri', data: [26.5,29.5], backgroundColor: '#E07A5F', borderRadius: 4 },
+        { label: 'Stranieri', data: [26.5,29.5], backgroundColor: '#4A6FA5', borderRadius: 4 },
         { label: 'Italiani', data: [19.2,17.0], backgroundColor: '#6B9BD1', borderRadius: 4 }
       ]},
     options: { responsive: true, maintainAspectRatio: false,
@@ -1333,7 +1175,7 @@ buildChart('chart-status', {
       datasets: [{ data: nazSorted.data,
         backgroundColor: function(ctx) {
           const label = nazSorted.labels[ctx.dataIndex];
-          return label.includes('Altri') ? '#5A5A6A' : '#E07A5F';
+          return label.includes('Altri') ? '#5A5A6A' : '#4A6FA5';
         }, borderRadius: 4 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
@@ -1349,7 +1191,7 @@ buildChart('chart-status', {
     type: 'doughnut',
     data: { labels: ['Tempo indeterminato','Tempo determinato','Apprendistato','Collaboratori','Altri'],
       datasets: [{ data: [38.5,38.0,4.0,6.5,13.0],
-        backgroundColor: ['#6B9BD1','#E07A5F','#7EB77F','#C45A3D','#5A5A6A'], borderWidth: 0 }]
+        backgroundColor: ['#6B9BD1','#4A6FA5','#7EB77F','#e63a46','#5A5A6A'], borderWidth: 0 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },

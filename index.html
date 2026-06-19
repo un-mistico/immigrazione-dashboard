@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🚢🇮🇹 Immigrazione in Italia: 10 numeri per capire il fenomeno</title>
+  <title>🚢 Immigrazione in Italia: 10 numeri per capire il fenomeno</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🚢%3C/text%3E%3C/svg%3E">
-  <meta property="og:title" content="🚢🇮🇹 Immigrazione in Italia: 10 numeri per capire il fenomeno">
+  <meta property="og:title" content="🚢 Immigrazione in Italia: 10 numeri per capire il fenomeno">
   <meta property="og:description" content="Un racconto scorrevole su flussi, presenza, asilo, criminalità e impatto economico. Poi i dati completi, tab per tab.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://un-mistico.github.io/immigrazione-dashboard/preview.png">
@@ -29,7 +29,7 @@
     .scrolly .bar.neutral{background:var(--neutral)}
     .scrolly .bar.shade{background:var(--accent-dim)}
     .final p{max-width:560px;margin:0 auto 28px}
-    @media(max-width:720px){}
+    
   
     :root{--accent:#4A6FA5;--accent-hover:#3a5a85;--accent-light:#7aa3e0;--accent-dim:#2e4a75;}</style>
 </head>
@@ -143,7 +143,7 @@
   <section id="s5">
     <div class="wrap content">
       <div class="eyebrow">05 · Origini</div>
-      <h2 style="margin-top:6px">I primi paesi di origine degli stranieri residenti</h2>
+      <h2>I primi paesi di origine degli stranieri residenti</h2>
       <p>Romania, Albania e Marocco da decenni ai primi posti. I dati per macro-area nascondo differenze importanti tra singoli paesi.</p>
       <div class="bar-block" style="max-width:520px">
         <div class="bar-wrap"><div class="bar-label">Romania</div><div class="bar accent" data-width="19.6"></div><div class="bar-value">19,6%</div></div>
@@ -194,7 +194,7 @@
   <section id="s8">
     <div class="wrap content">
       <div class="eyebrow">08 · Confronto UE</div>
-      <h2 style="margin-top:6px">L'Italia ha pochi stranieri rispetto ai grandi paesi europei</h2>
+      <h2>L'Italia ha pochi stranieri rispetto ai grandi paesi europei</h2>
       <p>Il 9% di popolazione straniera è inferiore a Germania (16%), Spagna (14%) e Francia (13%). Ma l'Italia ha il tasso di naturalizzazione più basso.</p>
       <div class="bar-block" style="max-width:520px">
         <div class="bar-wrap"><div class="bar-label">Germania</div><div class="bar neutral" data-width="16.1"></div><div class="bar-value">16,1%</div></div>
@@ -241,7 +241,7 @@
   <section id="s10" class="final">
     <div class="wrap content">
       <div class="eyebrow">10 · Approfondisci</div>
-      <h2 style="font-size:40px">Vai ai dati completi</h2>
+      <h2 style="font-size:36px">Vai ai dati completi</h2>
       <p style="margin:0 auto 28px;max-width:560px">Nella dashboard trovi flussi per anno, presenza regionale, asilo, criminalità, detenzione, saldo fiscale, confronti UE e i file CSV scaricabili.</p>
       <div style="display:flex;flex-direction:column;align-items:center;gap:16px">
         <a href="dashboard.html" class="btn btn-primary">Apri la dashboard completa →</a>
@@ -289,7 +289,7 @@
           if(e.target.classList.contains('bar')){e.target.style.width = e.target.dataset.width + '%';}
         }
       });
-    },{threshold:.4});
+    },{threshold:.15});
 
     document.querySelectorAll('.big-num, .eyebrow, .hero h1, .hero .cta-group').forEach(n=>observer.observe(n));
     document.querySelectorAll('.bar').forEach(b=>observer.observe(b));
