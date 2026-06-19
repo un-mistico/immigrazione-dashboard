@@ -30,8 +30,7 @@
   <nav class="top-nav" id="nav">
     <a class="brand" href="https://un-mistico.github.io/repo-italia/">repo_italia <span>· Immigrazione</span></a>
     <div class="links">
-      <a href="dashboard.html">Dati completi</a>
-      <a href="data/">Download CSV</a>
+      <a href="https://github.com/un-mistico/immigrazione-dashboard/tree/main/data" target="_blank">Download CSV</a>
       <a class="cta-nav" href="dashboard.html">Esplora →</a>
     </div>
   </nav>
@@ -45,7 +44,7 @@
       <p>Flussi, presenza, asilo, criminalità, impatto economico. Scrolla per capire il fenomeno senza slogan. I dati completi sono sempre raggiungibili in alto a destra.</p>
       <a href="#s1" class="btn btn-primary">Inizia a scrollare</a>
       <div style="margin-top:18px">
-        <a href="dashboard.html" class="btn-secondary" style="margin-left:0;color:#666;border-color:#333">Oppure vai direttamente ai dati completi →</a>
+        <a href="dashboard.html" class="btn-secondary" style="margin-left:0">Oppure vai direttamente ai dati completi →</a>
       </div>
     </div>
   </section>
@@ -55,97 +54,107 @@
       <div class="eyebrow">01 · Presenza</div>
       <div class="label">Residenti stranieri in Italia (2024)</div>
       <div class="big-num blue" data-target="5.3" data-suffix=" mln">0</div>
-      <h2>Sono circa 5,3 milioni, il 9% della popolazione</h2>
-      <p>La popolazione straniera residente cresce lentamente. Senza l'apporto migratorio, il saldo naturale italiano sarebbe ancora più negativo.</p>
-      <div class="note">"Stranieri" = cittadinanza non italiana. È diverso da "persone con background migratorio", che include anche gli italiani di origine straniera.</div>
+      <h2>Sono circa il 9% della popolazione</h2>
+      <p>5,3 milioni di residenti stranieri. Senza l'apporto migratorio, il saldo naturale italiano sarebbe ancora più negativo.</p>
+      <div class="mini-chart" style="margin-top:18px">
+        <div class="label">Residenti stranieri (milioni, 2019-2024)</div>
+        <svg viewBox="0 0 360 110" style="width:100%;max-width:380px;height:auto">
+          <polyline fill="none" stroke="var(--accent)" stroke-width="3" points="20,80 80,75 140,70 200,55 260,35 320,25"/>
+          <text x="20" y="100" fill="#666" font-size="10">5,0</text>
+          <text x="170" y="100" fill="#666" font-size="10">5,2</text>
+          <text x="310" y="100" fill="#666" font-size="10">5,3</text>
+        </svg>
+      </div>
+      <div class="note">"Stranieri" = cittadinanza non italiana, non "background migratorio".</div>
     </div>
   </section>
 
   <section id="s2">
     <div class="wrap content">
-      <div class="eyebrow">02 · Sbarchi</div>
-      <div class="label">Sbarchi intercettati nel 2023 (picco recente)</div>
-      <div class="big-num accent" data-target="157.7" data-suffix="mila">0</div>
-      <h2>Gli sbarchi salgono e scendono, ma non sono tutta l'immigrazione</h2>
+      <div class="eyebrow">02 · Rotte</div>
+      <div class="label">Arrivi in Italia per rotta migratoria (2024)</div>
+      <div class="big-num accent" data-target="67.5" data-suffix="mila">0</div>
+      <h2>La rotta del Mediterraneo centrale resta la principale</h2>
       <p>I <span class="highlight">sbarchi</span> sono persone intercettate dalla Guardia Costiera. Non sono ingressi regolari, né richiedenti asilo automatici, né immigrati clandestini totali.</p>
-      <div class="note">Nel 2024 gli sbarchi sono tornati a ~67.500. Nel 2025, dati parziali indicano circa 20.000 al primo semestre.</div>
+      <div class="bar-block" style="max-width:520px">
+        <div class="bar-wrap"><div class="bar-label">Med. centrale</div><div class="bar" data-width="80"></div><div class="bar-value">~67.500</div></div>
+        <div class="bar-wrap"><div class="bar-label">Balcani occidentali</div><div class="bar" data-width="25"></div><div class="bar-value">~21.000</div></div>
+        <div class="bar-wrap"><div class="bar-label">Altre rotte</div><div class="bar grey" data-width="8"></div><div class="bar-value">~6.000</div></div>
+      </div>
+      <div class="note">Dati 2024. Fonte: Ministero dell'Interno.</div>
     </div>
   </section>
 
   <section id="s3">
     <div class="wrap content">
       <div class="eyebrow">03 · Asilo</div>
-      <div class="two-col">
-        <div>
-          <div class="label">Richiedenti asilo nel 2023</div>
-          <div class="big-num blue" data-target="136" data-suffix="mila">0</div>
-          <p style="font-size:16px">Non tutti ottengono protezione. Molti finiscono in ricollocazioni Dublin o respinte. La domanda d'asilo è un procedimento, non una presenza definitiva.</p>
-        </div>
-        <div>
-          <table class="small-table">
-            <tr><td>2021</td><td>37.100</td></tr>
-            <tr><td>2022</td><td>77.400</td></tr>
-            <tr><td>2023</td><td>136.000</td></tr>
-            <tr><td>2024</td><td>~91.000</td></tr>
-          </table>
-        </div>
+      <div class="label">Domande d'asilo in Italia: esiti 2024</div>
+      <div class="big-num blue" data-target="91" data-suffix="mila">0</div>
+      <h2>Molte domande finiscono in altre procedure</h2>
+      <p style="font-size:16px">Non tutti ottengono protezione. Molti finiscono in ricollocazioni Dublin o respinte.</p>
+      <div class="bar-block" style="max-width:520px">
+        <div class="bar-wrap"><div class="bar-label">Ric. protezione umanitaria</div><div class="bar" data-width="35"></div><div class="bar-value">35%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Ricollocazioni Dublin</div><div class="bar" data-width="30"></div><div class="bar-value">30%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Respinte / altro</div><div class="bar grey" data-width="35"></div><div class="bar-value">35%</div></div>
       </div>
+      <div class="note">Dati approssimativi su procedimenti conclusi. Fonte: Ministero dell'Interno.</div>
     </div>
   </section>
 
   <section id="s4">
     <div class="wrap content">
-      <div class="eyebrow">04 · Regolari</div>
-      <div class="label">Permessi di soggiorno rilasciati (2023)</div>
-      <div class="big-num green" data-target="420" data-suffix="mila">0</div>
-      <h2>La maggior parte dell'immigrazione avviene per via legale</h2>
-      <p>Lavoro, famiglia, studio, protezione internazionale: la stragrande maggioranza delle persone entra con un permesso regolare. Lo scafista è una minoranza drammatica, ma visibile.</p>
-      <div class="note">I permessi rilasciati non indicano quanti restano in Italia a lungo termine.</div>
+      <div class="eyebrow">04 · Rimpatri</div>
+      <div class="label">Arrivi vs rimpatri Italia (2015-2024)</div>
+      <div class="big-num green" data-target="4" data-suffix="x">0</div>
+      <h2>Per ogni rimpatrio ci sono circa 4 nuovi arrivi</h2>
+      <p>L'Italia espelle o fa rientrare volontariamente circa 15-20mila persone all'anno, controcentinaia di migliaia di ingressi regolari. La maggior parte dell'immigrazione avviene per via legale.</p>
+      <div class="bar-block" style="max-width:520px">
+        <div class="bar-wrap"><div class="bar-label">Ingressi regolari medi/anno</div><div class="bar" data-width="80"></div><div class="bar-value">~380mila</div></div>
+        <div class="bar-wrap"><div class="bar-label">Rimpatri medi/anno</div><div class="bar green" data-width="20"></div><div class="bar-value">~90mila</div></div>
+      </div>
+      <div class="note">Stime medie 2019-2024. Fonte: Ministero dell'Interno.</div>
     </div>
   </section>
 
   <section id="s5">
     <div class="wrap content">
       <div class="eyebrow">05 · Origini</div>
-      <h2 style="margin-top:6px">Le origini sono concentrate in poche aree</h2>
-      <p>Romania, Albania, Marocco e Cina da decenni tra i principali paesi. L'Ucraina è entrata prepotentemente dal 2022.</p>
+      <h2 style="margin-top:6px">I primi 6 paesi coprono metà degli stranieri residenti</h2>
+      <p>Romania, Albania e Marocco da decenni ai primi posti. I dati per macro-area nascondo differenze importanti tra singoli paesi.</p>
       <div class="bar-block" style="max-width:520px">
         <div class="bar-wrap"><div class="bar-label">Romania</div><div class="bar" data-width="19.6"></div><div class="bar-value">19,6%</div></div>
         <div class="bar-wrap"><div class="bar-label">Albania</div><div class="bar" data-width="7.7"></div><div class="bar-value">7,7%</div></div>
         <div class="bar-wrap"><div class="bar-label">Marocco</div><div class="bar" data-width="7.7"></div><div class="bar-value">7,7%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Altro Asia</div><div class="bar" data-width="18.7"></div><div class="bar-value">18,7%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Altro Africa</div><div class="bar" data-width="15.5"></div><div class="bar-value">15,5%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Altre origini</div><div class="bar grey" data-width="30.8"></div><div class="bar-value">30,8%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Cina</div><div class="bar" data-width="5.5"></div><div class="bar-value">5,5%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Ucraina</div><div class="bar" data-width="4.8"></div><div class="bar-value">4,8%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Moldova</div><div class="bar" data-width="3.6"></div><div class="bar-value">3,6%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Altri paesi</div><div class="bar grey" data-width="51.1"></div><div class="bar-value">51,1%</div></div>
       </div>
-      <div class="note">Distribuzione per paese/area di origine, residenti stranieri. Fonte: ISTAT/DOS.</div>
+      <div class="note">Distribuzione per paese di cittadinanza, residenti stranieri. Fonte: ISTAT/DOS.</div>
     </div>
   </section>
 
   <section id="s6">
     <div class="wrap content">
       <div class="eyebrow">06 · Criminalità</div>
-      <div class="label">Quota stranieri tra le persone denunciate (stima)</div>
-      <div class="big-num accent" data-target="35" data-suffix="%">0%</div>
-      <h2>Un dato che sembra alto, ma va contestualizzato</h2>
-      <p>Gli stranieri sono circa il 9% dei residenti ma una quota maggiore tra i denunciati. Perché? Età, sesso, status, area di residenza, reati per legge immigrazione. Questi fattori spiegano molto.</p>
-      <div class="note">Denuncia ≠ colpa. I dati pubblici italiani non controllano per età, reddito o status regolare.</div>
+      <div class="label">Sovra-rappresentazione nelle carceri</div>
+      <div class="big-num accent" data-target="3.4" data-suffix="x">0</div>
+      <h2>Gli stranieri sono il 9% della popolazione ma il 31% dei detenuti</h2>
+      <p>Sono circa 3,4 volte più rappresentati in carcere rispetto alla popolazione residente. Va letto con cautela: età, sesso, status e tipologia di reato spiegano molto.</p>
+      <div class="bar-block" style="max-width:520px">
+        <div class="label">% stranieri tra i denunciati per tipo di reato (2024)</div>
+        <div class="bar-wrap"><div class="bar-label">Reati immigrazione</div><div class="bar" data-width="92"></div><div class="bar-value">92%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Furti</div><div class="bar" data-width="38"></div><div class="bar-value">38%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Rapine</div><div class="bar" data-width="31"></div><div class="bar-value">31%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Totale denunciati</div><div class="bar grey" data-width="34"></div><div class="bar-value">34%</div></div>
+      </div>
+      <div class="note">Denuncia ≠ colpa. I dati non controllano per età, reddito o status regolare. Fonte: Ministero dell'Interno.</div>
     </div>
   </section>
 
   <section id="s7">
     <div class="wrap content">
-      <div class="eyebrow">07 · Carceri</div>
-      <div class="label">Detenuti stranieri (2024)</div>
-      <div class="big-num blue" data-target="34" data-suffix="%">0%</div>
-      <h2>Un terzo dei detenuti è straniero, ma molti sono in attesa di giudizio</h2>
-      <p>La quota stranieri in carcere è elevata, ma include persone in custodia cautelare o pre-esecuzione, spesso per reati legati alla legge sull'immigrazione o alla sopravvivenza economica.</p>
-      <div class="note">~55% dei detenuti è in stato di pre-esecuzione pena. Fonte: DAP.</div>
-    </div>
-  </section>
-
-  <section id="s8">
-    <div class="wrap content">
-      <div class="eyebrow">08 · Conti pubblici</div>
+      <div class="eyebrow">07 · Conti pubblici</div>
       <div class="label">Saldo netto fiscale degli stranieri (stima ISMU/Moressa, 2023)</div>
       <div class="big-num green" data-target="4.6" data-suffix=" mld €">0</div>
       <h2>Secondo il modello più usato, gli stranieri contribuiscono più di quanto ricevono</h2>
@@ -154,9 +163,9 @@
     </div>
   </section>
 
-  <section id="s9">
+  <section id="s8">
     <div class="wrap content">
-      <div class="eyebrow">09 · Confronto UE</div>
+      <div class="eyebrow">08 · Confronto UE</div>
       <h2 style="margin-top:6px">L'Italia ha pochi stranieri rispetto ai grandi paesi europei</h2>
       <p>Il 9% di popolazione straniera è inferiore a Germania (16%), Spagna (14%) e Francia (13%). Ma l'Italia ha il tasso di naturalizzazione più basso.</p>
       <div class="bar-block" style="max-width:520px">
@@ -170,9 +179,9 @@
     </div>
   </section>
 
-  <section id="s10">
+  <section id="s9">
     <div class="wrap content">
-      <div class="eyebrow">10 · Sintesi</div>
+      <div class="eyebrow">09 · Sintesi</div>
       <h2>La fotografia in tre righe</h2>
       <p>1. L'immigrazione regolare è molto più numerosa degli sbarchi: la maggior parte delle persone arriva con permesso di soggiorno.</p>
       <p>2. Gli stranieri sono il 9% dei residenti e la loro quota nelle denunce è più alta, ma i dati pubblici non permettono di isolare colpevolezza, status e fattori socio-demografici.</p>
@@ -181,13 +190,15 @@
     </div>
   </section>
 
-  <section id="s11" class="final">
+  <section id="s10" class="final">
     <div class="wrap content">
-      <div class="eyebrow">11 · Approfondisci</div>
+      <div class="eyebrow">10 · Approfondisci</div>
       <h2 style="font-size:40px">Vai ai dati completi</h2>
       <p style="margin:0 auto 28px;max-width:560px">Nella dashboard trovi flussi per anno, presenza regionale, asilo, criminalità, detenzione, saldo fiscale, confronti UE e i file CSV scaricabili.</p>
-      <a href="dashboard.html" class="btn btn-primary">Apri la dashboard completa →</a>
-      <a href="https://un-mistico.github.io/repo-italia/" class="btn-secondary">← Torna a repo_italia</a>
+      <div class="cta-group" style="opacity:1;transform:none">
+        <a href="dashboard.html" class="btn btn-primary">Apri la dashboard completa →</a>
+        <a href="https://un-mistico.github.io/repo-italia/" class="btn-secondary">← Torna a repo_italia</a>
+      </div>
     </div>
   </section>
 
