@@ -13,6 +13,12 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="base.css">
   <style>
+    /* hero elements visible immediately, big numbers animate via observer */
+    .hero .eyebrow,.hero h1,.hero p,.hero .cta-group,.hero .btn-secondary{opacity:1 !important;transform:none !important}
+    .hero .arrow{opacity:1;animation:bounce 2s infinite}
+    .scrolly .eyebrow{opacity:0}
+    .scrolly .eyebrow.visible{opacity:1;transform:translateY(0)}
+
     html{scroll-snap-type:y mandatory}
     .top-nav .brand span{color:var(--accent)}
     .scrolly .bar.green{background:var(--green)}
@@ -243,7 +249,7 @@
       });
     },{threshold:.4});
 
-    document.querySelectorAll('.big-num, .eyebrow').forEach(n=>observer.observe(n));
+    document.querySelectorAll('.big-num, .eyebrow, .hero h1, .hero .cta-group').forEach(n=>observer.observe(n));
     document.querySelectorAll('.bar').forEach(b=>observer.observe(b));
 
     const dotObserver = new IntersectionObserver((entries)=>{
