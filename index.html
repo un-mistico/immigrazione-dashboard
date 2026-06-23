@@ -327,6 +327,10 @@
           e.target.classList.add('visible');
           if(e.target.classList.contains('big-num') && !e.target.dataset.animated){e.target.dataset.animated='true'; animateNumber(e.target);}
           if(e.target.classList.contains('bar')){e.target.style.width = e.target.dataset.width + '%';}
+        } else {
+          e.target.classList.remove('visible');
+          if(e.target.classList.contains('big-num') && e.target.dataset.target){e.target.dataset.animated=''; e.target.textContent='0';}
+          if(e.target.classList.contains('bar')){e.target.style.width = '0';}
         }
       });
     },{threshold:.15});
