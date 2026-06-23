@@ -63,8 +63,8 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
 .chart-box h3{font-size:13px;font-weight:600;color:#ccc;margin-bottom:12px}
 .chart-header-with-toggle{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
 .chart-header-with-toggle h3{margin:0}
-.toggle-btn{background:#16161B;color:#E07A5F;border:1px solid #E07A5F;padding:6px 12px;border-radius:4px;font-size:13px;cursor:pointer}
-.toggle-btn:hover{background:#E07A5F;color:#1A1A20}
+.toggle-btn{background:#16161B;color:#4A6FA5;border:1px solid #4A6FA5;padding:6px 12px;border-radius:4px;font-size:13px;cursor:pointer}
+.toggle-btn:hover{background:#4A6FA5;color:#1A1A20}
 .chart-container{position:relative;width:100%;height:280px}
 .chart-container.tall{height:360px}
 .compare-card{background:#16161B;border:1px solid #222;border-radius:10px;padding:18px;text-align:center}
@@ -664,7 +664,7 @@ function updateAll(paneId) {
   // Chart: rotte migratorie
   buildChart('chart-rotte', {
     type: 'bar', indexAxis: 'y',
-    data: { labels: ['Mediterraneo centrale','Rotta balcanica (stima)','Altre / canali minori'],
+    data: { labels: ['Med. centrale','Rotta balcanica*','Altre / minori'],
       datasets: [{ label: 'Arrivi 2024', data: [66317,7000,1000], backgroundColor: ['#4A6FA5','#4A6FA5','#555'], borderRadius: 4, barPercentage: .6 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
@@ -948,7 +948,7 @@ buildChart('chart-status', {
     data: { labels: ['2023','2024','2025'], datasets: [
       { label: 'Respinti', data: [395000,124000,132600], backgroundColor: '#4A6FA5', borderRadius: 3 },
       { label: 'Ordini lasciare', data: [465000,453000,491950], backgroundColor: '#4A6FA5', borderRadius: 3 },
-      { label: 'Rimpatri effettivi', data: [96000,110000,135460], backgroundColor: '#555', borderRadius: 3 }
+      { label: 'Rimpatri effettivi', data: [96000,110000,135460], backgroundColor: '#4A6FA5', borderRadius: 3 }
     ]},
     options: { responsive: true, maintainAspectRatio: false,
       scales: { y: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, x: { grid: { display: false } } }
@@ -960,7 +960,7 @@ buildChart('chart-status', {
     type: 'bar', indexAxis: 'y',
     data: { labels: ['Respinti frontiere','Presenze irregolari','Ordini di lasciare','Rimpatri effettivi'],
       datasets: [{ data: [132600,919000,491950,135460],
-        backgroundColor: ['#4A6FA5','#4A6FA5','#555','#4A6FA5'], borderRadius: 4 }]
+        backgroundColor: ['#4A6FA5','#4A6FA5','#4A6FA5','#4A6FA5'], borderRadius: 4 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -1113,7 +1113,7 @@ buildChart('chart-status', {
     type: 'bar', indexAxis: 'y',
     data: { labels: ['Entrate da stranieri','Costi per stranieri','Saldo netto'],
       datasets: [{ data: [39.1,34.5,4.6],
-        backgroundColor: ['#555','#4A6FA5','#555'], borderRadius: 6 }]
+        backgroundColor: ['#4A6FA5','#4A6FA5','#4A6FA5'], borderRadius: 6 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -1128,7 +1128,7 @@ buildChart('chart-status', {
     type: 'bar', indexAxis: 'y',
     data: { labels: ['Famiglie solo stranieri','Famiglie miste','Famiglie solo italiani'],
       datasets: [{ data: [33.2,15.1,6.3],
-        backgroundColor: ['#4A6FA5','#4A6FA5','#555'], borderRadius: 6 }]
+        backgroundColor: ['#4A6FA5','#4A6FA5','#4A6FA5'], borderRadius: 6 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
