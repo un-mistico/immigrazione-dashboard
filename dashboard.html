@@ -170,7 +170,7 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
     </div>
     <div class="chart-grid">
       <div class="chart-box">
-        <h3>Arrivi in Italia per rotta migratoria (2024)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>Mediterraneo centrale</strong> = sbarchi da Libia/Tunisia sulle coste italiane (66.317, fonte Openpolis/Ministero Interno). <strong>Rotta balcanica</strong> = ingressi via terra dalla Slovenia (stima ~7.000, dati parziali UNHCR/ISMU). <strong>Altre</strong> = canali minori e residuo. I dati via terra non sono ufficialmente pubblicati dal Ministero.</span></span></h3>
+        <h3>Arrivi in Italia per rotta migratoria (2024)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>Mediterraneo centrale</strong> = sbarchi da Libia/Tunisia sulle coste italiane (66.317 arrivi, fonte Ministero dell'Interno). <strong>Rotta balcanica</strong> = ingressi via terra dalla Slovenia (stima ~7.000, dati parziali UNHCR/ISMU). <strong>Altre</strong> = canali minori e residuo (~1.000). I dati via terra non sono ufficialmente pubblicati dal Ministero.</span></span></h3>
         <div class="chart-container"><canvas id="chart-rotte"></canvas></div>
       </div>
     </div>
@@ -666,7 +666,7 @@ function updateAll(paneId) {
   buildChart('chart-rotte', {
     type: 'bar', indexAxis: 'y',
     data: { labels: ['Med. centrale','Rotta balcanica*','Altre / minori'],
-      datasets: [{ label: 'Arrivi 2024', data: [66317,7000,1000], backgroundColor: ['#4A6FA5','#4A6FA5','#555'], borderRadius: 4, barPercentage: .6 }]
+      datasets: [{ label: 'Arrivi 2024', data: [66317,7000,1000], backgroundColor: ['#4A6FA5','#555','#555'], borderRadius: 4, barPercentage: .6 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.raw.toLocaleString('it-IT') + ' arrivi' } } },
@@ -689,12 +689,12 @@ buildChart('chart-status', {
 
   // Chart 6: origini - toggle tra top paesi e macro aree nello STESSO chart
   const originiLabels = ['Romania','Albania','Marocco','Cina','Ucraina'];
-  const originiPct = [19.6,7.7,7.7,5.0,4.5];
+  const originiPct = [20.4,7.9,7.8,5.9,5.2];
   const originiAbs = originiPct.map(p=>Math.round(d.rs*p/100));
   const originiSorted = sortData(originiLabels, originiPct, originiAbs);
 
-  const macroLabels = ['Europa non-UE / Balcani','Asia','Africa subsahariana','Africa del Nord','America','UE e altro'];
-  const macroPct = [42.5,23.7,15.5,7.7,7.9,2.7];
+  const macroLabels = ['Europa','Asia','Africa','Americhe','Oceania'];
+  const macroPct = [46.2,23.4,21.6,8.3,0.5];
   const macroAbs = macroPct.map(p=>Math.round(d.rs*p/100));
   const macroSorted = sortData(macroLabels, macroPct, macroAbs);
 
@@ -828,7 +828,7 @@ buildChart('chart-status', {
 
   // Chart 10: denunce per tipo di reato - SORTED
   const denunceLabels = ['Furti con destrezza','Furti con strappo','Rapine in pubblica via','Rapine (totale)','Furti in negozio','Furti di auto','Violenze sessuali','Furti in abitazione','Spaccio droga','Lesioni dolose','Omicidi tentati','Totale reati'];
-  const denuncePct = [69,61,60.1,52.3,52,50,44,40,38,31.5,27,34.7];
+  const denuncePct = [69,61,60.1,52.3,52,50,43,40,38,31.5,27,34.7];
   const denunceSorted = sortData(denunceLabels, denuncePct);
   buildChart('chart-denunce-reati', {
     type: 'bar', indexAxis: 'y',
@@ -876,20 +876,16 @@ buildChart('chart-status', {
   // Chart 11b: ratio denunce/presenza per nazionalita
   buildChart('chart-ratio-denunce', {
     type: 'bar', indexAxis: 'y',
-    data: { labels: ['Marocco','Albania','Altre','Romania'],
-      datasets: [{ data: [1.66,1.35,1.10,0.53],
-        backgroundColor: function(ctx) {
-          const label = ['Marocco','Albania','Altre','Romania'][ctx.dataIndex];
-          return label === 'Marocco' ? '#4A6FA5' : '#555';
-        }, borderRadius: 4 }]
+    data: { labels: ['Tunisia','Nigeria','Marocco','Albania','Altre','Romania'],
+      datasets: [{ data: [2.38,2.10,1.66,1.35,1.10,0.53],
+        backgroundColor: '#4A6FA5', borderRadius: 4 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
         tooltip: { callbacks: { label: function(ctx) {
           const over = ctx.raw > 1 ? 'sovra' : 'sotto';
           return 'Indice ' + ctx.raw + 'x (' + over + 'rappresentati)';
-        } } },
-        annotation: {}
+        } } }
       },
       scales: { x: { ticks: { callback: v=>v+'x' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
     }
