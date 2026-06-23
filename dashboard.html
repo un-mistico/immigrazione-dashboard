@@ -70,7 +70,7 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
 .compare-card{background:#16161B;border:1px solid #222;border-radius:10px;padding:18px;text-align:center}
 .compare-card .title{font-size:12px;color:#666;text-transform:uppercase;letter-spacing:1px}
 .compare-card .vals{margin-top:10px;display:flex;justify-content:center;align-items:baseline;gap:8px}
-.compare-card .stranieri{color:#E07A5F;font-size:22px;font-weight:800}
+.compare-card .stranieri{color:#4A6FA5;font-size:22px;font-weight:800}
 .compare-card .sep{color:#444;font-size:14px}
 .compare-card .italiani{color:#888;font-size:18px;font-weight:600}
 .compare-card .desc{font-size:12px;color:#555;margin-top:4px}
@@ -673,7 +673,7 @@ function updateAll(paneId) {
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.raw.toLocaleString('it-IT') + ' arrivi' } } },
-      scales: { x: { ticks: { callback: v => (v/1000)+'K' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+      scales: { x: { ticks: { callback: v => (v/1000)+'K' }, grid: { color: gridColor }, min: 0 }, y: { grid: { display: false } } }
     }
   });
 
@@ -681,12 +681,13 @@ buildChart('chart-status', {
     type: 'bar', indexAxis: 'y',
     data: { labels: ['Regolari iscritti','Irregolari'],
       datasets: [{ data: [d.rs, d.irr],
-        backgroundColor: ['#4A6FA5','#4A6FA5'], borderWidth: 0 }]
+        backgroundColor: '#4A6FA5', borderWidth: 0 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend:{display:false},
         tooltip: { callbacks: { label: ctx=>fmtIT(ctx.raw) + ' persone' } }
-      }
+      },
+      scales: { x: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, y: { grid: { display: false } } }
     }
   });
 
@@ -701,7 +702,7 @@ buildChart('chart-status', {
   const macroAbs = macroPct.map(p=>Math.round(d.rs*p/100));
   const macroSorted = sortData(macroLabels, macroPct, macroAbs);
 
-  let originiMacro = false;
+  let originiMacro = true;
   let originiChart;
   function renderOrigini() {
     const labels = originiMacro ? macroSorted.labels : originiSorted.labels;
@@ -715,7 +716,7 @@ buildChart('chart-status', {
       type: 'bar', indexAxis: 'y',
       data: { labels,
         datasets: [{ data,
-          backgroundColor: originiMacro ? '#4A6FA5' : '#4A6FA5', borderRadius: 3 }]
+          backgroundColor: '#4A6FA5', borderRadius: 3 }]
       },
       options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
         plugins: { legend: { display: false },
@@ -744,10 +745,7 @@ buildChart('chart-status', {
     type: 'bar', indexAxis: 'y',
     data: { labels: areaSorted.labels,
       datasets: [{ data: areaSorted.data,
-        backgroundColor: function(ctx) {
-          const label = areaSorted.labels[ctx.dataIndex];
-          return label === 'UE' ? '#4A6FA5' : '#4A6FA5';
-        }, borderRadius: 4 }]
+        backgroundColor: '#4A6FA5', borderRadius: 4 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -762,12 +760,13 @@ buildChart('chart-status', {
     type: 'bar', indexAxis: 'y',
     data: { labels: ['Extracomunitari','Altri Paesi UE','UE-15'],
       datasets: [{ data: [75.4, 18.4, 6.2],
-        backgroundColor: ['#4A6FA5','#4A6FA5','#555'], borderWidth: 0 }]
+        backgroundColor: ['#4A6FA5','#555','#555'], borderWidth: 0 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend:{display:false},
         tooltip: { callbacks: { label: ctx=>ctx.raw + '%' } }
-      }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
     }
   });
 
@@ -775,10 +774,11 @@ buildChart('chart-status', {
   buildChart('chart-detenuti-trend', {
     type: 'bar', indexAxis: 'y',
     data: { labels: years, datasets: [
-      { label: 'Detenuti totali', data: years.map(y=>D[y].dt), backgroundColor: '#3A3A46', borderRadius: 3 },
+      { label: 'Detenuti totali', data: years.map(y=>D[y].dt), backgroundColor: '#555', borderRadius: 3 },
       { label: 'Stranieri detenuti', data: years.map(y=>D[y].ds), backgroundColor: '#4A6FA5', borderRadius: 3 }
     ]},
     options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { padding: 8 } } },
       scales: { y: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, x: { grid: { display: false } } }
     }
   });
@@ -837,10 +837,7 @@ buildChart('chart-status', {
     type: 'bar', indexAxis: 'y',
     data: { labels: denunceSorted.labels,
       datasets: [{ data: denunceSorted.data,
-        backgroundColor: function(ctx) {
-          const label = denunceSorted.labels[ctx.dataIndex];
-          return label === 'Totale reati' ? '#4A6FA5' : '#4A6FA5';
-        },
+        backgroundColor: '#4A6FA5',
         borderRadius: 4 }]
     },
     options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
@@ -899,7 +896,7 @@ buildChart('chart-status', {
     type: 'bar', indexAxis: 'y',
     data: { labels: ['Popolazione','Detenuti','Denunciati'],
       datasets: [{ data: [d.pct, parseFloat(pctC), 34.7],
-        backgroundColor: ['#4A6FA5','#4A6FA5','#4A6FA5'], borderRadius: 6 }]
+        backgroundColor: ['#555','#4A6FA5','#4A6FA5'], borderRadius: 6 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -915,7 +912,7 @@ buildChart('chart-status', {
     data: { labels: ['In attesa di giudizio','Residuo pena <2 anni','Misure alternative'],
       datasets: [
         { label: 'Stranieri', data: [28.9,31.4,17.5], backgroundColor: '#4A6FA5', borderRadius: 4 },
-        { label: 'Italiani', data: [22.7,23.4,82.5], backgroundColor: '#4A6FA5', borderRadius: 4 }
+        { label: 'Italiani', data: [22.7,23.4,82.5], backgroundColor: '#555', borderRadius: 4 }
       ]
     },
     options: { responsive: true, maintainAspectRatio: false,
@@ -931,12 +928,13 @@ buildChart('chart-status', {
     type: 'bar', indexAxis: 'y',
     data: { labels: ['Rifiutate (64%)','Protezione umanitaria (13,7%)','Riconosciute rifugiato (7,6%)','Altre / in corso (14,7%)'],
       datasets: [{ data: [64,13.7,7.6,14.7],
-        backgroundColor: ['#4A6FA5','#4A6FA5','#555','#555'], borderWidth: 0 }]
+        backgroundColor: ['#4A6FA5','#555','#555','#555'], borderWidth: 0 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend:{display:false},
         tooltip: { callbacks: { label: ctx=>ctx.raw + '% delle domande (' + Math.round(151120*ctx.raw/100).toLocaleString('it-IT') + ')' } }
-      }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
     }
   });
 
@@ -948,6 +946,7 @@ buildChart('chart-status', {
       { label: 'Rimpatri Italia', data: years.map(y=>D[y].ri), backgroundColor: '#555', borderRadius: 3 }
     ]},
     options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { padding: 8 } } },
       scales: { y: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, x: { grid: { display: false } } }
     }
   });
@@ -960,6 +959,7 @@ buildChart('chart-status', {
       { label: 'Rimpatri Italia', data: years.map(y=>D[y].ri), backgroundColor: '#555', borderRadius: 3 }
     ]},
     options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { padding: 8 } } },
       scales: { y: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, x: { grid: { display: false } } }
     }
   });
@@ -969,10 +969,11 @@ buildChart('chart-status', {
     type: 'bar', indexAxis: 'y',
     data: { labels: ['2023','2024','2025'], datasets: [
       { label: 'Respinti', data: [395000,124000,132600], backgroundColor: '#4A6FA5', borderRadius: 3 },
-      { label: 'Ordini lasciare', data: [465000,453000,491950], backgroundColor: '#4A6FA5', borderRadius: 3 },
-      { label: 'Rimpatri effettivi', data: [96000,110000,135460], backgroundColor: '#4A6FA5', borderRadius: 3 }
+      { label: 'Ordini lasciare', data: [465000,453000,491950], backgroundColor: '#555', borderRadius: 3 },
+      { label: 'Rimpatri effettivi', data: [96000,110000,135460], backgroundColor: '#555', borderRadius: 3 }
     ]},
     options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { padding: 8 } } },
       scales: { y: { ticks: { callback: v=>fmt(v) }, grid: { color: gridColor } }, x: { grid: { display: false } } }
     }
   });
@@ -1002,7 +1003,7 @@ buildChart('chart-status', {
       datasets: [{ data: euPrisonSorted.data,
         backgroundColor: function(ctx) {
           const label = ctx.chart.data.labels[ctx.dataIndex];
-          return label==='Italia' ? '#4A6FA5' : '#4A6FA5';
+          return label==='Italia' ? '#4A6FA5' : '#555';
         },
         borderRadius: 3 }]
     },
@@ -1024,7 +1025,7 @@ buildChart('chart-status', {
       datasets: [{ data: euPresenceSorted.data,
         backgroundColor: function(ctx) {
           const label = ctx.chart.data.labels[ctx.dataIndex];
-          return label==='Italia' ? '#4A6FA5' : '#4A6FA5';
+          return label==='Italia' ? '#4A6FA5' : '#555';
         },
         borderRadius: 3 }]
     },
@@ -1046,7 +1047,7 @@ buildChart('chart-status', {
       datasets: [{ data: euCrimeSorted.data,
         backgroundColor: function(ctx) {
           const label = ctx.chart.data.labels[ctx.dataIndex];
-          return label.includes('Italia') ? '#4A6FA5' : '#4A6FA5';
+          return label.includes('Italia') ? '#4A6FA5' : '#555';
         },
         borderRadius: 4 }]
     },
@@ -1099,7 +1100,7 @@ buildChart('chart-status', {
     type: 'bar', indexAxis: 'y',
     data: { labels: ['Stranieri (XII Rapporto Ministero Lavoro)','Italiani (ISTAT 2024)'],
       datasets: [{ data: [14000, 24500],
-        backgroundColor: ['#4A6FA5','#4A6FA5'], borderRadius: 6 }]
+        backgroundColor: ['#4A6FA5','#555'], borderRadius: 6 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -1150,7 +1151,7 @@ buildChart('chart-status', {
     type: 'bar', indexAxis: 'y',
     data: { labels: ['Famiglie solo stranieri','Famiglie miste','Famiglie solo italiani'],
       datasets: [{ data: [33.2,15.1,6.3],
-        backgroundColor: ['#4A6FA5','#4A6FA5','#4A6FA5'], borderRadius: 6 }]
+        backgroundColor: ['#4A6FA5','#555','#555'], borderRadius: 6 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -1166,9 +1167,10 @@ buildChart('chart-status', {
     data: { labels: ['NEET (15-29enni)','Dispersione scolastica'],
       datasets: [
         { label: 'Stranieri', data: [26.5,29.5], backgroundColor: '#4A6FA5', borderRadius: 4 },
-        { label: 'Italiani', data: [19.2,17.0], backgroundColor: '#4A6FA5', borderRadius: 4 }
+        { label: 'Italiani', data: [19.2,17.0], backgroundColor: '#555', borderRadius: 4 }
       ]},
     options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { padding: 8 } } },
       scales: { y: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, x: { grid: { display: false } } }
     }
   });
@@ -1214,12 +1216,13 @@ buildChart('chart-status', {
     type: 'bar', indexAxis: 'y',
     data: { labels: ['Tempo indeterminato','Tempo determinato','Apprendistato','Collaboratori','Altri'],
       datasets: [{ data: [38.5,38.0,4.0,6.5,13.0],
-        backgroundColor: ['#4A6FA5','#4A6FA5','#555','#4A6FA5','#555'], borderWidth: 0 }]
+        backgroundColor: '#4A6FA5', borderWidth: 0 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend:{display:false},
         tooltip: { callbacks: { label: ctx=>ctx.raw + '%' } }
-      }
+      },
+      scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
     }
   });
 }
