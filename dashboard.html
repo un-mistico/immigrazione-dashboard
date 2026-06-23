@@ -680,7 +680,7 @@ buildChart('chart-status', {
         backgroundColor: ['#4A6FA5','#4A6FA5'], borderWidth: 0 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },
+      plugins: { legend:{display:false},
         tooltip: { callbacks: { label: ctx=>fmtIT(ctx.raw) + ' persone' } }
       }
     }
@@ -761,7 +761,7 @@ buildChart('chart-status', {
         backgroundColor: ['#4A6FA5','#4A6FA5','#555'], borderWidth: 0 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },
+      plugins: { legend:{display:false},
         tooltip: { callbacks: { label: ctx=>ctx.raw + '%' } }
       }
     }
@@ -912,7 +912,7 @@ buildChart('chart-status', {
         backgroundColor: ['#4A6FA5','#4A6FA5','#555','#555'], borderWidth: 0 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },
+      plugins: { legend:{display:false},
         tooltip: { callbacks: { label: ctx=>ctx.raw + '% delle domande (' + Math.round(151120*ctx.raw/100).toLocaleString('it-IT') + ')' } }
       }
     }
@@ -1195,7 +1195,7 @@ buildChart('chart-status', {
         backgroundColor: ['#4A6FA5','#4A6FA5','#555','#4A6FA5','#555'], borderWidth: 0 }]
     },
     options: { responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },
+      plugins: { legend:{display:false},
         tooltip: { callbacks: { label: ctx=>ctx.raw + '%' } }
       }
     }
