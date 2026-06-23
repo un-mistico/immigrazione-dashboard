@@ -254,6 +254,7 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
     </div>
 
     <div class="chart-grid cols-2">
+      <div class="chart-box"><h3>Rapporto denunce/presenza per nazionalità (indice, 1,0 = proporzionale)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text">Indice = % denunce tra stranieri / % popolazione straniera. Sopra 1 = sovrarappresentati, sotto 1 = sottorappresentati. Fonte: Ministero dell'Interno, ISTAT 2024.</span></span></h3><div class="chart-container"><canvas id="chart-ratio-denunce"></canvas></div></div>
       <div class="chart-box"><h3>Popolazione vs detenuti vs denunciati: % stranieri</h3><div class="chart-container"><canvas id="chart-confronto-pct"></canvas></div></div>
       <div class="chart-box"><h3>Domande d'asilo in Italia: esiti 2024<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>Rifiutate</strong> = non riconosciuta protezione internazionale. <strong>Protezione umanitaria</strong> = permesso per casi speciali (gravidanza, minore et&agrave;, salute, etc.). <strong>Riconosciute rifugiato</strong> = status di rifugiato politico.</span></span></h3><div class="chart-container"><canvas id="chart-asilo-esiti"></canvas></div></div>
     </div>
@@ -826,8 +827,8 @@ buildChart('chart-status', {
   });
 
   // Chart 10: denunce per tipo di reato - SORTED
-  const denunceLabels = ['Furti con destrezza','Rapine in pubblica via','Scippi','Furti in negozio','Rapine','Furti di auto','Violenze sessuali','Furti in abitazione','Lesioni dolose','Spaccio droga','Omicidi tentati','Totale reati'];
-  const denuncePct = [69,60.1,58,52,52.3,50,44,40,38,31.5,27,34.7];
+  const denunceLabels = ['Furti con destrezza','Furti con strappo','Rapine in pubblica via','Rapine (totale)','Furti in negozio','Furti di auto','Violenze sessuali','Furti in abitazione','Spaccio droga','Lesioni dolose','Omicidi tentati','Totale reati'];
+  const denuncePct = [69,61,60.1,52.3,52,50,44,40,38,31.5,27,34.7];
   const denunceSorted = sortData(denunceLabels, denuncePct);
   buildChart('chart-denunce-reati', {
     type: 'bar', indexAxis: 'y',
@@ -869,6 +870,28 @@ buildChart('chart-status', {
         } } }
       },
       scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // Chart 11b: ratio denunce/presenza per nazionalita
+  buildChart('chart-ratio-denunce', {
+    type: 'bar', indexAxis: 'y',
+    data: { labels: ['Marocco','Albania','Altre','Romania'],
+      datasets: [{ data: [1.66,1.35,1.10,0.53],
+        backgroundColor: function(ctx) {
+          const label = ['Marocco','Albania','Altre','Romania'][ctx.dataIndex];
+          return label === 'Marocco' ? '#4A6FA5' : '#555';
+        }, borderRadius: 4 }]
+    },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: function(ctx) {
+          const over = ctx.raw > 1 ? 'sovra' : 'sotto';
+          return 'Indice ' + ctx.raw + 'x (' + over + 'rappresentati)';
+        } } },
+        annotation: {}
+      },
+      scales: { x: { ticks: { callback: v=>v+'x' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
     }
   });
 

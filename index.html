@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it" class="scrolly theme-default">
 <head>
@@ -7,7 +6,7 @@
   <title>🚢 Immigrazione in Italia: 8 indicatori per capire il fenomeno</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🚢%3C/text%3E%3C/svg%3E">
   <meta property="og:title" content="🚢 Immigrazione in Italia: 8 indicatori per capire il fenomeno">
-  <meta property="og:description" content="Un racconto scorrevole su flussi, presenza, asilo, criminalità e impatto economico. Poi i dati completi, tab per tab.">
+  <meta property="og:description" content="Un racconto scorrevole su presenza, flussi, origini, criminalità e impatto economico. Poi i dati completi, tab per tab.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://un-mistico.github.io/immigrazione-dashboard/preview.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -15,19 +14,20 @@
   <style>
     .hero h1,.hero p,.hero .eyebrow,.hero .cta-group{text-align:center}
     .hero p{margin-left:auto;margin-right:auto}
-
-    /* hero elements visible immediately, big numbers animate via observer */
     .hero .eyebrow,.hero h1,.hero p,.hero .cta-group,.hero .btn-secondary{opacity:1 !important;transform:none !important}
     .hero .arrow{opacity:1;animation:bounce 2s infinite}
     .scrolly .eyebrow{opacity:0}
     .scrolly .eyebrow.visible{opacity:1;transform:translateY(0)}
-
-    
     .top-nav .brand span{color:var(--accent)}
     .final p{max-width:560px;margin:0 auto 28px}
-    
-  
-    :root{--accent:#4A6FA5;--accent-hover:#3a5a85;--accent-light:#7aa3e0;--accent-dim:#2e4a75;}</style>
+    :root{--accent:#4A6FA5;--accent-hover:#3a5a85;--accent-light:#7aa3e0;--accent-dim:#2e4a75;}
+    .toggle-group{display:flex;gap:8px;margin-bottom:18px}
+    .toggle-btn{padding:6px 16px;border:1px solid #555;border-radius:20px;background:transparent;color:#999;font-size:13px;cursor:pointer;transition:all .2s}
+    .toggle-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+    .toggle-btn:hover{border-color:var(--accent-light)}
+    .ratio-ref{position:absolute;left:50%;top:0;bottom:0;width:1px;border-left:1px dashed #777;pointer-events:none}
+    .ratio-label{position:absolute;left:50%;top:-18px;transform:translateX(-50%);font-size:10px;color:#777;white-space:nowrap}
+  </style>
 </head>
 <body>
   <div class="progress" id="progress"></div>
@@ -90,34 +90,35 @@
 
   <section id="s2">
     <div class="wrap content">
-      <div class="eyebrow">02 · Rotte</div>
+      <div class="eyebrow">02 · Confronto UE</div>
+      <div class="label">% popolazione straniera <span class="year-badge">2023</span></div>
+      <div class="big-num accent" data-target="9" data-suffix="%">9%</div>
+      <h2>L'Italia ha meno stranieri dei grandi partner europei</h2>
+      <p>Il 9% di popolazione straniera è inferiore a Germania (16%), Spagna (14%) e Francia (13%). Ma l'Italia ha il tasso di naturalizzazione piu basso.</p>
+      <div class="bar-block" style="max-width:520px">
+        <div class="bar-wrap"><div class="bar-label">Germania</div><div class="bar neutral" data-width="88"></div><div class="bar-value">16,1%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Spagna</div><div class="bar neutral" data-width="76"></div><div class="bar-value">13,8%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Francia</div><div class="bar neutral" data-width="71"></div><div class="bar-value">13,0%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Italia</div><div class="bar accent" data-width="49"></div><div class="bar-value">9,0%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Media UE</div><div class="bar neutral" data-width="46"></div><div class="bar-value">8,4%</div></div>
+      </div>
+      <div class="note">% popolazione con cittadinanza straniera, 2023. Fonte: Eurostat.</div>
+    </div>
+  </section>
+
+  <section id="s3">
+    <div class="wrap content">
+      <div class="eyebrow">03 · Rotte</div>
       <div class="label">Arrivi in Italia per rotta migratoria <span class="year-badge">2024</span></div>
       <div class="big-num accent" data-target="67.5" data-suffix="mila">67,5mila</div>
       <h2>La rotta del Mediterraneo centrale resta la principale</h2>
-      <p>I <span class="highlight">sbarchi</span> sono persone intercettate dalla Guardia Costiera. Non sono ingressi regolari, né richiedenti asilo automatici, né immigrati clandestini totali.</p>
+      <p>I <span class="highlight">sbarchi</span> sono persone intercettate dalla Guardia Costiera. Non sono ingressi regolari, ne richiedenti asilo automatici, ne immigrati clandestini totali.</p>
       <div class="bar-block" style="max-width:520px">
         <div class="bar-wrap"><div class="bar-label">Med. centrale</div><div class="bar accent" data-width="80"></div><div class="bar-value">~67.500</div></div>
         <div class="bar-wrap"><div class="bar-label">Balcani occidentali</div><div class="bar neutral" data-width="25"></div><div class="bar-value">~21.000</div></div>
         <div class="bar-wrap"><div class="bar-label">Altre rotte</div><div class="bar neutral" data-width="8"></div><div class="bar-value">~6.000</div></div>
       </div>
       <div class="note">Dati 2024. Fonte: Ministero dell'Interno.</div>
-    </div>
-  </section>
-
-  <section id="s3">
-    <div class="wrap content">
-      <div class="eyebrow">03 · Asilo</div>
-      <div class="label">Domande d'asilo in Italia <span class="year-badge">2024</span></div>
-      <div class="big-num accent" data-target="91" data-suffix="mila">91mila</div>
-      <h2>Solo una minoranza ottiene protezione internazionale</h2>
-      <p>Su ~91.000 domande, circa 1 su 4 riceve rifugio o protezione sussidiaria. Gli altri finiscono in ricollocazioni Dublin, protezione umanitaria o rifiuto.</p>
-      <div class="bar-block" style="max-width:520px">
-        <div class="bar-wrap"><div class="bar-label">Rifugio / protezione sussidiaria</div><div class="bar accent" data-width="24"></div><div class="bar-value">~24%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Protezione umanitaria</div><div class="bar neutral" data-width="18"></div><div class="bar-value">~18%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Ricollocazioni Dublin</div><div class="bar neutral" data-width="30"></div><div class="bar-value">~30%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Rifiutate / altro</div><div class="bar neutral" data-width="28"></div><div class="bar-value">~28%</div></div>
-      </div>
-      <div class="note">Percentuali approssimative su procedimenti conclusi. Fonte: Ministero dell'Interno.</div>
     </div>
   </section>
 
@@ -134,82 +135,97 @@
         <div class="bar-wrap"><div class="bar-label">Rimpatri effettivi/anno</div><div class="bar neutral" data-width="7"></div><div class="bar-value">~7mila</div></div>
       </div>
       <div class="note">Stime medie 2019-2024. Fonte: Ministero dell'Interno, Relazione annuale sull'immigrazione.</div>
-      <div class="note">⚠️ I contingenti del Decreto Flussi coprono solo una frazione della reale domanda di manodopera delle imprese italiane.</div>
     </div>
   </section>
 
   <section id="s5">
     <div class="wrap content">
       <div class="eyebrow">05 · Origini</div>
-      <h2>I primi paesi di origine degli stranieri residenti</h2>
-      <p>Romania, Albania e Marocco da decenni ai primi posti. I dati per macro-area nascondo differenze importanti tra singoli paesi.</p>
-      <div class="bar-block" style="max-width:520px">
-        <div class="bar-wrap"><div class="bar-label">Romania</div><div class="bar accent" data-width="19.6"></div><div class="bar-value">19,6%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Albania</div><div class="bar neutral" data-width="7.7"></div><div class="bar-value">7,7%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Marocco</div><div class="bar neutral" data-width="7.7"></div><div class="bar-value">7,7%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Cina</div><div class="bar neutral" data-width="5.5"></div><div class="bar-value">5,5%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Ucraina</div><div class="bar neutral" data-width="4.8"></div><div class="bar-value">4,8%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Moldova</div><div class="bar neutral" data-width="3.6"></div><div class="bar-value">3,6%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Altri paesi</div><div class="bar neutral" data-width="51.1"></div><div class="bar-value">51,1%</div></div>
+      <h2>Da dove vengono gli stranieri in Italia</h2>
+      <p>Romania, Albania e Marocco da decenni ai primi posti. I dati per macro-area mostrano come quasi meta degli stranieri venga dall'Europa.</p>
+      <div class="toggle-group">
+        <button class="toggle-btn active" onclick="showOrigin('paesi')">Paesi</button>
+        <button class="toggle-btn" onclick="showOrigin('macro')">Macro aree</button>
       </div>
-      <div class="note">Distribuzione per paese di cittadinanza, residenti stranieri. Fonte: ISTAT/DOS.</div>
-      <div class="note">⚠️ Le quote del Decreto Flussi coprono solo una frazione della domanda di manodopera delle imprese italiane.</div>
+      <div id="origin-paesi" class="bar-block" style="max-width:520px">
+        <div class="bar-wrap"><div class="bar-label">Romania</div><div class="bar accent" data-width="20.4"></div><div class="bar-value">20,4%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Albania</div><div class="bar neutral" data-width="7.9"></div><div class="bar-value">7,9%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Marocco</div><div class="bar neutral" data-width="7.8"></div><div class="bar-value">7,8%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Cina</div><div class="bar neutral" data-width="5.9"></div><div class="bar-value">5,9%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Ucraina</div><div class="bar neutral" data-width="5.2"></div><div class="bar-value">5,2%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Altri paesi</div><div class="bar neutral" data-width="52.8"></div><div class="bar-value">52,8%</div></div>
+      </div>
+      <div id="origin-macro" class="bar-block" style="max-width:520px;display:none">
+        <div class="bar-wrap"><div class="bar-label">Europa</div><div class="bar accent" data-width="46.2"></div><div class="bar-value">46,2%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Asia</div><div class="bar neutral" data-width="23.4"></div><div class="bar-value">23,4%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Africa</div><div class="bar neutral" data-width="21.6"></div><div class="bar-value">21,6%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Americhe</div><div class="bar neutral" data-width="8.3"></div><div class="bar-value">8,3%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Oceania</div><div class="bar neutral" data-width="0.5"></div><div class="bar-value">0,5%</div></div>
+      </div>
+      <div class="note">Distribuzione per paese/area di cittadinanza, residenti stranieri. Fonte: ISTAT, 2024.</div>
     </div>
   </section>
 
   <section id="s6">
     <div class="wrap content">
-      <div class="eyebrow">06 · Criminalità</div>
-      <div class="label">Sovra-rappresentazione nelle carceri</div>
-      <div class="big-num accent" data-target="3.4" data-suffix="x">3,4x</div>
-      <h2>Gli stranieri sono il 9% della popolazione ma il 31% dei detenuti</h2>
-      <p>Sono circa 3,4 volte più rappresentati in carcere rispetto alla popolazione residente. Va letto con cautela: età, sesso, status e tipologia di reato spiegano molto.</p>
+      <div class="eyebrow">06 · Criminalita</div>
+      <div class="label">% stranieri tra denunciati per tipo di reato <span class="year-badge">2024</span></div>
+      <div class="big-num accent" data-target="34.7" data-suffix="%">34,7%</div>
+      <h2>Il 9% della popolazione, ma il 35% dei denunciati</h2>
+      <p>Gli stranieri sono sovrarappresentati nelle denunce per reati predatori. Ma il 70% dei reati commessi da stranieri e attribuibile a irregolari, che sono solo il 10% della popolazione straniera. Chi ha un permesso di soggiorno ha tassi di criminalita in linea con gli italiani.</p>
       <div class="bar-block" style="max-width:520px">
-        <div class="label">% stranieri tra i denunciati per tipo di reato (2024)</div>
         <div class="bar-wrap"><div class="bar-label">Reati immigrazione</div><div class="bar accent" data-width="92"></div><div class="bar-value">92%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Furti</div><div class="bar neutral" data-width="38"></div><div class="bar-value">38%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Rapine</div><div class="bar neutral" data-width="31"></div><div class="bar-value">31%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Totale denunciati</div><div class="bar neutral" data-width="34"></div><div class="bar-value">34%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Furti con destrezza</div><div class="bar neutral" data-width="69"></div><div class="bar-value">69%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Furti con strappo</div><div class="bar neutral" data-width="61"></div><div class="bar-value">61%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Rapine in pubblica via</div><div class="bar neutral" data-width="60"></div><div class="bar-value">60%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Rapine (totale)</div><div class="bar neutral" data-width="52"></div><div class="bar-value">52%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Violenze sessuali</div><div class="bar neutral" data-width="43"></div><div class="bar-value">43%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Spaccio stupefacenti</div><div class="bar neutral" data-width="39"></div><div class="bar-value">39%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Omicidio volontario</div><div class="bar neutral" data-width="24"></div><div class="bar-value">24%</div></div>
       </div>
-      <div class="note">Denuncia ≠ colpa. I dati mostrano tassi di denuncia, non tassi di condanna. Non controllano per età, reddito o status regolare. Fonte: Ministero dell'Interno.</div>
+      <div class="note">Denuncia non significa colpevolezza. I dati mostrano tassi di denuncia, non tassi di condanna. Non controllano per eta, reddito o status regolare. Gli stranieri regolari hanno tassi di criminalita simili agli italiani. Fonte: Ministero dell'Interno, 2024.</div>
     </div>
   </section>
 
   <section id="s7">
     <div class="wrap content">
-      <div class="eyebrow">07 · Conti pubblici</div>
-      <div class="label">Impatto fiscale stimato degli stranieri <span class="year-badge">2023</span></div>
-      <div class="big-num positive" data-target="4.6" data-suffix=" mld €">4,6 mld €</div>
-      <h2>Gettito e contributi superano i costi stimati</h2>
-      <p>Secondo il modello IDOS/Cgia Mestre, gli stranieri versano circa 39 mld € in tasse/contributi e ricevono servizi per ~34 mld €. Il saldo netto è positivo di ~4,6 mld €, un dato che tiene conto di più voci rispetto alla semplice differenza tra entrate e uscite.</p>
-      <div class="bar-block" style="max-width:520px">
-        <div class="bar-wrap"><div class="bar-label">Gettito/contributi</div><div class="bar positive" data-width="53"></div><div class="bar-value">39 mld</div></div>
-        <div class="bar-wrap"><div class="bar-label">Costi servizi</div><div class="bar negative" data-width="47"></div><div class="bar-value">34 mld</div></div>
+      <div class="eyebrow">07 · Criminalita</div>
+      <div class="label">Denunce vs presenza: rapporto per nazionalita</div>
+      <h2>Non tutte le comunita sono sovrarappresentate</h2>
+      <p>Il rapporto tra quota di denunce e quota di popolazione rivela differenze profonde. La Romania, prima comunita per presenze (20%), e sottorappresentata nelle denunce. Il Marocco, 8% della popolazione straniera, e il primo per denunce tra stranieri (13%).</p>
+      <div class="bar-block" style="max-width:520px;position:relative">
+        <div class="label">Indice denunce/presenza (1,0 = proporzionale)</div>
+        <div style="position:relative;height:8px;margin:0 0 12px 110px;border-left:1px dashed #777;height:auto">
+          <span style="position:absolute;top:-2px;left:4px;font-size:10px;color:#777">1,0x (equilibrio)</span>
+        </div>
+        <div class="bar-wrap"><div class="bar-label">Marocco</div><div class="bar accent" data-width="83"></div><div class="bar-value">1,66x</div></div>
+        <div class="bar-wrap"><div class="bar-label">Albania</div><div class="bar neutral" data-width="68"></div><div class="bar-value">1,35x</div></div>
+        <div class="bar-wrap"><div class="bar-label">Altre</div><div class="bar neutral" data-width="55"></div><div class="bar-value">1,10x</div></div>
+        <div class="bar-wrap"><div class="bar-label">Romania</div><div class="bar neutral" data-width="27"></div><div class="bar-value">0,53x</div></div>
       </div>
-      <div class="note">Stima modello, non dato contabile. Fonte: IDOS/Cgia Mestre.</div>
+      <div class="note">Indice = % denunce / % popolazione straniera. Sopra 1 = sovrarappresentati, sotto 1 = sottorappresentati. Dati 2024. Fonte: Ministero dell'Interno, ISTAT.</div>
     </div>
   </section>
 
   <section id="s8">
     <div class="wrap content">
-      <div class="eyebrow">08 · Confronto UE</div>
-      <h2>L'Italia ha pochi stranieri rispetto ai grandi paesi europei</h2>
-      <p>Il 9% di popolazione straniera è inferiore a Germania (16%), Spagna (14%) e Francia (13%). Ma l'Italia ha il tasso di naturalizzazione più basso.</p>
+      <div class="eyebrow">08 · Conti pubblici</div>
+      <div class="label">Impatto fiscale stimato degli stranieri <span class="year-badge">2023</span></div>
+      <div class="big-num accent" data-target="4.6" data-suffix=" mld €">4,6 mld €</div>
+      <h2>Gettito e contributi superano i costi stimati</h2>
+      <p>Secondo il modello IDOS/Cgia Mestre, gli stranieri versano circa 39 mld € in tasse/contributi e ricevono servizi per ~34 mld €. Il saldo netto e positivo di ~4,6 mld €, un dato che tiene conto di piu voci rispetto alla semplice differenza tra entrate e uscite.</p>
       <div class="bar-block" style="max-width:520px">
-        <div class="bar-wrap"><div class="bar-label">Germania</div><div class="bar neutral" data-width="16.1"></div><div class="bar-value">16,1%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Spagna</div><div class="bar neutral" data-width="13.8"></div><div class="bar-value">13,8%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Francia</div><div class="bar neutral" data-width="13.0"></div><div class="bar-value">13,0%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Italia</div><div class="bar accent" data-width="9.0"></div><div class="bar-value">9,0%</div></div>
-        <div class="bar-wrap"><div class="bar-label">Media UE</div><div class="bar neutral" data-width="8.4"></div><div class="bar-value">8,4%</div></div>
+        <div class="bar-wrap"><div class="bar-label">Gettito/contributi</div><div class="bar accent" data-width="53"></div><div class="bar-value">39 mld</div></div>
+        <div class="bar-wrap"><div class="bar-label">Costi servizi</div><div class="bar neutral" data-width="47"></div><div class="bar-value">34 mld</div></div>
       </div>
-      <div class="note">% popolazione con cittadinanza straniera, 2023. Fonte: Eurostat.</div>
+      <div class="note">Stima modello, non dato contabile. Fonte: IDOS/Cgia Mestre.</div>
     </div>
   </section>
 
   <section id="s9">
     <div class="wrap content">
       <div class="eyebrow">09 · Sintesi</div>
-      <h2>La fotografia in tre righe</h2>
+      <h2>La fotografia in sei punti</h2>
       <div class="summary-list" style="max-width:620px">
         <div style="display:flex;gap:14px;margin-bottom:18px">
           <div style="font-size:28px;line-height:1">📋</div>
@@ -219,24 +235,17 @@
           </div>
         </div>
         <div style="display:flex;gap:14px;margin-bottom:18px">
+          <div style="font-size:28px;line-height:1">🌍</div>
+          <div>
+            <strong style="color:#fff">Meno stranieri dei partner UE</strong>
+            <p style="font-size:16px;margin:4px 0 0">9% contro Germania 16%, Spagna 14%, Francia 13%. Ma tasso di naturalizzazione piu basso.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px;margin-bottom:18px">
           <div style="font-size:28px;line-height:1">🚢</div>
           <div>
-            <strong style="color:#fff">Cicli estremi</strong>
-            <p style="font-size:16px;margin:4px 0 0">Da 11.500 a 181.000 sbarchi all'anno. Dipendono da geopolitica più che dal governo in carica.</p>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;margin-bottom:18px">
-          <div style="font-size:28px;line-height:1">⚖️</div>
-          <div>
-            <strong style="color:#fff">Carcere: 31% dei detenuti</strong>
-            <p style="font-size:16px;margin:4px 0 0">Sovra-rappresentazione reale, ma metà della sproporzione dipende da reati legati alla legge sull'immigrazione.</p>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;margin-bottom:18px">
-          <div style="font-size:28px;line-height:1">💰</div>
-          <div>
-            <strong style="color:#fff">Saldo fiscale positivo: +4,6 mld/anno</strong>
-            <p style="font-size:16px;margin:4px 0 0">Ma RAL media 14K vs 24K degli italiani. Il 35% degli stranieri è in povertà assoluta.</p>
+            <strong style="color:#fff">Flussi estremi</strong>
+            <p style="font-size:16px;margin:4px 0 0">Da 11.500 a 181.000 sbarchi all'anno. Dipendono da geopolitica piu che dal governo in carica.</p>
           </div>
         </div>
         <div style="display:flex;gap:14px;margin-bottom:18px">
@@ -246,15 +255,22 @@
             <p style="font-size:16px;margin:4px 0 0">18.000 ordini di espulsione emessi, solo 7.000 effettivamente eseguiti.</p>
           </div>
         </div>
-        <div style="display:flex;gap:14px">
-          <div style="font-size:28px;line-height:1">🌍</div>
+        <div style="display:flex;gap:14px;margin-bottom:18px">
+          <div style="font-size:28px;line-height:1">⚖️</div>
           <div>
-            <strong style="color:#fff">L'Italia ha meno stranieri dei partner UE</strong>
-            <p style="font-size:16px;margin:4px 0 0">9% contro Germania 16%, Spagna 14%, Francia 13%. Ma tasso di naturalizzazione più basso.</p>
+            <strong style="color:#fff">Criminalita: 35% dei denunciati</strong>
+            <p style="font-size:16px;margin:4px 0 0">Ma il 70% dei reati e di irregolari. Gli stranieri regolari hanno tassi in linea con gli italiani.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px">
+          <div style="font-size:28px;line-height:1">💰</div>
+          <div>
+            <strong style="color:#fff">Saldo fiscale positivo: +4,6 mld/anno</strong>
+            <p style="font-size:16px;margin:4px 0 0">Gettito e contributi superano i costi stimati. Ma RAL media 14K vs 24K degli italiani.</p>
           </div>
         </div>
       </div>
-      <div class="note">Questo è un riassunto narrativo. I numeri completi e i caveat sono nella dashboard.</div>
+      <div class="note">Questo e un riassunto narrativo. I numeri completi e i caveat sono nella dashboard.</div>
     </div>
   </section>
 
@@ -262,7 +278,7 @@
     <div class="wrap content">
       <div class="eyebrow">10 · Approfondisci</div>
       <h2 style="font-size:36px">Vai ai dati completi</h2>
-      <p style="margin:0 auto 28px;max-width:560px">Nella dashboard trovi flussi per anno, presenza regionale, asilo, criminalità, detenzione, saldo fiscale, confronti UE e i file CSV scaricabili.</p>
+      <p style="margin:0 auto 28px;max-width:560px">Nella dashboard trovi flussi per anno, presenza regionale, criminalita, saldo fiscale, confronti UE e i file CSV scaricabili.</p>
       <div style="display:flex;flex-direction:column;align-items:center;gap:16px">
         <a href="dashboard.html" class="btn btn-primary">Apri la dashboard completa →</a>
         <a href="https://un-mistico.github.io/repo-italia/" class="btn-secondary">← Torna a repo_italia</a>
@@ -313,6 +329,23 @@
 
     document.querySelectorAll('.big-num, .eyebrow, .hero h1, .hero .cta-group').forEach(n=>observer.observe(n));
     document.querySelectorAll('.bar').forEach(b=>observer.observe(b));
+
+    function showOrigin(view){
+      const paesi=document.getElementById('origin-paesi');
+      const macro=document.getElementById('origin-macro');
+      const btns=document.querySelectorAll('.toggle-btn');
+      if(view==='paesi'){
+        paesi.style.display='block'; macro.style.display='none';
+        btns[0].classList.add('active'); btns[1].classList.remove('active');
+      } else {
+        paesi.style.display='none'; macro.style.display='block';
+        btns[0].classList.remove('active'); btns[1].classList.add('active');
+        // Re-trigger animation for bars that just became visible
+        macro.querySelectorAll('.bar').forEach(b=>{
+          if(!b.style.width || b.style.width==='0px'){ b.style.width=b.dataset.width+'%'; }
+        });
+      }
+    }
 
     const dotObserver = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
