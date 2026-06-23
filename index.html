@@ -113,7 +113,7 @@
       <div class="label">Arrivi in Italia per rotta migratoria <span class="year-badge">2024</span></div>
       <div class="big-num accent" data-target="66.3" data-suffix="mila">66,3mila</div>
       <h2>La rotta del Mediterraneo centrale resta la principale</h2>
-      <p>I <span class="highlight">sbarchi</span> sono persone intercettate dalla Guardia Costiera. Non sono ingressi regolari, ne richiedenti asilo automatici, ne immigrati clandestini totali.</p>
+      <p>Il 90% degli arrivi passa per il Mediterraneo centrale. Ma gli sbarchi sono solo una frazione degli ingressi reali: i canali regolari (lavoro, famiglia, studio) sono 5-6 volte superiori.</p>
       <div class="bar-block" style="max-width:520px">
         <div class="bar-wrap"><div class="bar-label">Med. centrale</div><div class="bar accent" data-width="100"></div><div class="bar-value">66.317</div></div>
         <div class="bar-wrap"><div class="bar-label">Balcani occidentali*</div><div class="bar neutral" data-width="11"></div><div class="bar-value">~7.000</div></div>
@@ -129,10 +129,10 @@
       <h2>Da dove vengono gli stranieri in Italia</h2>
       <p>Romania, Albania e Marocco da decenni ai primi posti. I dati per macro-area mostrano come quasi meta degli stranieri venga dall'Europa.</p>
       <div class="toggle-group">
-        <button class="toggle-btn active" onclick="showOrigin('paesi')">Paesi</button>
-        <button class="toggle-btn" onclick="showOrigin('macro')">Macro aree</button>
+        <button class="toggle-btn" onclick="showOrigin('paesi')">Paesi</button>
+        <button class="toggle-btn active" onclick="showOrigin('macro')">Macro aree</button>
       </div>
-      <div id="origin-paesi" class="bar-block" style="max-width:520px">
+      <div id="origin-paesi" class="bar-block" style="max-width:520px;display:none">
         <div class="bar-wrap"><div class="bar-label">Romania</div><div class="bar accent" data-width="20.4"></div><div class="bar-value">20,4%</div></div>
         <div class="bar-wrap"><div class="bar-label">Albania</div><div class="bar neutral" data-width="7.9"></div><div class="bar-value">7,9%</div></div>
         <div class="bar-wrap"><div class="bar-label">Marocco</div><div class="bar neutral" data-width="7.8"></div><div class="bar-value">7,8%</div></div>
@@ -341,12 +341,16 @@
       if(view==='paesi'){
         paesi.style.display='block'; macro.style.display='none';
         btns[0].classList.add('active'); btns[1].classList.remove('active');
+        paesi.querySelectorAll('.bar').forEach(b=>{
+          b.style.width='0%';
+          requestAnimationFrame(()=>{ b.style.width=b.dataset.width+'%'; });
+        });
       } else {
         paesi.style.display='none'; macro.style.display='block';
         btns[0].classList.remove('active'); btns[1].classList.add('active');
-        // Re-trigger animation for bars that just became visible
         macro.querySelectorAll('.bar').forEach(b=>{
-          if(!b.style.width || b.style.width==='0px'){ b.style.width=b.dataset.width+'%'; }
+          b.style.width='0%';
+          requestAnimationFrame(()=>{ b.style.width=b.dataset.width+'%'; });
         });
       }
     }
