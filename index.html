@@ -377,6 +377,25 @@
       const h = document.documentElement;
       progress.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
     },{passive:true});
-  </script>
+  
+    // Auto-size bar labels: measure longest label per bar-block, set all to that width
+    function autoSizeBarLabels(){
+      document.querySelectorAll('.bar-block').forEach(block=>{
+        const labels = block.querySelectorAll('.bar-label');
+        if(!labels.length) return;
+        // Reset widths to auto for measuring
+        labels.forEach(l=>l.style.width='auto');
+        let maxW = 0;
+        labels.forEach(l=>{ maxW = Math.max(maxW, l.scrollWidth); });
+        // Set all labels to the max width + 2px padding
+        const w = (maxW + 4) + 'px';
+        labels.forEach(l=>l.style.width = w);
+      });
+    }
+    // Run after DOM loads and on resize
+    window.addEventListener('load', autoSizeBarLabels);
+    window.addEventListener('resize', autoSizeBarLabels);
+
+</script>
 </body>
 </html>
