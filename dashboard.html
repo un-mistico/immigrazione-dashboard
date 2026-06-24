@@ -327,12 +327,15 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <div class="chart-box"><h3>Occupati stranieri per principali nazionalit&agrave; (%)</h3><div class="chart-container"><canvas id="chart-econ-nazionalita"></canvas></div></div>
       <div class="chart-box"><h3>Occupati stranieri per tipologia contrattuale (%)</h3><div class="chart-container"><canvas id="chart-econ-contratti"></canvas></div></div>
     </div>
+    <div class="chart-grid">
+      <div class="chart-box"><h3>Rischio povertà o esclusione sociale: nazionali vs cittadini non-UE (Europa, 2024)<span class="info-tooltip"><span class="icon">i</span><span class="tooltip-text"><strong>AROPE</strong> (At Risk of Poverty or Social Exclusion): persone in famiglie con almeno una di queste condizioni: reddito sotto soglia di povertà, deprivazione materiale severa, bassissima intensità lavorativa. Fonte: Eurostat EU-SILC 2024.</span></span></h3><div class="chart-container"><canvas id="chart-arope-eu"></canvas></div></div>
+    </div>
     <div class="insight-box"><div class="text">Gli stranieri producono il 9% del PIL ma sono il 9,4% della popolazione: contributo pro-capite leggermente inferiore, ma con picchi del 18% in agricoltura e 14% in edilizia. Il saldo fiscale stimato da IDOS/Cgia Mestre &egrave; positivo di +€4,6 miliardi nel 2023. La stima include tutti gli stranieri residenti (regolari e irregolari) per la spesa, mentre le entrate fiscali/contributive provengono principalmente dai regolari. Il 35% delle famiglie straniere &egrave; in povert&agrave; assoluta contro il ~10% di quelle italiane.</div></div>
     <div class="method-box">
       <h4>Rimesse vs saldo fiscale: due conti diversi</h4>
       <p>Le rimesse inviate all'estero dagli immigrati residenti in Italia ammontano a circa <strong>€8,6 miliardi all'anno</strong> (2025, Banca d'Italia). Questo è un <strong>flussso di pagamenti esteri</strong>, non una spesa dello Stato, quindi <strong>non va sottratto direttamente</strong> al saldo fiscale pubblico di +€4,6 mld. Tuttavia rappresenta una quota del reddito prodotto in Italia che non viene consumata o investita qui, riducendo l'impatto moltiplicativo sull'economia nazionale. Per un calcolo del "contributo netto all'economia italiana" bisognerebbe partire dal valore aggiunto prodotto (€177 mld) e sottrarre le rimesse, non dal bilancio fiscale.</p>
     </div>
-<div class="footer-info">IDOS/Cgia Mestre/Università Milano-Insubria - Dossier Statistico Immigrazione 2025 (bilancio fiscale 2023) | Fondazione Leone Moressa - Rapporto economia immigrazione 2024 (PIL, occupati, rimesse) | Ministero Lavoro XIV Rapporto | ISTAT (povertà 2024)</div>
+<div class="footer-info">IDOS/Cgia Mestre/Università Milano-Insubria - Dossier Statistico Immigrazione 2025 (bilancio fiscale 2023) | Fondazione Leone Moressa - Rapporto economia immigrazione 2024 (PIL, occupati, rimesse) | Ministero Lavoro XIV Rapporto | ISTAT (povertà 2024) | Eurostat EU-SILC 2024 (AROPE per cittadinanza)</div>
   </div>
 
   <!-- RIMPATRI -->
@@ -1293,6 +1296,28 @@ buildChart('chart-status', {
         tooltip: { callbacks: { label: ctx=>ctx.raw + '%' } }
       },
       scales: { x: { ticks: { callback: v=>v+'%' }, grid: { color: gridColor } }, y: { grid: { display: false } } }
+    }
+  });
+
+  // AROPE: risk of poverty/social exclusion, nationals vs non-EU citizens (Eurostat 2024)
+  buildChart('chart-arope-eu', {
+    type: 'bar',
+    data: { labels: ['UE-27', 'Spagna', 'Francia'],
+      datasets: [
+        { label: 'Nazionali', data: [18.5, 20.0, 16.5],
+          backgroundColor: '#4A6FA5', borderWidth: 0 },
+        { label: 'Cittadini non-UE', data: [43.8, 53.4, 50.7],
+          backgroundColor: '#E07A5F', borderWidth: 0 }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: true, position: 'top', labels: { color: '#999', font: { size: 11 } } },
+        tooltip: { callbacks: { label: ctx=>ctx.dataset.label + ': ' + ctx.raw + '%' } }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: '#ccc' } },
+        y: { beginAtZero: true, max: 70, ticks: { callback: v=>v+'%', color: '#999' }, grid: { color: gridColor } }
+      }
     }
   });
 }
