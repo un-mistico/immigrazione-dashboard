@@ -127,7 +127,9 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
       <button class="tab" data-tab="rimpatri">Rimpatri</button>
       <button class="tab" data-tab="eu">Confronto EU</button>
       <button class="tab" data-tab="insight">Recap</button>
-      <button class="tab" data-tab="fonti">Fonti & Metodo</button>
+      <button class="tab" data-tab="fonti">Fonti &amp; Metodo</button>
+      <button class="tab" data-tab="dati">Dati</button>
+      <button class="tab" data-tab="glossario">Glossario</button>
     </div>
     <div class="year-sel">
       <label>Anno</label>
@@ -481,6 +483,74 @@ body{background:#0F0F12;font-family:'Inter',sans-serif;color:#E8E6E3;padding:20p
     </div>
 <div class="footer-info">Per segnalazioni, correzioni o richieste di approfondimento: i dati sono aggiornati al meglio delle fonti disponibili a giugno 2026.</div>
   </div>
+
+  <div id="dati" class="pane">
+    <div class="method-box" style="margin-bottom:16px">
+      <p style="margin:0;font-size:13px;color:#aaa;line-height:1.6">Qui puoi scaricare i dataset usati per i grafici e la tabella metodologica. I file sono in formato CSV, leggibili con Excel, LibreOffice, Python o R. I dati sono riportati come appaiono nelle fonti pubbliche: controlla sempre le fonti primarie prima di usarli.</p>
+    </div>
+
+    <div class="chart-box" style="margin-bottom:16px">
+      <h3>Download dataset</h3>
+      <table class="small-table">
+        <tr><th>File</th><th>Contenuto</th><th>Download</th></tr>
+        <tr><td>presenza.csv</td><td>Stranieri residenti, % popolazione, trend</td><td><a href="data/presenza.csv" download>CSV</a></td></tr>
+        <tr><td>flussi.csv</td><td>Arrivi via mare e via terra, rimpatri (2015-2025)</td><td><a href="data/flussi.csv" download>CSV</a></td></tr>
+        <tr><td>crimine.csv</td><td>Denunce per tipo di reato, detenuti stranieri</td><td><a href="data/crimine.csv" download>CSV</a></td></tr>
+        <tr><td>detenzione.csv</td><td>Detenuti totali e stranieri, affollamento</td><td><a href="data/detenzione.csv" download>CSV</a></td></tr>
+        <tr><td>denunce_tipo_reato.csv</td><td>Stranieri tra denunciati per tipo di reato</td><td><a href="data/denunce_tipo_reato.csv" download>CSV</a></td></tr>
+        <tr><td>ratio_denunce_presenza.csv</td><td>Indice denunce/presenza per nazionalità</td><td><a href="data/ratio_denunce_presenza.csv" download>CSV</a></td></tr>
+        <tr><td>macro_aree.csv</td><td>Detenuti stranieri per area geografica</td><td><a href="data/macro_aree.csv" download>CSV</a></td></tr>
+        <tr><td>saldo_fiscale.csv</td><td>Bilancio fiscale immigrati: entrate vs costi</td><td><a href="data/saldo_fiscale.csv" download>CSV</a></td></tr>
+        <tr><td>ue_confronto.csv</td><td>Confronto percentuale stranieri UE</td><td><a href="data/ue_confronto.csv" download>CSV</a></td></tr>
+        <tr><td>aire_vs_stranieri.csv</td><td>AIRE vs stranieri residenti</td><td><a href="data/aire_vs_stranieri.csv" download>CSV</a></td></tr>
+        <tr><td>decreto_flussi.csv</td><td>Quote Decreto Flussi vs assunzioni effettive</td><td><a href="data/decreto_flussi.csv" download>CSV</a></td></tr>
+        <tr><td>metodologia.csv</td><td>Definizione, fonte e caveat di ogni indicatore</td><td><a href="data/metodologia.csv" download>CSV</a></td></tr>
+      </table>
+    </div>
+
+    <div class="chart-box">
+      <h3>Metodologia indicatori principali</h3>
+      <table class="small-table">
+        <tr><th>Indicatore</th><th>Definizione</th><th>Fonte</th><th>Caveat</th></tr>
+        <tr><td>Residenti stranieri</td><td>Cittadini non italiani iscritti in anagrafe al 1° gennaio</td><td>ISTAT</td><td>Esclude irregolari e cittadini naturalizzati</td></tr>
+        <tr><td>% stranieri popolazione</td><td>Residenti stranieri / popolazione totale × 100</td><td>ISTAT</td><td>Non include cittadini di origine straniera (1,91M)</td></tr>
+        <tr><td>Arrivi via mare</td><td>Sbarchi registrati sulle coste italiane</td><td>Ministero dell'Interno</td><td>Non coincide con ingressi irregolari totali</td></tr>
+        <tr><td>Rimpatri effettivi</td><td>Trasferimenti effettivamente eseguiti verso paese di origine</td><td>Ministero dell'Interno</td><td>Molto inferiori agli ordini di espulsione emessi</td></tr>
+        <tr><td>% detenuti stranieri</td><td>Detenuti stranieri / totale detenuti × 100</td><td>DAP / Antigone</td><td>Include reati per legge immigrazione (solo stranieri)</td></tr>
+        <tr><td>Indice denunce/presenza</td><td>(% stranieri denunciati / % stranieri popolazione)</td><td>Min. Interno / ISTAT</td><td>Indice 1,0 = proporzionale; non misura causalità</td></tr>
+        <tr><td>Saldo fiscale</td><td>Entrate fiscali e contributive - costi servizi pubblici</td><td>IDOS / Cgia Mestre</td><td>Stima su tutti i residenti, non solo irregolari</td></tr>
+        <tr><td>Stock irregolari</td><td>Stima popolazione non in regola con permesso di soggiorno</td><td>ISMU</td><td>Stima incerta, non ricostruibile per tutti gli anni</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="glossario" class="pane">
+    <div class="method-box">
+      <h4>Come leggere questa dashboard senza essere esperti di migrazione</h4>
+      <p>I numeri sull'immigrazione servono per <strong>controllare</strong> le narrazioni politiche. Ma vanno letti con cura: una denuncia non è una condanna, uno sbarco non è un'iscrizione anagrafica, uno stock irregolare non è un flusso annuo. Qui trovi le definizioni dei termini più usati.</p>
+    </div>
+
+    <div class="chart-box">
+      <h3>Glossario dei termini più usati</h3>
+      <table class="small-table">
+        <tr><th>Termine</th><th>Cosa significa</th><th>Perché importa</th></tr>
+        <tr><td>Residente straniero</td><td>Cittadino non italiano iscritto in anagrafe comunale</td><td>È la base demografica ufficiale. Esclude irregolari e naturalizzati</td></tr>
+        <tr><td>Stock irregolare</td><td>Stima di stranieri presenti senza permesso di soggiorno valido</td><td>Non è un flusso annuo: è una stima del numero totale presente</td></tr>
+        <tr><td>Arrivo via mare</td><td>Persona sbarcata sulle coste italiane e registrata dalle autorità</td><td>Non tutti richiedono asilo; non tutti restano in Italia</td></tr>
+        <tr><td>Richiedente asilo</td><td>Persona che ha presentato formale domanda di protezione internazionale</td><td>Lo status è temporaneo: in attesa di decisione</td></tr>
+        <tr><td>Permesso di soggiorno</td><td>Documento che autorizza la permanenza legale di un non-UE</td><td>Può essere per lavoro, famiglia, studio, asilo, umanitario</td></tr>
+        <tr><td>Rimpatrio effettivo</td><td>Trasferimento fisico della persona verso il paese di origine</td><td>Diverso dall'ordine di espulsione: molti ordini non vengono eseguiti</td></tr>
+        <tr><td>Ordine di espulsione</td><td>Provvedimento che impone allo straniero di lasciare l'Italia</td><td>Non implica che l'espulsione avvenga: può restare sospeso</td></tr>
+        <tr><td>Decreto Flussi</td><td>Quota annua di ingressi per lavoro non-UE stabilita dal governo</td><td>Le quote sono molto inferiori alla domanda reale di manodopera</td></tr>
+        <tr><td>Denuncia</td><td>Segnalazione di un reato alle forze dell'ordine</td><td>Non implica colpevolezza né condanna. Conta eventi, non autori unici</td></tr>
+        <tr><td>Detenuto straniero</td><td>Persona detenuta con cittadinanza non italiana</td><td>Include reati per legge immigrazione (commessi solo da stranieri)</td></tr>
+        <tr><td>Cittadinanza acquisita</td><td>Straniero che ha ottenuto la cittadinanza italiana</td><td>1,91M al 2023: da quel momento conta come "italiano" nelle statistiche</td></tr>
+        <tr><td>Saldo fiscale</td><td>Differenza tra tasse/contributi versati e servizi ricevuti</td><td>Dipende dalla metodologia: ISMU e IDOS danno numeri diversi</td></tr>
+        <tr><td>Indice denunce/presenza</td><td>Rapporto tra quota denunciati e quota popolazione</td><td>1,0 = proporzionale. Non controlla per età, sesso, status, reddito</td></tr>
+        <tr><td>AIRE</td><td>Anagrafe Italiani Residenti all'Estero</td><td>6,4M italiani all'estero: più dei 5,3M stranieri residenti in Italia</td></tr>
+      </table>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -549,7 +619,7 @@ function sortDataKeepLast(labels, data, extras=null, lastMatchers=['Altro','Altr
 function renderChartsForPane(paneId) {
   if (paneRendered[paneId]) return;
   paneRendered[paneId] = true;
-  if (paneId === 'fonti') return;
+  if (paneId === 'fonti' || paneId === 'dati' || paneId === 'glossario') return;
   updateAll(paneId);
 }
 
