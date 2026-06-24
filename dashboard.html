@@ -1343,18 +1343,33 @@ document.getElementById('yearSelect').addEventListener('change', () => {
 
 renderChartsForPane('panoramica');
 
-    // Auto-size bar labels: measure longest label per bar-block, set all to that width
+    // Auto-size bar labels: measure longest label across all bar-blocks in the same section, set all to that width
     function autoSizeBarLabels(){
-      document.querySelectorAll('.bar-block').forEach(block=>{
-        const labels = block.querySelectorAll('.bar-label');
+      // Group bar-blocks by their parent section
+      const sections = new Set();
+      document.querySelectorAll('.bar-block').forEach(b=>{
+        const s = b.closest('section');
+        if(s) sections.add(s);
+      });
+      sections.forEach(section=>{
+        const labels = section.querySelectorAll('.bar-label');
         if(!labels.length) return;
-        // Reset widths to auto for measuring
-        labels.forEach(l=>l.style.width='auto');
+        // Temporarily show hidden blocks for measuring
+        const hidden = [];
+        labels.forEach(l=>{
+          const block = l.closest('.bar-block');
+          if(block && block.style.display==='none'){
+            block.style.display='block';
+            hidden.push(block);
+          }
+          l.style.width='auto';
+        });
         let maxW = 0;
         labels.forEach(l=>{ maxW = Math.max(maxW, l.scrollWidth); });
-        // Set all labels to the max width + 2px padding
         const w = (maxW + 4) + 'px';
         labels.forEach(l=>l.style.width = w);
+        // Restore hidden state
+        hidden.forEach(b=>b.style.display='none');
       });
     }
     // Run after DOM loads and on resize
